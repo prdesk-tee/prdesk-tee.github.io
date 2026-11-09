@@ -428,6 +428,36 @@ details.help summary::-webkit-details-marker{display:none}
 .grp{font-size:12px;font-weight:700;color:var(--ink3);padding:12px 18px 6px;display:flex;justify-content:space-between;background:var(--soft);border-top:1px solid var(--line)}
 .grp:first-child{border-top:0;border-radius:var(--r) var(--r) 0 0}
 
+/* ---------- খুঁজুন ---------- */
+.fgrid{display:grid;grid-template-columns:1fr 2fr 1.2fr;gap:12px;align-items:end}
+.ygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.yc{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sh);min-width:0}
+.yc.on{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-s)}
+.yc.have{opacity:.7}
+.yh{display:flex;gap:11px;align-items:center}
+.yh img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none;background:var(--soft)}
+.yh .grow{flex:1;min-width:0}
+.yh b{display:block;font-size:14.5px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yh small{display:block;font-size:12px;color:var(--ink3)}
+.yh input{width:19px;height:19px;accent-color:var(--acc);flex:none}
+.ys{display:flex;gap:14px;font-size:12.5px;color:var(--ink3)}
+.ys b{color:var(--ink);font-size:14px}
+.yd{font-size:12.5px;color:var(--ink2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0}
+.yt{display:flex;gap:5px;flex-wrap:wrap}
+.yf{display:flex;gap:6px;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.selbar{position:sticky;top:64px;z-index:5;display:flex;gap:10px;align-items:center;padding:10px 14px;margin-bottom:12px;border-radius:14px;background:var(--ink);color:var(--card)}
+.selbar b{flex:1}
+.selbar .btn.ghost{color:var(--card)}
+@media(min-width:1000px){.selbar{top:12px}}
+/* ---------- রিপোর্ট ---------- */
+.kpis.kp4{grid-template-columns:repeat(4,1fr)}
+.rtab tfoot td{border-top:2px solid var(--line);padding:12px 18px;background:var(--soft)}
+.ponly{display:none}
+.prhead{flex-direction:column;gap:2px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #18181b}
+.prhead b{font-size:20px}
+.prhead span{font-size:14px}
+.prhead small{font-size:12px;color:#555}
+
 @media(max-width:999px){
   .cols,.cols.eq{grid-template-columns:1fr}
   .dgrid{grid-template-columns:1fr}
@@ -435,6 +465,9 @@ details.help summary::-webkit-details-marker{display:none}
 @media(max-width:700px){
   .kpis{grid-template-columns:1fr 1fr}
   .kpis .kpi:first-child{grid-column:1 / -1}
+  .kpis.kp4 .kpi:first-child{grid-column:auto}
+  .kpis.kp4{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr}
   .kpi b{font-size:22px}
   .ph h1{font-size:21px}
   .stats>div{padding:12px 14px}
@@ -457,7 +490,15 @@ details.help summary::-webkit-details-marker{display:none}
   .hero .acts{width:100%}
   .tools .srch{flex-basis:100%}
 }
-@media print{ .side,.topbar,.bnav,.fab,.dev-foot{display:none!important} }
+@media print{
+  .side,.topbar,.bnav,.fab,.dev-foot,.noprint,.toast{display:none!important}
+  .shell{display:block}
+  html,body{background:#fff!important}
+  main{padding:0;max-width:none}
+  .ponly{display:flex!important}
+  .card,.kpi{box-shadow:none;break-inside:avoid}
+  @page{size:A4;margin:12mm}
+}
 </style>
 </head>
 <body>
@@ -724,7 +765,8 @@ var ICONS = {
   inbox: 'M22 12h-6l-2 3h-4l-2-3H2|M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z',
   undo: 'M9 14 4 9l5-5|M4 9h11a5 5 0 0 1 0 10h-1',
   user: 'M20 21v-1a5 5 0 0 0-5-5H9a5 5 0 0 0-5 5v1|M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-  menu: 'M4 6h16|M4 12h16|M4 18h16', globe: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z|M3 12h18|M12 3a14 14 0 0 1 0 18|M12 3a14 14 0 0 0 0 18'
+  menu: 'M4 6h16|M4 12h16|M4 18h16', chart: 'M3 3v18h18|M7 15l4-4 3 3 5-6', ext: 'M14 4h6v6|M20 4l-9 9|M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
+  renew: 'M3 12a9 9 0 0 1 15.5-6.2L21 8|M21 3v5h-5|M21 12a9 9 0 0 1-15.5 6.2L3 16|M3 21v-5h5', flag: 'M5 21V4|M5 4h11l-2 4 2 4H5', globe: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z|M3 12h18|M12 3a14 14 0 0 1 0 18|M12 3a14 14 0 0 0 0 18'
 };
 function icon(n, cls) {
   return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[n] || '').split('|').map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>';
@@ -1049,7 +1091,8 @@ function api(fn, args, btn) {
 }
 
 /* ---------- পাতা বদল ---------- */
-var PAGES = [['home', 'home', 'আজ'], ['deals', 'deal', 'চুক্তি'], ['content', 'film', 'কনটেন্ট'], ['money', 'wallet', 'টাকা'], ['people', 'users', 'ক্রিয়েটর']];
+var PAGES = [['home', 'home', 'আজ'], ['deals', 'deal', 'চুক্তি'], ['content', 'film', 'কনটেন্ট'], ['money', 'wallet', 'টাকা'], ['people', 'users', 'ক্রিয়েটর'],
+             ['find', 'search', 'নতুন খুঁজুন'], ['report', 'chart', 'রিপোর্ট']];   // ফোনের নিচে প্রথম ৫টা, বাকি মেনুতে
 function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
 window.addEventListener('hashchange', route);
 function route() {
@@ -1066,12 +1109,12 @@ function renderShell() {
   document.querySelectorAll('.orgTxt').forEach(function (x) { x.textContent = S.set.org || ORG; });
   var bc = S.booted ? homeTodos().filter(function (x) { return x.pri <= 2; }).length : 0;
   var cur = S.page === 'partner' ? 'people' : S.page === 'deal' ? 'deals' : S.page;
-  var nav = PAGES.map(function (p) {
+  var navOf = function (list) { return list.map(function (p) {
     return '<button data-go="#' + p[0] + '" class="' + (cur === p[0] ? 'on' : '') + '">' + icon(p[1]) + '<span>' + p[2] + '</span>' +
       (p[0] === 'home' && bc ? '<span class="nb">' + bnN(bc) + '</span>' : '') + '</button>';
-  }).join('');
-  $('sideNav').innerHTML = nav;
-  $('botNav').innerHTML = nav;
+  }).join(''); };
+  $('sideNav').innerHTML = navOf(PAGES);
+  $('botNav').innerHTML = navOf(PAGES.slice(0, 5));
   $('sideNew').innerHTML = icon('plus') + 'কনটেন্ট পেলাম';
   $('fab').innerHTML = icon('plus');
   $('menuBtn').innerHTML = icon('menu');
@@ -1080,7 +1123,7 @@ function renderShell() {
     '<button data-a="lock">' + icon('lock', 's') + 'লক করুন</button>' +
     '<button data-a="logout">' + icon('out', 's') + 'লগআউট</button>';
   $('sideTools').innerHTML = tools;
-  $('menu').innerHTML = tools;
+  $('menu').innerHTML = PAGES.slice(5).map(function (p) { return '<button data-go="#' + p[0] + '">' + icon(p[1], 's') + p[2] + '</button>'; }).join('') + tools;
 }
 function render() {
   renderShell();
@@ -1090,7 +1133,7 @@ function render() {
       : '<div class="card cpad"><div class="sk"></div><div class="sk" style="width:70%"></div><div class="sk" style="width:50%"></div></div>';
     return;
   }
-  var f = { home: homePage, deals: dealsPage, deal: function () { return dealPage(S.did); }, content: contentPage, money: moneyPage,
+  var f = { find: findPage, report: reportPage, home: homePage, deals: dealsPage, deal: function () { return dealPage(S.did); }, content: contentPage, money: moneyPage,
             people: peoplePage, partner: function () { return partnerPage(S.pid); }, set: setPage }[S.page] || homePage;
   v.innerHTML = f();
   if (S.page === 'set') loadSecurity();
@@ -1128,7 +1171,8 @@ function homeTodos() {
         c.items.filter(function (i) { return i.lag; }).map(function (i) { return esc(i.name) + ' ' + bnN(i.got) + '/' + bnN(i.qty) + ' (এতদিনে ' + bnN(i.exp) + ')'; }).join(' · ') + '</span></div>' + icon('right', 'chev') + '</div>' });
     }
     if (d.end && c.endIn <= (+set.endWarn || 0)) {
-      out.push({ pri: c.endIn < 0 ? 2 : 4, sort: d.end, html: '<div class="r click" data-go="#c/' + esc(d.id) + '"><div class="ti ' + (c.endIn < 0 ? 'bad' : 'info') + '">' + icon('deal') + '</div><div class="grow"><span class="t">' + esc(p.name) + ' — ' + (c.endIn < 0 ? 'চুক্তির সময় শেষ' : 'চুক্তি শেষ হবে ' + rel(d.end)) + '</span><span class="s">' + esc(d.title) + ' · ' + (c.endIn < 0 ? 'শেষ করুন বা নবায়ন ঠিক করুন' : dLabel(d.end)) + '</span></div>' + icon('right', 'chev') + '</div>' });
+      out.push({ pri: c.endIn < 0 ? 2 : 4, sort: d.end, html: '<div class="r"><div class="ti ' + (c.endIn < 0 ? 'bad' : 'info') + '">' + icon('deal') + '</div><div class="grow click" data-go="#c/' + esc(d.id) + '"><span class="t">' + esc(p.name) + ' — ' + (c.endIn < 0 ? 'চুক্তির সময় শেষ' : 'চুক্তি শেষ হবে ' + rel(d.end)) + '</span><span class="s">' + esc(d.title) + ' · ' + dLabel(d.end) + '</span></div>' +
+        '<div class="acts"><button class="btn sm" data-a="renew" data-id="' + esc(d.id) + '">' + icon('renew', 's') + 'নবায়ন</button><button class="btn sm ghost" data-a="deal-st" data-id="' + esc(d.id) + '" data-v="done" data-busy="…">শেষ করুন</button></div></div>' });
     }
   });
   var unk = S.pays.filter(function (k) { return k.st === 'unk' && payLive(k); });
@@ -1252,16 +1296,23 @@ function dealPage(id) {
   var c = calc(d), p = S.P[d.pid] || {};
   var period = d.start ? dLabel(d.start) + ' – ' + (d.end ? dLabel(d.end) : 'শেষ ঠিক নেই') : 'সময়কাল দেওয়া নেই';
   var mm = MODELS[d.model];
+  var prevD = d.prev ? S.D[d.prev] : null, nextD = S.deals.filter(function (x) { return x.prev === d.id; })[0];
   var moneyLbl = d.model === 'per' ? 'প্রতিটা ' + tk(d.rate) + (d.payDays ? ' · পাওয়ার ' + bnN(d.payDays) + ' দিনের মধ্যে' : ' · পাওয়ার দিনই') : '';
   var html = '<div class="ph"><div><button class="btn sm ghost" data-a="back">' + icon('left', 's') + 'ফিরুন</button></div></div>' +
     '<div class="card"><div class="hero">' + av(p, true) + '<div class="who"><h1>' + esc(p.name || '—') + '</h1><p>' + mdl(d.model) + '<span>' + esc(d.title) + '</span><span>·</span><span>' + period + '</span>' +
     (d.status !== 'active' ? '<span class="pill">' + DST[d.status] + '</span>' : c.ended ? '<span class="pill bad">সময় শেষ</span>' : '') + '</p></div>' +
     '<div class="acts"><button class="btn brand" data-a="content-new" data-did="' + esc(d.id) + '">' + icon('plus', 's') + 'কনটেন্ট পেলাম</button>' +
     '<button class="btn" data-a="deal-edit" data-id="' + esc(d.id) + '">' + icon('edit', 's') + 'বদলান</button>' +
+    (d.status === 'active' ? '<button class="btn" data-a="renew" data-id="' + esc(d.id) + '">' + icon('renew', 's') + 'নবায়ন</button>' +
+      '<button class="btn ghost" data-a="deal-st" data-id="' + esc(d.id) + '" data-v="done" data-busy="…">' + icon('flag', 's') + 'শেষ করুন</button>'
+      : '<button class="btn ghost" data-a="deal-st" data-id="' + esc(d.id) + '" data-v="active" data-busy="…">আবার চালু</button>' + (nextD ? '' : '<button class="btn" data-a="renew" data-id="' + esc(d.id) + '">' + icon('renew', 's') + 'নবায়ন</button>')) +
     '<button class="btn ghost" data-go="#p/' + esc(d.pid) + '" title="ক্রিয়েটরের পাতা">' + icon('user', 's') + '</button></div></div>' +
     '<div class="stats"><div><small>কনটেন্ট পাওয়া</small><b>' + bnN(c.got) + (c.exp ? '<em> / ' + bnN(c.exp) + '</em>' : '') + '</b></div>' +
     '<div><small>টাকা দেওয়া হয়েছে</small><b>' + tkS(c.paid) + (c.total ? '<em> / ' + tkS(c.total) + '</em>' : '') + '</b></div>' +
     '<div><small>' + (c.unk ? 'বাকি + অজানা' : 'দিতে বাকি') + '</small><b' + (c.over ? ' style="color:var(--neg)"' : '') + '>' + tkS(c.open) + (c.unk ? '<em> + ' + tkS(c.unk) + '</em>' : '') + '</b></div></div></div>';
+  if (prevD || nextD) html += '<div class="note" style="margin-bottom:14px;display:flex;gap:14px;flex-wrap:wrap">' + icon('renew', 's') +
+    (prevD ? '<span>আগের মেয়াদ: <a href="#c/' + esc(prevD.id) + '">' + esc(prevD.title) + ' (' + dShort(prevD.start) + ' – ' + dShort(prevD.end) + ')</a></span>' : '') +
+    (nextD ? '<span>নবায়ন হয়েছে: <a href="#c/' + esc(nextD.id) + '">' + esc(nextD.title) + ' (' + dShort(nextD.start) + ' থেকে)</a></span>' : '') + '</div>';
   if (c.missing.length) html += '<div class="note warn" style="margin-bottom:14px">' + icon('alert', 's') + ' দেওয়া নেই: ' + c.missing.join(', ') + ' — <a href="#" data-a="deal-edit" data-id="' + esc(d.id) + '">এখনই পূরণ করুন</a></div>';
 
   // কনটেন্ট
@@ -1411,7 +1462,7 @@ function peoplePage() {
     var kw = encodeURIComponent((f.cat ? f.cat + ' ' : '') + 'bangla');
     head = '<div class="qa"><input class="in" id="qaLink" placeholder="লিংক পেস্ট করুন — নাম নিজে বসবে" value="' + esc(QA.link) + '">' +
       '<input class="in s" id="qaName" placeholder="নাম" value="' + esc(QA.name) + '"><input class="in s" id="qaFol" placeholder="অনুসারী (1.2M)" value="' + esc(QA.fol) + '">' +
-      '<button class="btn pri" data-a="qa-add" data-busy="যোগ হচ্ছে…">' + icon('plus', 's') + 'যোগ</button></div><div id="qaDup"></div>' +
+      '<button class="btn pri" data-a="qa-add" data-busy="যোগ হচ্ছে…">' + icon('plus', 's') + 'যোগ</button><button class="btn brand" data-go="#find">' + icon('search', 's') + 'YouTube-এ খুঁজুন</button></div><div id="qaDup"></div>' +
       '<details class="help"><summary>' + icon('search', 's') + ' খুঁজতে সাহায্য · একসাথে অনেকজন · এ সপ্তাহে ' + bnN(found) + (goal ? '/' + bnN(goal) : '') + ' জন</summary>' +
       '<div class="sbtns"><a class="btn xs" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=' + kw + '&sp=EgIQAg%253D%253D">YouTube চ্যানেল</a>' +
       '<a class="btn xs" target="_blank" rel="noopener" href="https://www.facebook.com/search/pages/?q=' + kw + '">Facebook পেজ</a>' +
@@ -1685,6 +1736,31 @@ function contentForm(o) {
 
 /* ---------- চুক্তির ফর্ম ---------- */
 var DF = null;
+/* নবায়ন — আগের চুক্তির শর্ত নিয়ে পরের মেয়াদ: শুরু = আগের শেষের পরদিন, একই দৈর্ঘ্য, কিস্তি একই ধাঁচে সামনে সরানো */
+function renewForm(oldId) {
+  var o = S.D[oldId]; if (!o) return;
+  var n = dealMonths(o).length || 12;
+  var start = o.end ? addDays(o.end, 1) : today();
+  var d = JSON.parse(JSON.stringify(o));
+  delete d.id; d.prev = o.id; d.status = 'active'; d.start = start; d.end = addDays(addMonths(start, n), -1);
+  d.items = (o.items || []).map(function (it) { return { k: it.k, name: it.name, qty: it.qty, where: it.where, base: 0 }; });
+  // শিরোনামের বছর সামনে: "২০২৬-২৭" → "২০২৭-২৮", "2026" → "2027" (বাংলা বা ইংরেজি অঙ্ক যেটাই থাকুক)
+  var add = Math.max(1, Math.round(n / 12));
+  var toN = function (x) { return +String(x).replace(/[০-৯]/g, function (c) { return '০১২৩৪৫৬৭৮৯'.indexOf(c); }); };
+  var yr = function (t) {
+    return String(t || '').replace(/([২2][০0][০-৯0-9]{2})(?:(\s*[-–]\s*)([০-৯0-9]{2})(?![০-৯0-9]))?/g, function (m0, y4, sep, y2) {
+      var bn = /[০-৯]/.test(y4), f = function (v) { return bn ? bnN(v) : String(v); };
+      return f(toN(y4) + add) + (sep ? sep + f(('0' + ((toN(y2) + add) % 100)).slice(-2)) : '');
+    });
+  };
+  d.title = yr(o.title) === o.title ? o.title + ' — নবায়ন' : yr(o.title);
+  // কিস্তি: শুরুর দিনেরটা নতুন শুরুতে, বাকিগুলো মেয়াদের সমান মাস সামনে (১২ তারিখ থাকে ১২ তারিখ)
+  var oldPays = (S.KB[oldId] || []).filter(function (k) { return !S.works.some(function (w) { return w.payId === k.id; }); });
+  var pays = oldPays.map(function (k) { return { label: k.label, due: !k.due ? '' : k.due === o.start ? start : addMonths(k.due, n), amount: k.amount, mode: k.mode, st: 'due' }; });
+  DF = { d: d, pays: pays, up: { date: start, st: 'due' }, renew: o };
+  if (d.model === 'one' && pays.length === 1) DF.one = { due: pays[0].due, mode: pays[0].mode, st: 'due' };
+  drawDealForm();
+}
 function dealForm(id, pid) {
   var d = id ? JSON.parse(JSON.stringify(S.D[id])) : { pid: pid, title: '', model: '', plan: 'month', start: today(), end: '', total: '', rate: '', payDays: 0, items: [], status: 'active', note: '' };
   if (!d.plan) d.plan = 'total';
@@ -1738,7 +1814,8 @@ function drawDealForm() {
       '<td><input class="in" data-it="' + i + '" data-f="where" value="' + esc(it.where || '') + '" placeholder="কোন পেজে"></td>' +
       '<td><button class="x" data-a="it-del" data-i="' + i + '">' + icon('x', 's') + '</button></td></tr>';
   }).join('');
-  openSheet((d.id ? 'চুক্তি বদল — ' : 'নতুন চুক্তি — ') + esc(p.name || ''),
+  openSheet((d.id ? 'চুক্তি বদল — ' : DF.renew ? 'নবায়ন — ' : 'নতুন চুক্তি — ') + esc(p.name || ''),
+    (DF.renew ? '<div class="note" style="margin-top:12px">' + icon('renew', 's') + ' আগের মেয়াদ <b>' + esc(DF.renew.title) + '</b> (' + dShort(DF.renew.start) + ' – ' + dShort(DF.renew.end) + ') থেকে সব শর্ত নেওয়া হয়েছে — যা বদলেছে শুধু সেটা ঠিক করুন। সেভ করলে আগেরটা "শেষ" হবে।</div>' : '') +
     '<div class="sh-sec">কী ধরনের চুক্তি</div><div class="opts">' + Object.keys(MODELS).map(function (k) {
       var m = MODELS[k];
       return '<button class="opt' + (d.model === k ? ' on' : '') + '" data-a="d-model" data-v="' + k + '"><span class="ti" style="color:' + m.c + '">' + icon(m.i) + '</span><span><b>' + m.l + '</b><small>' + m.d + '</small></span></button>';
@@ -1796,7 +1873,7 @@ function dealPayload() {
     pays = num(d.total) ? [{ id: k1.id || '', label: 'পুরো টাকা', due: o.due, amount: d.total, mode: o.mode || S.set.payMode, st: o.st === 'paid' ? 'paid' : 'due' }] : [];
   } else pays = DF.pays.map(function (k) { return { id: k.id || '', label: k.label, due: k.due, amount: k.amount, mode: k.mode, st: k.st, note: k.note }; });
   return { id: d.id || '', pid: d.pid, title: d.title, model: d.model, plan: d.plan, start: d.start, end: d.end, total: d.model === 'per' ? '' : d.total,
-           rate: d.rate, payDays: d.payDays, items: d.items, status: d.status, note: d.note, type: d.type || '', pays: pays };
+           rate: d.rate, payDays: d.payDays, items: d.items, status: d.status, note: d.note, type: d.type || '', prev: d.id ? '' : (d.prev || ''), pays: pays };
 }
 
 /* ---------- ক্রিয়েটরের ফর্ম ---------- */
@@ -1914,13 +1991,14 @@ document.addEventListener('click', function (ev) {
     if (sid === 'd_plan') { readDealForm(); DF.d.plan = sb.dataset.v; drawDealForm(); return; }
     if (sid === 'd_status' && DF) DF.d.status = sb.dataset.v;
     if (sid === 'lgVia') LG2.via = sb.dataset.v;
+    if (sid === 'ffLang') { var autoQ = FF.q === kwOf(FF.cat, FF.lang); FF.lang = sb.dataset.v; if (autoQ) FF.q = kwOf(FF.cat, FF.lang); rerender(); return; }
     sb.parentNode.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', b === sb); });
     return;
   }
   var cb = t.closest('.chips button');
   if (cb) {
     var cid = cb.parentNode.id;
-    if (cid === 'pfTab') S.pf.tab = cb.dataset.v; else if (cid === 'dfTab') S.df.tab = cb.dataset.v; else if (cid === 'mfTab') S.mf.tab = cb.dataset.v;
+    if (cid === 'pfTab') S.pf.tab = cb.dataset.v; else if (cid === 'dfTab') S.df.tab = cb.dataset.v; else if (cid === 'mfTab') S.mf.tab = cb.dataset.v; else if (cid === 'rfPer') RF.per = cb.dataset.v;
     rerender(); return;
   }
   var a = t.closest('[data-a]'); if (!a) return;
@@ -2038,6 +2116,29 @@ document.addEventListener('click', function (ev) {
       if (pid0) dealForm('', pid0); else pickPartner('কার সাথে চুক্তি?', function (pid) { dealForm('', pid); });
       break;
     case 'deal-edit': dealForm(id); break;
+    case 'renew': renewForm(id); break;
+    case 'deal-st':
+      if (a.dataset.v === 'done' && !confirm('চুক্তিটা "শেষ" করবেন?' + (calc(S.D[id]).open ? '\n(এখনো ' + tk(calc(S.D[id]).open) + ' দেওয়া বাকি — সেগুলো তালিকায় থেকে যাবে)' : ''))) return;
+      api('apiDealStatus', [id, a.dataset.v], a).then(function (d) { upsert(S.deals, d); index(); rerender(); toast(d.status === 'done' ? 'চুক্তি শেষ — নবায়ন করতে চাইলে "নবায়ন" চাপুন' : 'চুক্তি আবার চালু'); });
+      break;
+
+    /* নতুন খুঁজুন */
+    case 'yt-search': FF.q = $('ffQ').value.trim() || kwOf(FF.cat, FF.lang); ytRun(a, false); break;
+    case 'yt-more': ytRun(a, true); break;
+    case 'yt-sel': FF.sel[id] = a.checked; $('ffRes').innerHTML = findResults(); return;
+    case 'yt-clear': FF.sel = {}; $('ffRes').innerHTML = findResults(); break;
+    case 'yt-add': ytAdd([ytById(id)], a); break;
+    case 'yt-addsel': ytAdd(Object.keys(FF.sel).filter(function (k) { return FF.sel[k]; }).map(ytById).filter(Boolean), a); break;
+    case 'yt-look':
+      FF.look = $('ffLink').value.trim(); if (!FF.look) { toast('লিংক দিন।'); return; }
+      api('apiYtLookup', [FF.look], a).then(function (c) { FF.err = ''; FF.res = [c].concat((FF.res || []).filter(function (x) { return x.id !== c.id; })); FF.res.q = 'লিংক'; FF.hide = false; if ($('ffRes')) $('ffRes').innerHTML = findResults(); },
+        function (e) { if (/^YT_OFF:/.test(e.message)) { FF.err = e.message; if ($('ffRes')) $('ffRes').innerHTML = findResults(); } });
+      break;
+
+    /* রিপোর্ট */
+    case 'rep-print': window.print(); break;
+    case 'rep-csv': repCsv(); toast('Excel ফাইল নামানো হলো'); break;
+    case 'rep-model': RF.model = a.dataset.v; rerender(); break;
     case 'd-model': readDealForm(); DF.d.model = a.dataset.v;
       if (!DF.d.items.length) DF.d.items.push({ name: 'Video', qty: DF.d.model === 'one' ? 1 : DF.d.model === 'per' ? 2 : 1, where: '', base: 0 });
       if (DF.d.model === 'one' || DF.d.model === 'upfront') { if (DF.d.model === 'one') DF.d.plan = 'total'; }
@@ -2061,8 +2162,9 @@ document.addEventListener('click', function (ev) {
       if (DF.d.model === 'install') { var ts = P0.pays.reduce(function (s, k) { return s + num(k.amount); }, 0); if (num(P0.total) && P0.pays.length && Math.abs(ts - num(P0.total)) > 1 && !confirm('কিস্তির যোগফল (' + tk(ts) + ') মোট টাকার (' + tk(P0.total) + ') সাথে মিলছে না। তবু সেভ করবেন?')) return; }
       api('apiSaveDeal', [P0], a).then(function (r) {
         var keepIds = {}; S.works.forEach(function (w) { if (w.did === r.deal.id && w.payId) keepIds[w.payId] = 1; });
-        upsert(S.deals, r.deal); S.pays = S.pays.filter(function (k) { return k.did !== r.deal.id || keepIds[k.id]; }).concat(r.pays); upsert(S.partners, r.partner); index();
-        closeOv(); toast('চুক্তি সেভ হয়েছে'); go('#c/' + r.deal.id);
+        upsert(S.deals, r.deal); if (r.prevDeal) upsert(S.deals, r.prevDeal);
+        S.pays = S.pays.filter(function (k) { return k.did !== r.deal.id || keepIds[k.id]; }).concat(r.pays); upsert(S.partners, r.partner); index();
+        closeOv(); toast(r.prevDeal ? 'নবায়ন হলো — আগের মেয়াদ "শেষ"' : 'চুক্তি সেভ হয়েছে'); go('#c/' + r.deal.id);
       });
       break;
     case 'deal-del':
@@ -2113,6 +2215,9 @@ function saveSettings(x, btn) { return api('apiSaveSettings', [x], btn).then(fun
 document.addEventListener('input', function (ev) {
   var t = ev.target;
   if (t.id === 'pfQ') { S.pf.q = t.value; $('pfList').innerHTML = peopleList(); }
+  else if (t.id === 'ffQ') FF.q = t.value;
+  else if (t.id === 'ffLink') FF.look = t.value;
+  else if (t.id === 'rfQ') { RF.q = t.value; var rp = t.selectionStart; rerender(); var rn = $('rfQ'); rn.focus(); rn.setSelectionRange(rp, rp); }
   else if (t.id === 'cfQ') { S.cf.q = t.value; var pos = t.selectionStart; rerender(); var n = $('cfQ'); n.focus(); n.setSelectionRange(pos, pos); }
   else if (t.id === 'qaLink') { qaRead(); var nm = nameFromUrl(QA.link); if (nm && (!QA.name || QA.name === QA.auto)) { QA.name = nm; QA.auto = nm; $('qaName').value = nm; } qaDupCheck(); }
   else if (t.id === 'qaName' || t.id === 'qaFol') { qaRead(); qaDupCheck(); }
@@ -2129,6 +2234,12 @@ document.addEventListener('input', function (ev) {
 document.addEventListener('change', function (ev) {
   var t = ev.target;
   if (t.id === 'pfCat') { S.pf.cat = t.value; rerender(); }
+  else if (t.id === 'ffCat') { FF.q = $('ffQ').value; var auto = FF.q === kwOf(FF.cat, FF.lang) || !FF.q; FF.cat = t.value; if (auto) FF.q = kwOf(FF.cat, FF.lang); rerender(); }
+  else if (t.id === 'ffHide') { FF.hide = t.checked; $('ffRes').innerHTML = findResults(); }
+  else if (t.id === 'ffMin') { FF.min = +t.value; $('ffRes').innerHTML = findResults(); }
+  else if (t.id === 'ffOrder') { FF.order = t.value; $('ffRes').innerHTML = findResults(); }
+  else if (t.id === 'rfModel') { RF.model = t.value; rerender(); }
+  else if (t.id === 'rfSort') { RF.sort = t.value; rerender(); }
   else if (t.id === 'pStage') {
     var pid = t.dataset.id, v = t.value, p = S.P[pid], nx = OPEN_ST[v] && !p.next ? addDays(today(), +S.set.fuDays || 3) : undefined;
     api('apiSetStage', nx ? [pid, v, nx, p.nextNote || ''] : [pid, v]).then(function (np) {
@@ -2142,6 +2253,8 @@ document.addEventListener('keydown', function (ev) {
   if (ev.key === 'Escape' && $('ov')) closeOv();
   if (ev.key === 'Enter' && ev.target.id === 's_cat') { ev.preventDefault(); document.querySelector('[data-a="cat-add"]').click(); }
   if (ev.key === 'Enter' && /^qa(Link|Name|Fol)$/.test(ev.target.id)) { ev.preventDefault(); document.querySelector('[data-a="qa-add"]').click(); }
+  if (ev.key === 'Enter' && ev.target.id === 'ffQ') { ev.preventDefault(); document.querySelector('[data-a="yt-search"]').click(); }
+  if (ev.key === 'Enter' && ev.target.id === 'ffLink') { ev.preventDefault(); document.querySelector('[data-a="yt-look"]').click(); }
   if ((ev.ctrlKey || ev.metaKey) && ev.key === 'Enter') {
     var b = $('ov') ? $('ov').querySelector('.sh-f .btn.pri') : ev.target.id === 'lgText' ? document.querySelector('[data-a="lg-save"]') : null;
     if (b) { ev.preventDefault(); b.click(); }
@@ -2202,6 +2315,232 @@ function logoutLocal() { setAuth(''); S.booted = false; closeOv(); showLogin(); 
 
 /* ---------- শুরু ---------- */
 if (AUTH) showApp(); else showLogin();
+
+/* ═════════════════════════ PR Desk — অ্যাপ (৩): নতুন খুঁজুন, রিপোর্ট ═════════════════════════ */
+
+/* ═════════ নতুন ক্রিয়েটর খুঁজুন ═════════ */
+var KW = {
+  Food: 'food review', Travel: 'travel vlog', Technology: 'tech review', Programming: 'programming tutorial', Education: 'education',
+  Lifestyle: 'lifestyle vlog', 'Beauty & Fashion': 'beauty fashion', Entertainment: 'entertainment', Comedy: 'funny video', Vlog: 'daily vlog',
+  Gaming: 'gaming', Podcast: 'podcast', Music: 'music', Sports: 'cricket football', Automobile: 'bike car review', Finance: 'finance money',
+  Freelancing: 'freelancing', Marketing: 'digital marketing', Design: 'graphic design', Photography: 'photography', Islamic: 'islamic',
+  'Current Affairs': 'news analysis', 'News & Media': 'news'
+};
+var FF = { cat: 'Travel', q: '', lang: 'bn', min: 0, hide: true, order: '', res: null, loading: false, err: '', sel: {}, next: '', more: false, look: '' };
+function kwOf(cat, lang) {
+  var base = KW[cat] || String(cat || '').toLowerCase();
+  return lang === 'bn' ? base + ' bangla' : lang === 'en' ? base + ' bangladesh' : base;
+}
+function subsBn(n) {
+  n = Number(n) || 0; if (!n) return 'গোপন';
+  if (n >= 1e7) return bnN(Math.round(n / 1e6) / 10) + ' কোটি';
+  if (n >= 1e5) return bnN(Math.round(n / 1e4) / 10) + ' লাখ';
+  if (n >= 1e3) return bnN(Math.round(n / 1e2) / 10) + ' হাজার';
+  return bnN(n);
+}
+/* তালিকায় আগে থেকে আছে কিনা — চ্যানেল id, @handle বা নাম মিলিয়ে */
+function inList(ch) {
+  var id = String(ch.id || '').toLowerCase(), h = String(ch.handle || '').toLowerCase(), nk = nameKey(ch.title);
+  for (var i = 0; i < S.partners.length; i++) {
+    var p = S.partners[i], lk = String(p.yt || '').toLowerCase();
+    if ((id && lk.indexOf(id) !== -1) || (h && h.length > 2 && (lk.indexOf(h + '/') !== -1 || lk.slice(-h.length) === h)) || (nk.length > 3 && nameKey(p.name) === nk)) return p;
+  }
+  return null;
+}
+function findPage() {
+  if (!FF.q) FF.q = kwOf(FF.cat, FF.lang);
+  var cats = S.set.cats || [];
+  var ext = encodeURIComponent(FF.q);
+  var weekAgo = addDays(today(), -6), goal = +S.set.weekGoal || 0;
+  var found = S.partners.filter(function (p) { return String(p.created || '').slice(0, 10) >= weekAgo; }).length;
+  var html = '<div class="ph"><div><h1>নতুন ক্রিয়েটর খুঁজুন</h1><p>বিষয় বেছে খুঁজুন — যাঁরা তালিকায় নেই, তাঁদের লিংক আর যোগাযোগসহ এক চাপে রাখুন</p></div>' +
+    '<div class="acts"><span class="pill ' + (goal && found >= goal ? 'ok' : '') + '">এ সপ্তাহে ' + bnN(found) + (goal ? ' / ' + bnN(goal) : '') + ' জন</span></div></div>' +
+    '<div class="card cpad"><div class="fgrid">' +
+    '<div><label class="fl" style="margin-top:0">বিষয়</label>' + sel(cats.map(function (c) { return [c, c]; }), FF.cat, 'id="ffCat"') + '</div>' +
+    '<div class="wide"><label class="fl" style="margin-top:0">কী লিখে খুঁজবেন</label><input class="in" id="ffQ" value="' + esc(FF.q) + '"></div>' +
+    '<div><label class="fl" style="margin-top:0">ভাষা</label><div class="seg full" id="ffLang">' + [['bn', 'বাংলা'], ['en', 'ইংরেজি'], ['any', 'সব']].map(function (x) { return '<button data-v="' + x[0] + '" class="' + (FF.lang === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div></div>' +
+    '</div>' +
+    '<div class="crow" style="margin-top:14px"><button class="btn brand" data-a="yt-search" data-busy="খুঁজছি…">' + icon('search', 's') + 'YouTube-এ খুঁজুন</button>' +
+    '<span class="muted" style="font-size:13px">অথবা একই শব্দে:</span>' +
+    '<a class="btn sm" target="_blank" rel="noopener" href="https://www.facebook.com/search/pages/?q=' + ext + '">' + icon('ext', 's') + 'Facebook পেজ</a>' +
+    '<a class="btn sm" target="_blank" rel="noopener" href="https://www.tiktok.com/search/user?q=' + ext + '">' + icon('ext', 's') + 'TikTok</a>' +
+    '<a class="btn sm" target="_blank" rel="noopener" href="https://www.instagram.com/explore/search/keyword/?q=' + ext + '">' + icon('ext', 's') + 'Instagram</a>' +
+    '<a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/search?q=' + encodeURIComponent('top ' + FF.q + ' content creator') + '">' + icon('ext', 's') + 'Google</a></div>' +
+    '<div class="crow" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)"><input class="in" id="ffLink" style="flex:1 1 260px" placeholder="অথবা YouTube চ্যানেল/ভিডিওর লিংক দিন — সব তথ্য নিজে আসবে" value="' + esc(FF.look) + '">' +
+    '<button class="btn" data-a="yt-look" data-busy="আনছি…">' + icon('link', 's') + 'তথ্য আনুন</button></div></div>';
+  html += '<div id="ffRes">' + findResults() + '</div>';
+  return html;
+}
+function findResults() {
+  if (FF.loading && !FF.res) return '<div class="ygrid">' + [1, 2, 3, 4].map(function () { return '<div class="yc"><div class="sk" style="height:48px;width:48px;border-radius:50%"></div><div class="sk"></div><div class="sk" style="width:60%"></div></div>'; }).join('') + '</div>';
+  if (FF.err) {
+    var off = /^YT_OFF:/.test(FF.err);
+    return '<div class="card cpad">' + (off ? '<h3 style="font-size:15.5px">YouTube খোঁজা চালু করতে একবার অনুমতি দিন</h3><div class="hint" style="margin-top:6px">Apps Script-এ <b>authorizePrDesk</b> বেছে ▶ Run চাপুন → Allow। তারপর এখানে আবার খুঁজুন। ততক্ষণ উপরের Facebook/TikTok বোতাম আর নিচের মতো হাতে যোগ করা চলবে।</div>'
+      : '<div class="err" style="margin:0">' + esc(FF.err) + '</div>') + '</div>';
+  }
+  if (!FF.res) return '<div class="card">' + empty('search', 'বিষয় বেছে "YouTube-এ খুঁজুন" চাপুন।<br><span style="font-size:12.5px">ফলে চ্যানেলের সাবস্ক্রাইবার, আর বিবরণে থাকা ইমেইল, ফোন, Facebook, Instagram, TikTok লিংক দেখাবে।</span>') + '</div>';
+  var all = FF.res.slice();
+  var listed = all.filter(function (c) { return inList(c); }).length;
+  var L = all.filter(function (c) { return (!FF.hide || !inList(c)) && (!FF.min || c.subs >= FF.min); });
+  if (FF.order === 'subs') L.sort(function (a, b) { return b.subs - a.subs; });
+  var nsel = Object.keys(FF.sel).filter(function (k) { return FF.sel[k]; }).length;
+  return '<div class="tools" style="margin-top:4px"><span class="muted" style="font-size:13.5px;flex:1">' + bnN(all.length) + 'টা চ্যানেল' + (listed ? ' · ' + bnN(listed) + 'টা আগেই তালিকায়' : '') + '</span>' +
+    '<label class="muted" style="font-size:13px;display:flex;gap:6px;align-items:center"><input type="checkbox" id="ffHide"' + (FF.hide ? ' checked' : '') + ' style="accent-color:var(--acc)">তালিকায় থাকাদের লুকান</label>' +
+    sel([['0', 'যেকোনো সাবস্ক্রাইবার'], ['10000', '১০ হাজার+'], ['100000', '১ লাখ+'], ['500000', '৫ লাখ+'], ['1000000', '১০ লাখ+']], String(FF.min), 'id="ffMin" style="flex:0 1 180px"') +
+    sel([['', 'ক্রম: প্রাসঙ্গিক'], ['subs', 'ক্রম: সাবস্ক্রাইবার']], FF.order, 'id="ffOrder" style="flex:0 1 170px"') + '</div>' +
+    (nsel ? '<div class="selbar"><b>' + bnN(nsel) + ' জন বাছাই</b><button class="btn sm pri" data-a="yt-addsel" data-busy="যোগ হচ্ছে…">' + icon('plus', 's') + 'তালিকায় যোগ করুন</button><button class="btn sm ghost" data-a="yt-clear">বাতিল</button></div>' : '') +
+    (L.length ? '<div class="ygrid">' + L.map(ytCard).join('') + '</div>' : '<div class="card">' + empty('search', 'এই ছাঁকনিতে কিছু নেই।') + '</div>') +
+    (FF.next ? '<div style="text-align:center;margin-top:14px"><button class="btn" data-a="yt-more" data-busy="আনছি…">আরও চ্যানেল</button></div>' : '');
+}
+function ytCard(c) {
+  var p = inList(c), ct = c.contacts || {};
+  var tags = [];
+  if (ct.email) tags.push('<span class="pill" title="' + esc(ct.email) + '">' + icon('mail', 's') + ' ইমেইল</span>');
+  if (ct.phone) tags.push('<span class="pill" title="' + esc(ct.phone) + '">' + icon('phone', 's') + ' ফোন</span>');
+  if (ct.fb) tags.push('<span class="pill" style="color:#1877f2">Facebook</span>');
+  if (ct.ig) tags.push('<span class="pill" style="color:#d62976">Instagram</span>');
+  if (ct.tt) tags.push('<span class="pill">TikTok</span>');
+  return '<div class="yc' + (FF.sel[c.id] ? ' on' : '') + (p ? ' have' : '') + '">' +
+    '<div class="yh">' + (c.thumb ? '<img src="' + esc(c.thumb) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : av({ id: c.id, name: c.title })) +
+    '<div class="grow"><b>' + esc(c.title) + '</b><small>' + esc(c.handle || '') + '</small></div>' +
+    (p ? '' : '<input type="checkbox" data-a="yt-sel" data-id="' + esc(c.id) + '"' + (FF.sel[c.id] ? ' checked' : '') + ' aria-label="বাছাই">') + '</div>' +
+    '<div class="ys"><span><b>' + subsBn(c.subs) + '</b> সাবস্ক্রাইবার</span><span>' + bnN(c.videos) + ' ভিডিও</span></div>' +
+    (c.desc ? '<p class="yd">' + esc(c.desc) + '</p>' : '') +
+    '<div class="yt">' + (tags.length ? tags.join('') : '<span class="muted" style="font-size:12px">বিবরণে যোগাযোগ নেই</span>') + '</div>' +
+    '<div class="yf"><a class="btn sm ghost" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + icon('ext', 's') + 'দেখুন</a>' +
+    (p ? '<a class="btn sm" href="#p/' + esc(p.id) + '">' + icon('check', 's') + 'তালিকায় আছে</a>' : '<button class="btn sm pri" data-a="yt-add" data-id="' + esc(c.id) + '" data-busy="যোগ…">' + icon('plus', 's') + 'যোগ করুন</button>') + '</div></div>';
+}
+function ytPayload(c) {
+  var ct = c.contacts || {};
+  return { name: c.title, cat: FF.cat, kind: 'creator', yt: c.url, ytF: fFmt(c.subs), fb: ct.fb || '', ig: ct.ig || '', tt: ct.tt || '',
+           email: ct.email || '', phone: ct.phone || '', src: 'YouTube খোঁজ: ' + (FF.res && FF.res.q ? FF.res.q : FF.q),
+           note: c.desc ? c.desc.slice(0, 300) : '' };
+}
+function ytById(id) { return (FF.res || []).filter(function (c) { return c.id === id; })[0]; }
+function ytRun(btn, more) {
+  FF.err = ''; FF.loading = true;
+  if (!more) { FF.res = null; FF.sel = {}; FF.next = ''; }
+  if ($('ffRes')) $('ffRes').innerHTML = findResults();
+  return api('apiYtSearch', [{ q: FF.q, lang: FF.lang, page: more ? FF.next : '', order: '' }], btn).then(function (r) {
+    FF.loading = false; FF.res = (more && FF.res ? FF.res : []).concat(r.items); FF.res.q = r.q; FF.next = r.next;
+    if ($('ffRes')) $('ffRes').innerHTML = findResults();
+  }, function (e) { FF.loading = false; FF.err = e.message; if ($('ffRes')) $('ffRes').innerHTML = findResults(); });
+}
+function ytAdd(list, btn) {
+  return api('apiQuickAdd', [list.map(ytPayload)], btn).then(function (r) {
+    r.added.forEach(function (p) { S.partners.push(p); }); index();
+    list.forEach(function (c) { delete FF.sel[c.id]; });
+    if ($('ffRes')) $('ffRes').innerHTML = findResults();
+    toast(r.added.length ? (r.added.length === 1 ? r.added[0].name + ' — তালিকায় যোগ হলো' : bnN(r.added.length) + ' জন তালিকায় যোগ হলো') + (r.skipped.length ? ' · ' + bnN(r.skipped.length) + ' জন আগেই ছিলেন' : '') : 'আগেই তালিকায় আছেন', 5000,
+      r.added.length === 1 ? ['খুলুন', function () { go('#p/' + r.added[0].id); }] : null);
+  });
+}
+
+
+/* ═════════ রিপোর্ট ═════════ */
+var RF = { per: 'all', q: '', sort: 'paid', model: '' };
+function repRange() {
+  var t = today();
+  if (RF.per === 'year') return [t.slice(0, 4) + '-01-01', t];
+  if (RF.per === '12m') return [addDays(addMonths(t, -12), 1), t];
+  if (RF.per === 'last') { var y = +t.slice(0, 4) - 1; return [y + '-01-01', y + '-12-31']; }
+  return ['0000-00-00', '9999-12-31'];
+}
+function repData() {
+  var R = repRange(), a = R[0], b = R[1], inR = function (d) { return d && d >= a && d <= b; };
+  var rows = [];
+  S.partners.forEach(function (p) {
+    var ds = (S.DB[p.id] || []).filter(function (d) { return d.status !== 'cancel' && (!RF.model || d.model === RF.model); });
+    var worked = ds.length || ['deal', 'shoot', 'published'].indexOf(p.stage) !== -1;
+    if (!worked) return;
+    if (RF.model && !ds.length) return;
+    var dsR = ds.filter(function (d) { return (!d.start || d.start <= b) && (!d.end || d.end >= a); });
+    var cs = (S.CP[p.id] || []).filter(function (c) { return S.D[c.did] && ds.indexOf(S.D[c.did]) !== -1 && inR(c.date); });
+    var base = RF.per === 'all' ? ds.reduce(function (s, d) { return s + (d.items || []).reduce(function (x, it) { return x + (Number(it.base) || 0); }, 0); }, 0) : 0;
+    var paid = 0, open = 0, unk = 0, committed = 0;
+    ds.forEach(function (d) {
+      (S.KB[d.id] || []).forEach(function (k) {
+        if (k.st === 'paid' && (RF.per === 'all' || inR(k.paidAt || k.due))) paid += payPaidAmt(k);
+        if (payOpen(k)) open += +k.amount || 0;
+        if (k.st === 'unk') unk += +k.amount || 0;
+      });
+      if (dsR.indexOf(d) !== -1) committed += calc(d).total || 0;
+    });
+    if (RF.per !== 'all' && !dsR.length && !cs.length && !paid) return;
+    var starts = ds.map(function (d) { return d.start; }).filter(Boolean).sort(), ends = ds.map(function (d) { return d.end; }).filter(Boolean).sort();
+    var lastC = (S.CP[p.id] || []).map(function (c) { return c.date; }).sort().pop() || '';
+    rows.push({ p: p, ds: ds, active: ds.filter(function (d) { return d.status === 'active'; }).length, models: ds.map(function (d) { return d.model; }),
+                content: cs.length + base, paid: paid, open: open, unk: unk, committed: committed, from: starts[0] || '', to: ends[ends.length - 1] || '', lastC: lastC });
+  });
+  var q = nameKey(RF.q);
+  if (q) rows = rows.filter(function (r) { return nameKey(r.p.name).indexOf(q) !== -1; });
+  rows.sort(function (x, y) {
+    if (RF.sort === 'content') return y.content - x.content;
+    if (RF.sort === 'name') return x.p.name.localeCompare(y.p.name);
+    if (RF.sort === 'recent') return (y.lastC || y.to || '') < (x.lastC || x.to || '') ? -1 : 1;
+    return y.paid - x.paid || y.content - x.content;
+  });
+  return { rows: rows, a: a, b: b };
+}
+function repPeriodLabel() {
+  var R = repRange();
+  return RF.per === 'all' ? 'শুরু থেকে আজ পর্যন্ত' : dLabel(R[0]) + ' – ' + dLabel(R[1]);
+}
+function reportPage() {
+  var D = repData(), rows = D.rows;
+  var tot = rows.reduce(function (s, r) { s.content += r.content; s.paid += r.paid; s.open += r.open; s.deals += r.ds.length; s.active += r.active ? 1 : 0; return s; }, { content: 0, paid: 0, open: 0, deals: 0, active: 0 });
+  // ধরন অনুযায়ী
+  var byM = {}; rows.forEach(function (r) { r.ds.forEach(function (d) { var k = d.model || ''; byM[k] = byM[k] || { n: 0, paid: 0 }; byM[k].n++; (S.KB[d.id] || []).forEach(function (x) { if (x.st === 'paid' && (RF.per === 'all' || ((x.paidAt || x.due || '') >= D.a && (x.paidAt || x.due || '') <= D.b))) byM[k].paid += payPaidAmt(x); }); }); });
+  // মাস অনুযায়ী (শেষ ১২ মাস বা সময়ের ভেতরে)
+  var endM = (D.b > today() ? today() : D.b).slice(0, 7), months = [];
+  for (var i = 11; i >= 0; i--) { var m = mAdd(endM, -i); if (m + '-31' >= D.a) months.push(m); }
+  var mc = months.map(function (m) { return S.works.filter(function (w) { return w.month === m; }).length; });
+  var mp = months.map(function (m) { return S.pays.filter(function (k) { return k.st === 'paid' && String(k.paidAt || k.due || '').slice(0, 7) === m; }).reduce(function (s, k) { return s + payPaidAmt(k); }, 0); });
+  var mxC = Math.max.apply(null, [1].concat(mc)), mxP = Math.max.apply(null, [1].concat(mp));
+  return '<div class="ponly prhead"><b>' + esc(S.set.org || ORG) + '</b><span>পিআর ও ক্রিয়েটর পার্টনারশিপ — কাজের রিপোর্ট</span><small>' + repPeriodLabel() + ' · তৈরি ' + dLabel(today()) + '</small></div>' +
+    '<div class="ph noprint"><div><h1>রিপোর্ট</h1><p>কাদের সাথে কাজ হয়েছে, কী ধরনের চুক্তিতে, কতটা কাজ, কত টাকা</p></div>' +
+    '<div class="acts"><button class="btn" data-a="rep-csv">' + icon('copy', 's') + 'Excel (CSV)</button><button class="btn pri" data-a="rep-print">' + icon('deal', 's') + 'প্রিন্ট / PDF</button></div></div>' +
+    '<div class="chips noprint" id="rfPer" style="margin-bottom:12px">' + [['all', 'সব সময়'], ['year', 'এ বছর'], ['12m', 'গত ১২ মাস'], ['last', 'গত বছর']].map(function (x) { return '<button data-v="' + x[0] + '" class="' + (RF.per === x[0] ? 'on' : '') + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+    '<div class="kpis kp4"><div class="kpi"><small>' + icon('users', 's') + 'ক্রিয়েটর / পার্টনার</small><b>' + bnN(rows.length) + '</b><div class="sub">' + bnN(tot.active) + ' জনের চুক্তি চলছে</div></div>' +
+    '<div class="kpi"><small>' + icon('deal', 's') + 'চুক্তি</small><b>' + bnN(tot.deals) + '</b><div class="sub">' + Object.keys(MODELS).filter(function (k) { return byM[k]; }).map(function (k) { return MODELS[k].s + ' ' + bnN(byM[k].n); }).join(' · ') + '</div></div>' +
+    '<div class="kpi"><small>' + icon('film', 's') + 'কনটেন্ট পাওয়া</small><b>' + bnN(tot.content) + '</b><div class="sub">' + repPeriodLabel() + '</div></div>' +
+    '<div class="kpi"><small>' + icon('wallet', 's') + 'টাকা দেওয়া</small><b>' + tkS(tot.paid) + '</b><div class="sub">বাকি ' + tkS(tot.open) + '</div></div></div>' +
+    '<div class="cols eq"><div class="card"><div class="ch"><h3>মাস অনুযায়ী</h3><span class="muted" style="font-size:12.5px">কনটেন্ট · দেওয়া টাকা</span></div>' +
+    months.map(function (m, i) { return '<div class="mon" style="grid-template-columns:72px 1fr 40px 1fr 92px"><span>' + mShort(m) + '</span><div class="bar ok"><i style="width:' + Math.round(mc[i] / mxC * 100) + '%"></i></div><b>' + bnN(mc[i]) + '</b><div class="bar ink"><i style="width:' + Math.round(mp[i] / mxP * 100) + '%"></i></div><b>' + tkS(mp[i]) + '</b></div>'; }).join('') + '<div style="height:10px"></div></div>' +
+    '<div class="card"><div class="ch"><h3>চুক্তির ধরন অনুযায়ী</h3></div><div class="rows">' + Object.keys(MODELS).concat(['']).filter(function (k) { return byM[k]; }).map(function (k) {
+      var x = MODELS[k] || { l: 'ধরন ঠিক নেই', c: '#dc2626', i: 'alert', d: 'চুক্তির পাতায় ধরন বেছে দিন' };
+      return '<div class="r click" data-a="rep-model" data-v="' + k + '"><span class="ti" style="color:' + x.c + '">' + icon(x.i) + '</span><div class="grow"><span class="t">' + x.l + '</span><span class="s">' + bnN(byM[k].n) + 'টা চুক্তি</span></div><b>' + tkS(byM[k].paid) + '</b></div>';
+    }).join('') + '</div></div></div>' +
+    '<div class="tools noprint"><div class="srch">' + icon('search', 's') + '<input class="in" id="rfQ" placeholder="নাম খুঁজুন" value="' + esc(RF.q) + '"></div>' +
+    sel([['', 'সব ধরনের চুক্তি']].concat(Object.keys(MODELS).map(function (k) { return [k, MODELS[k].l]; })), RF.model, 'id="rfModel" style="flex:0 1 200px"') +
+    sel([['paid', 'ক্রম: টাকা বেশি'], ['content', 'ক্রম: কনটেন্ট বেশি'], ['recent', 'ক্রম: সাম্প্রতিক'], ['name', 'ক্রম: নাম']], RF.sort, 'id="rfSort" style="flex:0 1 180px"') + '</div>' +
+    '<div class="card" style="overflow-x:auto"><table class="ctab rtab"><thead><tr><th>ক্রিয়েটর</th><th class="hm">চুক্তি</th><th class="hm">সময়কাল</th><th>কনটেন্ট</th><th>দেওয়া</th><th class="hm">বাকি</th></tr></thead><tbody>' +
+    (rows.length ? rows.map(function (r) {
+      var mods = {}; r.models.forEach(function (m) { mods[m] = (mods[m] || 0) + 1; });
+      return '<tr class="click" data-go="#p/' + esc(r.p.id) + '"><td><div style="display:flex;gap:10px;align-items:center">' + av(r.p) + '<div style="min-width:0"><b style="display:block;font-size:14px">' + esc(r.p.name) + '</b><small class="muted">' + esc(KINDS[r.p.kind] || '') + (r.p.cat ? ' · ' + esc(r.p.cat) : '') + (r.active ? ' · <span style="color:var(--pos)">চলছে</span>' : '') + '</small></div></div></td>' +
+        '<td class="hm">' + (r.ds.length ? Object.keys(mods).map(function (m) { return mdl(m) + (mods[m] > 1 ? ' ×' + bnN(mods[m]) : ''); }).join(' ') : '<span class="muted" style="font-size:12.5px">চুক্তির তথ্য নেই</span>') + '</td>' +
+        '<td class="hm" style="font-size:13px">' + (r.from ? dShort(r.from) + ' – ' + (r.to ? dShort(r.to) : 'চলছে') : '—') + '</td>' +
+        '<td><b>' + bnN(r.content) + '</b>' + (r.lastC ? '<small class="muted" style="display:block">শেষ ' + dShort(r.lastC) + '</small>' : '') + '</td>' +
+        '<td><b>' + (r.paid ? tk(r.paid) : '—') + '</b>' + (r.committed && r.committed !== r.paid ? '<small class="muted" style="display:block">মোট ' + tkS(r.committed) + '</small>' : '') + '</td>' +
+        '<td class="hm">' + (r.open ? tk(r.open) : '—') + (r.unk ? '<small style="display:block;color:var(--warn)">অজানা ' + tkS(r.unk) + '</small>' : '') + '</td></tr>';
+    }).join('') : '<tr><td colspan="6">' + empty('chart', 'এই সময়ে কোনো কাজ নেই।') + '</td></tr>') +
+    '</tbody><tfoot><tr><td><b>মোট ' + bnN(rows.length) + ' জন</b></td><td class="hm"><b>' + bnN(tot.deals) + 'টা</b></td><td class="hm"></td><td><b>' + bnN(tot.content) + '</b></td><td><b>' + tk(tot.paid) + '</b></td><td class="hm"><b>' + tk(tot.open) + '</b></td></tr></tfoot></table></div>' +
+    '<div class="ponly" style="margin-top:40px;display:none;justify-content:space-between;font-size:12px"><span>তৈরি করেছেন: ' + esc(S.set.me || '') + '</span><span>Developed By: Md. Ashraful Islam</span></div>';
+}
+function repCsv() {
+  var D = repData();
+  var head = ['ক্রিয়েটর', 'ধরন', 'বিষয়', 'চুক্তি সংখ্যা', 'চুক্তির ধরন', 'শুরু', 'শেষ', 'কনটেন্ট পাওয়া', 'শেষ কনটেন্ট', 'টাকা দেওয়া', 'বাকি', 'অজানা', 'ফোন', 'ইমেইল'];
+  var q = function (v) { v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  var lines = [head.join(',')].concat(D.rows.map(function (r) {
+    return [r.p.name, KINDS[r.p.kind] || '', r.p.cat || '', r.ds.length, r.models.map(function (m) { return (MODELS[m] || {}).s || 'ঠিক নেই'; }).join(' + '), r.from, r.to,
+            r.content, r.lastC, Math.round(r.paid), Math.round(r.open), Math.round(r.unk), r.p.phone || '', r.p.email || ''].map(q).join(',');
+  }));
+  var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'PR-Desk-report-' + today() + '.csv'; document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  window.__lastCsv = lines;
+}
 </script>
 </body>
 </html>
