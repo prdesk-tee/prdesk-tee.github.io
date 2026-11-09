@@ -11,7 +11,24 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="PR Desk">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Inter:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<script>
+/* বাংলা ফন্ট — সেটিংস থেকে বদলানো যায় (এই ডিভাইসে মনে থাকে) */
+var FONTS = { noto: ['Noto Sans Bengali', 'Noto+Sans+Bengali:wght@400;500;600;700'], anek: ['Anek Bangla', 'Anek+Bangla:wght@400;500;600;700'],
+              baloo: ['Baloo Da 2', 'Baloo+Da+2:wght@400;500;600;700'], tiro: ['Tiro Bangla', 'Tiro+Bangla'], hind: ['Hind Siliguri', 'Hind+Siliguri:wght@400;500;600;700'] };
+var FONT = 'noto';
+try { FONT = localStorage.getItem('prd_font') || 'noto'; } catch (e) {}
+function applyFont(k) {
+  if (!FONTS[k]) k = 'noto';
+  FONT = k;
+  if (k !== 'noto' && !document.getElementById('font_' + k)) {
+    var l = document.createElement('link'); l.id = 'font_' + k; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[k][1] + '&display=swap'; document.head.appendChild(l);
+  }
+  document.documentElement.style.setProperty('--bf', "'" + FONTS[k][0] + "','Noto Sans Bengali','Nirmala UI',system-ui,sans-serif");
+}
+applyFont(FONT);
+</script>
 <script>
 /* =========================================================
  *  PR Desk — ক্রিয়েটর, এজেন্সি, টিভি-পত্রিকার সাথে যোগাযোগ, চুক্তি, কিস্তি, কাজ জমা, নতুন খোঁজ
@@ -72,6 +89,7 @@ function markSvg(cls) {
 </script>
 <style>
 :root{
+  --bf:'Noto Sans Bengali','Nirmala UI',system-ui,sans-serif;
   --bg:#f6f6f8; --card:#ffffff; --ink:#18181b; --ink2:#52525b; --ink3:#9a9aa4;
   --line:#ececf0; --soft:#f4f4f6; --hover:#fafafb;
   --acc:#db2777; --acc-d:#be185d; --acc-s:rgba(219,39,119,.08); --acc2:#7c3aed;
@@ -91,7 +109,7 @@ function markSvg(cls) {
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--ink)}
-body{font-family:'Hind Siliguri','Inter','Nirmala UI',system-ui,sans-serif;font-size:14.5px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{font-family:var(--bf);font-size:14.5px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
 [hidden]{display:none!important}
@@ -139,7 +157,7 @@ main{padding:18px 16px 110px;max-width:1240px;margin:0 auto}
 .bnav button{color:var(--ink3);display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 2px;border-radius:12px;font-size:11px;font-weight:600;position:relative;white-space:nowrap}
 .bnav button .ic{width:21px;height:21px}
 .bnav button.on{color:var(--acc)}
-.nb{position:absolute;top:0;right:calc(50% - 20px);min-width:18px;height:18px;border-radius:9px;background:var(--neg);color:#fff;font:700 11.5px/18px 'Hind Siliguri',sans-serif;padding:0 5px;text-align:center}
+.nb{position:absolute;top:0;right:calc(50% - 20px);min-width:18px;height:18px;border-radius:9px;background:var(--neg);color:#fff;font:700 11.5px/18px var(--bf);padding:0 5px;text-align:center}
 .fab{position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:26;width:54px;height:54px;border-radius:18px;background:var(--brand);color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(219,39,119,.35)}
 .fab .ic{width:26px;height:26px;stroke-width:2.2}
 .dev-foot{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;color:var(--ink3);margin:30px 0 4px}
@@ -462,6 +480,13 @@ details.help summary::-webkit-details-marker{display:none}
 .prhead span{font-size:14px}
 .prhead small{font-size:12px;color:#555}
 
+/* ফন্ট বাছাই */
+.fopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.fopt{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;text-align:left;background:var(--card)}
+.fopt.on{border-color:var(--acc);background:var(--acc-s)}
+.fopt b{display:block;font-size:17px;font-weight:600}
+.fopt small{display:block;font:500 11.5px Inter,sans-serif;color:var(--ink3);margin-top:2px}
+
 @media(max-width:999px){
   .cols,.cols.eq{grid-template-columns:1fr}
   .dgrid{grid-template-columns:1fr}
@@ -569,7 +594,7 @@ details.help summary::-webkit-details-marker{display:none}
     padding: 16px; overflow-y: auto; visibility: visible !important;
     background: radial-gradient(circle at 18% 14%, #be185d 0, transparent 45%),
                 radial-gradient(circle at 86% 90%, #6d28d9 0, transparent 42%), #160b1d;
-    font-family: 'Hind Siliguri', 'Nirmala UI', system-ui, sans-serif; color: #1c1426;
+    font-family: var(--bf); color: #1c1426;
   }
   #alLock .al-card { width: 100%; max-width: 360px; background: #fff; border-radius: 24px; padding: 28px 22px 20px;
     box-shadow: 0 24px 60px rgba(0,0,0,.45); text-align: center; margin: auto; }
@@ -1138,7 +1163,12 @@ function render() {
   }
   var f = { find: findPage, report: reportPage, home: homePage, deals: dealsPage, deal: function () { return dealPage(S.did); }, content: contentPage, money: moneyPage,
             people: peoplePage, partner: function () { return partnerPage(S.pid); }, set: setPage }[S.page] || homePage;
-  v.innerHTML = f();
+  try { v.innerHTML = f(); }
+  catch (e) {
+    console.error(e);
+    v.innerHTML = '<div class="card cpad"><h3 style="font-size:16px">এই পাতা খুলতে সমস্যা হলো</h3><div class="hint" style="margin-top:6px">নিচের লেখাটা ডেভেলপারকে পাঠান: </div><pre class="note" style="white-space:pre-wrap;margin-top:8px;font-size:12.5px">' + esc(S.page + ': ' + (e && e.message) + '\n' + String(e && e.stack || '').split('\n').slice(1, 4).join('\n')) + '</pre>' +
+      '<div style="margin-top:12px;display:flex;gap:8px"><button class="btn sm" data-a="reboot">আবার চেষ্টা</button><button class="btn sm ghost" data-a="hardreload">পুরো পাতা নতুন করে</button></div></div>';
+  }
   if (S.page === 'set') loadSecurity();
 }
 function rerender() { var y = window.scrollY; render(); window.scrollTo(0, y); }
@@ -1639,6 +1669,8 @@ function setPage() {
     '<div style="margin-top:14px;text-align:right"><button class="btn pri" data-a="set-save" data-busy="সেভ…">সেভ করুন</button></div></div>' +
     '<div class="card cpad"><h3 style="font-size:15.5px">To-Do সংযোগ</h3><div class="hint" style="margin-top:6px">' + syTxt + '</div><div class="hint">কিছু বদলালে ১৫ মিনিটের মধ্যে নিজে যায়; সকাল ৭টায় নতুন দিনের কাজ।</div>' +
     '<button class="btn sm" data-a="sync-now" data-busy="পাঠানো হচ্ছে…" style="margin-top:10px">এখনই পাঠান</button></div>' +
+    '<div class="card cpad"><h3 style="font-size:15.5px">বাংলা ফন্ট</h3><div class="hint" style="margin-top:4px">এই ডিভাইসে মনে থাকবে।</div><div class="fopts">' +
+    Object.keys(FONTS).map(function (k) { return '<button class="fopt' + (FONT === k ? ' on' : '') + '" data-a="font" data-v="' + k + '" style="font-family:\'' + FONTS[k][0] + '\'"><b>১ জরুরি · ৳১৫ লাখ</b><small>' + FONTS[k][0] + (k === 'noto' ? ' · মূল' : '') + '</small></button>'; }).join('') + '</div></div>' +
     '<div class="card cpad"><h3 style="font-size:15.5px">বিষয়ের তালিকা</h3><div class="presets" style="margin-top:10px">' + (s.cats || []).map(function (c, i) { return '<span class="pill">' + esc(c) + '<button data-a="cat-del" data-i="' + i + '" title="সরান" style="color:var(--ink3)">✕</button></span>'; }).join('') + '</div>' +
     '<div style="display:flex;gap:8px;margin-top:12px"><input class="in" id="s_cat" placeholder="নতুন বিষয়"><button class="btn sm" data-a="cat-add" data-busy="…">যোগ</button></div></div>' +
     '</div><div>' +
@@ -1652,7 +1684,9 @@ function setPage() {
     '<div class="card"><div class="ch"><h3>কী কবে বদলেছে</h3><button class="btn xs" data-a="activity" data-busy="…">দেখান</button></div><div id="actBox" class="hint" style="padding:0 18px 16px">শেষ ১৫০টা কাজ।</div></div>' +
     '</div></div>';
 }
-function loadSecurity() { callServer('apiSecurity', []).then(drawSecurity, function (e) { if ($('secBox')) $('secBox').innerHTML = '<div class="err">' + esc(e.message) + '</div>'; }); }
+function loadFontPreviews() { Object.keys(FONTS).forEach(function (k) { if (k === 'noto' || document.getElementById('font_' + k)) return; var l = document.createElement('link'); l.id = 'font_' + k; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[k][1] + '&display=swap'; document.head.appendChild(l); }); }
+function loadSecurity() {
+  loadFontPreviews(); callServer('apiSecurity', []).then(drawSecurity, function (e) { if ($('secBox')) $('secBox').innerHTML = '<div class="err">' + esc(e.message) + '</div>'; }); }
 function drawSecurity(s) {
   var b = $('secBox'); if (!b) return;
   b.innerHTML = '<div class="hint" style="margin-top:6px">ঢুকতে পারেন শুধু: <b>' + esc([s.owner].concat(s.aliases || []).join(', ')) + '</b>। অন্য ইমেইলে কোড যায় না; চেষ্টা হলে আপনাকে মেইল যায়।</div>' +
@@ -2023,6 +2057,8 @@ document.addEventListener('click', function (ev) {
   switch (A) {
     case 'close': closeOv(); break;
     case 'reboot': S.bootErr = ''; boot(); break;
+    case 'hardreload': try { localStorage.removeItem(BOOT_KEY); } catch (e) {} location.reload(); break;
+    case 'font': applyFont(a.dataset.v); try { localStorage.setItem('prd_font', FONT); } catch (e) {} rerender(); toast('ফন্ট: ' + FONTS[FONT][0]); break;
     case 'theme': THEME = THEME === 'auto' ? 'dark' : THEME === 'dark' ? 'light' : 'auto'; try { localStorage.setItem('prd_theme', THEME); } catch (e) {} applyTheme(); $('menu').hidden = true; toast('থিম: ' + ({ auto: 'যন্ত্রের মতো', dark: 'অন্ধকার', light: 'আলো' })[THEME]); break;
     case 'lock': $('menu').hidden = true; if (window.appLockNow) appLockNow(); break;
     case 'logout': if (confirm('লগআউট করবেন?')) { callServer('apiLogout', []).catch(function () {}); logoutLocal(); } break;
