@@ -2364,8 +2364,7 @@ $('lgForm').addEventListener('submit', function (e) {
 $('lgBack').addEventListener('click', function () { lgStep(1); });
 function logoutLocal() { setAuth(''); S.booted = false; closeOv(); showLogin(); }
 
-/* ---------- শুরু ---------- */
-if (AUTH) showApp(); else showLogin();
+/* শুরু: app3.js-এর শেষে (সব অংশ পড়া হলে তবেই) */
 
 /* ═════════════════════════ PR Desk — অ্যাপ (৩): নতুন খুঁজুন, রিপোর্ট ═════════════════════════ */
 
@@ -2592,6 +2591,9 @@ function repCsv() {
   setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
   window.__lastCsv = lines;
 }
+
+/* ---------- শুরু — সব অংশ (app1, app2, app3) পড়া শেষে; আগে চালালে কোনো পাতার কোড তখনো অজানা থাকে ---------- */
+if (AUTH) showApp(); else showLogin();
 </script>
 </body>
 </html>
