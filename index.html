@@ -448,6 +448,19 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .mopt.on{border-color:var(--acc);background:var(--acc-s)}
 .mopt .ti{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;background:var(--card)}
 .mopt b{display:block;font-size:14px}.mopt small{display:block;font-size:12.5px;color:var(--ink3);line-height:1.45;margin-top:2px}
+.mopts.m4{grid-template-columns:repeat(4,1fr)}.mopts.m4 .mopt{padding:11px;gap:9px}.mopts.m4 .mopt small{font-size:11.5px}
+.was{display:block;font-size:11.5px;color:var(--warn);margin-top:4px}
+.ckl{display:flex;gap:9px;align-items:center;font-size:13.5px;margin-top:10px;cursor:pointer;width:fit-content}.ckl input{width:17px;height:17px;accent-color:var(--acc)}
+.rest{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13.5px;color:var(--ink2)}.rest .in{width:84px;padding:8px 10px}.rest .in[type=date]{width:160px}
+.plan{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:4px 14px 10px}
+.plan .ph{display:flex;gap:10px;align-items:center;padding:10px 0 6px;font-size:13px}.plan .ph .grow{flex:1}
+.plan .pr{display:grid;grid-template-columns:22px 1fr 90px 110px 96px;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}
+.plan .pr b{text-align:right}.plan .pr .st{font-size:12px;color:var(--pos)}
+.plan .pf{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;padding-top:8px;border-top:1px solid var(--line);font-size:13px}.plan .pf .grow{flex:1}
+.nowad{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--acc-s);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.nowad>small{width:100%;font-size:11.5px;font-weight:700;color:var(--acc)}.nowad .g{flex:1;min-width:0;font-size:13.5px}.nowad .g small{display:block;color:var(--ink3);font-size:12px}.nowad .x{color:var(--ink3)}
+.adhist summary{cursor:pointer;font-size:12.5px;color:var(--ink3);margin-top:8px}
+@media(max-width:760px){.mopts.m4{grid-template-columns:1fr 1fr}.plan .pr{grid-template-columns:22px 1fr auto;}.plan .pr .nw:not(b),.plan .pr .st{grid-column:2}}
 .itbl{width:100%;border-collapse:collapse;margin-top:6px}
 .itbl th{text-align:left;font-size:12px;color:var(--ink3);font-weight:600;padding:6px 4px}
 .itbl td{padding:4px 3px}
@@ -891,6 +904,89 @@ var BN = {
   'Copied — paste it anywhere': 'কপি হয়েছে — যেখানে খুশি পেস্ট করুন', 'Sent to To-Do': 'To-Do-তে পাঠানো হলো', 'Sign out everywhere except this device?': 'এই ডিভাইস বাদে সব জায়গা থেকে বের করবেন?',
   'Moved to the {0} box': '{0}-এর ঘরে বসানো হলো', '{0} found': '{0} জন পাওয়া গেছে', '{0} already in your list (will be skipped)': '{0} জন আগেই আছেন (বাদ যাবেন)',
 
+  /* চুক্তির ফর্ম (এক পাতা) আর বিজ্ঞাপন */
+  "Ad proof missing": "বিজ্ঞাপনের প্রমাণ আসেনি",
+  "No report or photo yet for {0}": "{0}-এর রিপোর্ট বা ছবি এখনো আসেনি",
+  "Add proof": "প্রমাণ যোগ",
+  "Ad airtime": "বিজ্ঞাপনের সময়",
+  "Proof each month": "প্রতি মাসের প্রমাণ",
+  "{0} of {1}": "{1}-এর {0}",
+  "{0} month(s) without proof": "{0} মাসের প্রমাণ নেই",
+  "proof up to date": "প্রমাণ সব আছে",
+  "was {0}": "আগে ছিল {0}",
+  "Renewing {0}. Everything is filled in from it — change only what is different. The old contract is marked ended when you save.": "{0} নবায়ন হচ্ছে। সব তথ্য আগেরটা থেকে বসানো — শুধু যা বদলেছে সেটা ঠিক করুন। সেভ করলে আগের চুক্তি \"শেষ\" হবে।",
+  "Pick the type first.": "আগে ধরন বেছে নিন।",
+  "Length": "মেয়াদ",
+  "2 years": "২ বছর",
+  "Custom": "নিজে দিন",
+  "{0} months": "{0} মাস",
+  "What they give": "কী দেবেন",
+  "Content (videos, posts)": "কনটেন্ট (ভিডিও, পোস্ট)",
+  "Ad airtime (screen / TV)": "বিজ্ঞাপন চালানো (পর্দা / টিভি)",
+  "How much": "কতটা",
+  "minutes": "মিনিট",
+  "seconds": "সেকেন্ড",
+  "times (spots)": "বার",
+  "Every": "প্রতি",
+  "hour": "ঘণ্টায়",
+  "day": "দিনে",
+  "week": "সপ্তাহে",
+  "month": "মাসে",
+  "Where it runs": "কোথায় চলবে",
+  "e.g. Metro Rail station screens": "যেমন: মেট্রো রেলের স্টেশনের পর্দা",
+  "Time slot": "সময়",
+  "e.g. 7 am – 10 pm": "যেমন: সকাল ৭টা – রাত ১০টা",
+  "Keep the same ad running: {0}": "একই বিজ্ঞাপন চলবে: {0}",
+  "Ad video": "বিজ্ঞাপনের ভিডিও",
+  "Ad that will run": "যে বিজ্ঞাপন চলবে",
+  "e.g. Admission ad 2027": "যেমন: অ্যাডমিশন বিজ্ঞাপন ২০২৭",
+  "Video link": "ভিডিওর লিংক",
+  "Drive / YouTube link": "Drive / YouTube লিংক",
+  "Advance": "অগ্রিম",
+  "0 if none": "না থাকলে ০",
+  "Advance on": "অগ্রিম কবে",
+  "The advance is already paid": "অগ্রিম দেওয়া হয়ে গেছে",
+  "The rest in": "বাকিটা",
+  "installments, every": "কিস্তিতে, প্রতি",
+  "months, first on": "মাস পরপর, প্রথমটা",
+  "Leave blank — it is set from the start date": "খালি রাখুন — শুরুর তারিখ থেকে নিজে বসবে",
+  "{0} installments, every {1} months": "{0} কিস্তি, {1} মাস পরপর",
+  "matches the total": "মোটের সাথে মিলেছে",
+  "made automatically": "নিজে তৈরি",
+  "Edit individually": "আলাদা করে বদলান",
+  "Enter the total amount.": "মোট টাকা লিখুন।",
+  "edited by hand": "হাতে বদলানো",
+  "Rebuild from the basics": "মূল তথ্য থেকে আবার বানান",
+  "No amount entered — save without payments?": "টাকার অঙ্ক দেওয়া নেই — টাকার হিসাব ছাড়াই সেভ করবেন?",
+  "Enter how much airtime (e.g. 1 minute per hour).": "কতটা সময় চলবে লিখুন (যেমন ঘণ্টায় ১ মিনিট)।",
+  "Edit ad": "বিজ্ঞাপন বদলান",
+  "Change the running ad": "চলতি বিজ্ঞাপন বদলান",
+  "Edit proof": "প্রমাণ বদলান",
+  "Ad name": "বিজ্ঞাপনের নাম",
+  "Running since": "কবে থেকে চলছে",
+  "Report / photo link": "রিপোর্ট / ছবির লিংক",
+  "Drive folder, photo or report link": "Drive ফোল্ডার, ছবি বা রিপোর্টের লিংক",
+  "Airtime": "সময়",
+  "Running now": "এখন চলছে",
+  "Not added yet": "এখনো দেওয়া হয়নি",
+  "Earlier ads ({0})": "আগের বিজ্ঞাপন ({0}টা)",
+  "from {0}": "{0} থেকে",
+  "Rebuild the list from the basics? Your hand edits will be replaced (paid lines stay paid).": "মূল তথ্য থেকে তালিকা আবার বানাবেন? হাতে করা বদল মুছে যাবে (দেওয়া কিস্তি \"দেওয়া\" থাকবে)।",
+  "No link — mark this month as received anyway?": "লিংক নেই — তবু এ মাসের প্রমাণ এসেছে ধরবেন?",
+  "Running ad saved": "চলতি বিজ্ঞাপন রাখা হলো",
+  "Proof saved": "প্রমাণ রাখা হলো",
+  "Delete this?": "এটা মুছবেন?",
+  "proof": "প্রমাণ",
+  "no proof": "প্রমাণ নেই",
+  "received / expected · ads: proof": "পেয়েছি / আসার কথা · বিজ্ঞাপন: প্রমাণ",
+  "{0} {1} per hour": "প্রতি ঘণ্টায় {0} {1}",
+  "{0} {1} per day": "দিনে {0} {1}",
+  "{0} {1} per week": "সপ্তাহে {0} {1}",
+  "{0} {1} per month": "মাসে {0} {1}",
+  "min": "মিনিট",
+  "sec": "সেকেন্ড",
+  "times": "বার",
+
   /* লগইন */
   'Profile photo': 'প্রোফাইলের ছবি', 'Profile photos': 'প্রোফাইলের ছবি', 'From YouTube': 'YouTube থেকে', 'From Facebook': 'Facebook থেকে', 'Uploaded': 'আপলোড করা', 'From an image link': 'ছবির লিংক থেকে',
   'Added by you': 'আপনার দেওয়া', 'No photo found automatically': 'নিজে থেকে ছবি পাওয়া যায়নি', 'No photo yet': 'এখনো ছবি নেই', 'From their links': 'তাঁদের লিংক থেকে', 'Upload': 'আপলোড',
@@ -920,7 +1016,7 @@ function lbl(s) {
     return toAsc(s);
   }
   s = s.replace(/(\d+)(?:st|nd|rd|th) installment/gi, function (m, n) { return ord(+n) + ' কিস্তি'; })
-    .replace(/Full amount \(upfront\)/g, 'পুরো টাকা (অগ্রিম)').replace(/Full amount/g, 'পুরো টাকা').replace(/\bRenewal\b/g, 'নবায়ন').replace(/\binstallment\b/gi, 'কিস্তি');
+    .replace(/Full amount \(upfront\)/g, 'পুরো টাকা (অগ্রিম)').replace(/Full amount/g, 'পুরো টাকা').replace(/\bRenewal\b/g, 'নবায়ন').replace(/\bAdvance\b/g, 'অগ্রিম').replace(/\binstallment\b/gi, 'কিস্তি');
   MON3.en.forEach(function (m, i) { s = s.replace(new RegExp('\\b' + m + '\\b', 'g'), MON3.bn[i]); });
   return N(s);
 }
@@ -1143,14 +1239,18 @@ function normWork(w) {
   return w;
 }
 function index() {
-  S.P = {}; S.LB = {}; S.DB = {}; S.D = {}; S.KB = {}; S.K = {}; S.CB = {}; S.CP = {};
+  S.P = {}; S.LB = {}; S.DB = {}; S.D = {}; S.KB = {}; S.K = {}; S.CB = {}; S.CP = {}; S.AB = {}; S.PB = {};
   S.partners.forEach(function (p) { normPartner(p); S.P[p.id] = p; });
   S.logs.forEach(function (l) { (S.LB[l.pid] = S.LB[l.pid] || []).push(l); });
   Object.keys(S.LB).forEach(function (k) { S.LB[k].sort(function (a, b) { return (b.date + b.at) < (a.date + a.at) ? -1 : 1; }); });
   S.deals.forEach(function (d) { if (!Array.isArray(d.items)) { try { d.items = JSON.parse(d.items || '[]'); } catch (e) { d.items = []; } } S.D[d.id] = d; (S.DB[d.pid] = S.DB[d.pid] || []).push(d); });
   S.pays.forEach(function (k) { S.K[k.id] = k; (S.KB[k.did] = S.KB[k.did] || []).push(k); });
   Object.keys(S.KB).forEach(function (k) { S.KB[k].sort(function (a, b) { return (a.due || '9') < (b.due || '9') ? -1 : (a.due === b.due ? (a.id < b.id ? -1 : 1) : 1); }); });
-  S.works.forEach(function (w) { normWork(w); (S.CB[w.did] = S.CB[w.did] || []).push(w); var pid = w.pid || (S.D[w.did] || {}).pid; if (pid) (S.CP[pid] = S.CP[pid] || []).push(w); });
+  S.works.forEach(function (w) { normWork(w);
+    if (w.item === '_ad') { (S.AB[w.did] = S.AB[w.did] || []).push(w); return; }   // চলতি বিজ্ঞাপন (বদলের ইতিহাস)
+    if (w.item === '_proof') { (S.PB[w.did] = S.PB[w.did] || []).push(w); return; }   // মাসের প্রমাণ
+    (S.CB[w.did] = S.CB[w.did] || []).push(w); var pid = w.pid || (S.D[w.did] || {}).pid; if (pid) (S.CP[pid] = S.CP[pid] || []).push(w); });
+  Object.keys(S.AB).forEach(function (k) { S.AB[k].sort(function (a, b) { return (b.date + b.id) < (a.date + a.id) ? -1 : 1; }); });
   Object.keys(S.CB).forEach(function (k) { S.CB[k].sort(function (a, b) { return (b.date + b.id) < (a.date + a.id) ? -1 : 1; }); });
   Object.keys(S.CP).forEach(function (k) { S.CP[k].sort(function (a, b) { return (b.date + b.id) < (a.date + a.id) ? -1 : 1; }); });
 }
@@ -1208,17 +1308,24 @@ function calc(d) {
   o.total = d.model === 'per' ? num(d.rate) * (o.exp || 0) : (num(d.total) || ks.reduce(function (s, k) { return s + num(k.amount); }, 0));
   var ms = dealMonths(d); o.mTotal = ms.length; o.mGone = ms.filter(function (m) { return m <= cm; }).length;
   o.ended = !!(d.end && d.end < td); o.endIn = d.end ? dd(td, d.end) : null;
+  o.ad = !!(d.ad && num(d.ad.qty)); o.pm = []; o.missProof = 0;
+  if (o.ad) {   // বিজ্ঞাপন: প্রতি মাসের প্রমাণ
+    var pf = S.PB[d.id] || [];
+    o.pm = ms.map(function (m) { var w = pf.filter(function (x) { return x.month === m; })[0]; return { m: m, w: w, st: w ? 'ok' : m > cm ? 'future' : m === cm ? 'cur' : 'miss' }; });
+    if (d.status === 'active') o.missProof = o.pm.filter(function (r) { return r.st === 'miss'; }).length;
+  }
   o.missing = [];
   if (d.status === 'active') {
     if (!d.model) o.missing.push(t('contract type'));
     if (!d.start) o.missing.push(t('start date'));
-    if (!items.length && d.model !== 'install' && d.model !== 'upfront') o.missing.push(t('deliverables'));
+    if (!items.length && !o.ad && d.model !== 'install' && d.model !== 'upfront') o.missing.push(t('deliverables'));
     if (d.model === 'per' && !num(d.rate)) o.missing.push(t('amount per content'));
     if (d.model && d.model !== 'per' && !num(d.total) && !ks.length) o.missing.push(t('amount'));
     if (ks.some(function (k) { return payOpen(k) && !k.due; })) o.missing.push(t('payment dates'));
   }
   return o;
 }
+function isWork(w) { return String(w.item || '').charAt(0) !== '_'; }
 function activeDeals() { return S.deals.filter(function (d) { return d.status === 'active'; }); }
 
 /* পুরনো তথ্য গোছানোর তালিকা — আজকের কাজে মেশে না */
@@ -1371,6 +1478,7 @@ function homeTasks() {
   S.partners.filter(function (p) { return p.next && p.next <= td && stageOf(p) !== 'dropped'; })
     .sort(function (a, b) { return a.next < b.next ? -1 : 1; }).forEach(function (p) { out.push({ g: 'fu', p: p }); });
   activeDeals().forEach(function (d) {
+    if (isAdDeal(d)) { var ca = calc(d); ca.pm.filter(function (r) { return r.st === 'miss'; }).slice(-2).forEach(function (r) { out.push({ g: 'pf', d: d, m: r.m }); }); return; }
     if (d.plan !== 'month') return;
     var c = calc(d), cur = c.cur;
     if ((cur && cur.got < cur.exp) || c.short) out.push({ g: 'ct', d: d, c: c });
@@ -1380,17 +1488,17 @@ function homeTasks() {
 function homePage() {
   var td = today(), tasks = homeTasks(), h = new Date().getHours();
   var hi = h < 12 ? t('Good morning') : h < 17 ? t('Good afternoon') : t('Good evening');
-  var pays = tasks.filter(function (x) { return x.g === 'pay'; }), fus = tasks.filter(function (x) { return x.g === 'fu'; }), cts = tasks.filter(function (x) { return x.g === 'ct'; });
+  var pays = tasks.filter(function (x) { return x.g === 'pay'; }), fus = tasks.filter(function (x) { return x.g === 'fu'; }), cts = tasks.filter(function (x) { return x.g === 'ct'; }), pfs = tasks.filter(function (x) { return x.g === 'pf'; });
   var cm = curM(), monthDue = S.pays.filter(function (k) { return payLive(k) && payOpen(k) && k.due && k.due.slice(0, 7) <= cm; });
   var mdAmt = monthDue.reduce(function (s, k) { return s + num(k.amount); }, 0), overN = monthDue.filter(payOver).length;
-  var gotM = S.works.filter(function (w) { return w.month === cm; }).length;
+  var gotM = S.works.filter(function (w) { return w.month === cm && isWork(w); }).length;
   var expLeft = activeDeals().filter(function (d) { return d.plan === 'month'; }).reduce(function (s, d) { var c = calc(d); return s + (c.cur ? Math.max(0, c.cur.exp - c.cur.got) : 0); }, 0);
-  var tidy = tidyData(), recent = S.works.slice().sort(function (a, b) { return (b.date + b.id) < (a.date + a.id) ? -1 : 1; }).slice(0, 5);
+  var tidy = tidyData(), recent = S.works.filter(isWork).sort(function (a, b) { return (b.date + b.id) < (a.date + a.id) ? -1 : 1; }).slice(0, 5);
   var w = new Date(), dname = WDAY[LANG][w.getDay()];
   var html = '<div class="top"><div class="grow"><h1>' + hi + (S.set.me ? ', ' + esc(String(S.set.me).replace(/^Md\.?\s*/i, '').split(' ')[0]) : '') + '</h1><p>' + dname + ', ' + dLong(td) + ' · ' + (tasks.length ? t('{0} tasks today', N(tasks.length)) : t('Nothing urgent today')) + '</p></div>' +
     '<div class="acts"><button class="btn" data-a="search-open">' + icon('search', 's') + t('Search') + '</button></div></div>';
   html += '<div class="grid3">' +
-    '<button class="card kpi" data-a="jump" data-k="todo"><small>' + t("Today's tasks") + '</small><b>' + N(tasks.length) + '</b><div class="sub">' + t('{0} payments · {1} follow-ups · {2} content', N(pays.length), N(fus.length), N(cts.length)) + '</div></button>' +
+    '<button class="card kpi" data-a="jump" data-k="todo"><small>' + t("Today's tasks") + '</small><b>' + N(tasks.length) + '</b><div class="sub">' + t('{0} payments · {1} follow-ups · {2} content', N(pays.length), N(fus.length), N(cts.length + pfs.length)) + '</div></button>' +
     '<button class="card kpi' + (overN ? ' bad' : '') + '" data-go="#payments"><small>' + t('Due this month') + '</small><b>' + tkS(mdAmt) + '</b><div class="sub">' + (overN ? t('{0} overdue', N(overN)) : t('{0} payments', N(monthDue.length))) + '</div></button>' +
     '<button class="card kpi" data-go="#reports" data-tab="monthly"><small>' + t('Content received in {0}', MON[LANG][+cm.slice(5) - 1]) + '</small><b>' + N(gotM) + '</b><div class="sub">' + (expLeft ? t('{0} more expected from monthly contracts', N(expLeft)) : t('from all contracts')) + '</div></button></div>';
   var lim = S.open.todo ? 999 : 8, shown = 0;
@@ -1404,6 +1512,11 @@ function homePage() {
       var p = x.p, over = p.next < td;
       return '<div class="row">' + av(p) + '<div class="g click" data-go="#p/' + esc(p.id) + '"><div class="t">' + esc(p.name) + '</div><div class="s">' + (p.nextNote ? esc(p.nextNote) + ' · ' : '') + (over ? '<span class="neg">' + t('since {0}', rel(p.next)) + '</span>' : t('today')) + '</div></div>' +
         '<div class="acts">' + (p.phone ? '<a class="btn sm" href="tel:' + esc(telOf(p)) + '">' + t('Call') + '</a>' : '') + '<button class="btn sm" data-a="log" data-id="' + esc(p.id) + '">' + t('Log') + '</button><button class="btn sm ghost" data-a="snooze" data-id="' + esc(p.id) + '">' + t('Tomorrow') + '</button></div></div>';
+    }) +
+    sec(t('Ad proof missing'), 'var(--acc)', pfs, function (x) {
+      var d = x.d, p = S.P[d.pid] || {};
+      return '<div class="row">' + av(p) + '<div class="g click" data-go="#p/' + esc(d.pid) + '/' + esc(d.id) + '"><div class="t">' + esc(p.name || '') + ' <span>· ' + esc(d.title) + '</span></div><div class="s">' + t('No report or photo yet for {0}', mLabel(x.m)) + ' · ' + airtimeTxt(d.ad) + '</div></div>' +
+        '<div class="acts"><button class="btn sm pri" data-a="proof-new" data-did="' + esc(d.id) + '" data-m="' + x.m + '">' + t('Add proof') + '</button></div></div>';
     }) +
     sec(t('Content expected'), 'var(--warn)', cts, function (x) {
       var d = x.d, c = x.c, p = S.P[d.pid] || {}, cur = c.cur || { got: 0, exp: c.perM };
@@ -1548,7 +1661,8 @@ function dealBlock(d, inPast) {
   if (prevD || nextD) head += '<div style="padding:0 20px 10px;font-size:12.5px" class="muted">' + icon('renew', 's') + ' ' + (prevD ? t('Renewal of {0}', '<a class="lnk-a" href="#p/' + esc(d.pid) + '/' + esc(prevD.id) + '">' + esc(prevD.title) + '</a>') : '') + (nextD ? (prevD ? ' · ' : '') + t('Renewed as {0}', '<a class="lnk-a" href="#p/' + esc(d.pid) + '/' + esc(nextD.id) + '">' + esc(nextD.title) + '</a>') : '') + '</div>';
   // কী কী দেবেন
   var del = '';
-  if (d.plan === 'month' && c.months.length) {
+  if (c.ad) del = adDeliverables(d, c);
+  else if (d.plan === 'month' && c.months.length) {
     del += '<div class="mgrid">' + c.months.map(function (r) {
       var slots = r.cs.map(function (x) { return '<button class="slot got" data-a="content-edit" data-id="' + esc(x.id) + '" title="' + esc(x.title || '') + '">✓</button>'; }).join('');
       for (var i = r.got; i < r.exp; i++) slots += r.st === 'future' || d.status !== 'active' ? '<span class="slot"></span>' : '<button class="slot" data-a="content-new" data-did="' + esc(d.id) + '" data-m="' + r.m + '" title="' + t('Add content') + '">+</button>';
@@ -1561,24 +1675,24 @@ function dealBlock(d, inPast) {
       return '<div class="sc"><span>' + esc(i.name) + '</span><b>' + N(i.got) + (i.qty > 0 ? '/' + N(i.qty) : '') + '</b>' + (i.qty > 0 ? '<div class="bar' + (i.got >= i.qty ? ' ok' : '') + '"><i style="width:' + w + '%"></i></div>' : '<small>' + t('as needed') + (i.where ? ' · ' + esc(i.where) : '') + '</small>') + (i.qty > 0 && i.where ? '<small>' + esc(i.where) + '</small>' : '') + '</div>';
     }).join('');
   } else del = '<div class="muted" style="font-size:13px">' + (d.model === 'install' || d.model === 'upfront' ? t('Not applicable') : t('Not set')) + '</div>';
-  if (c.mTotal) del += '<div class="sc" style="margin-top:6px"><span class="muted">' + t('Term') + '</span><b>' + t('{0}/{1} months', N(c.mGone), N(c.mTotal)) + '</b><div class="bar time"><i style="width:' + Math.round(c.mGone / c.mTotal * 100) + '%"></i></div></div>';
+  if (c.mTotal && !c.ad) del += '<div class="sc" style="margin-top:6px"><span class="muted">' + t('Term') + '</span><b>' + t('{0}/{1} months', N(c.mGone), N(c.mTotal)) + '</b><div class="bar time"><i style="width:' + Math.round(c.mGone / c.mTotal * 100) + '%"></i></div></div>';
   // টাকা
   var money = c.ks.length ? c.ks.map(function (k) {
     var ck = k.st === 'paid' ? '<span class="ck ok">✓</span>' : k.st === 'unk' ? '<span class="ck unk"></span>' : k.st === 'req' ? '<span class="ck req">↗</span>' : payOver(k) ? '<span class="ck bad"></span>' : '<span class="ck no"></span>';
     var tag = k.st === 'unk' ? ' <span class="pill warn">' + t('Verify') + '</span>' : payOver(k) ? ' <span class="pill bad">' + t('Overdue') + '</span>' : k.st === 'req' ? ' <span class="pill info">' + t('With accounts') + '</span>' : '';
     return '<div class="ki click" data-a="pay-open" data-id="' + esc(k.id) + '" style="cursor:pointer">' + ck + '<div class="g">' + esc(lbl(k.label)) + tag + '<small>' + (k.st === 'paid' ? t('Paid {0}', k.paidAt ? dShort(k.paidAt) : '') : k.due ? dShort(k.due) : t('no date')) + '</small></div><b>' + tk(payAmt(k)) + '</b></div>';
   }).join('') : '<div class="muted" style="font-size:13px">' + (d.model === 'per' ? t('Each content adds {0} here.', tk(d.rate)) : t('No payments set.')) + '</div>';
-  // পাওয়া কাজ
-  var got = (c.cs.length ? c.cs.slice(0, S.open['cs' + d.id] ? 200 : 5).map(function (x) {
+  // পাওয়া কাজ (বিজ্ঞাপনে: মাসের প্রমাণ)
+  var got = c.ad ? adProofs(d, c) : (c.cs.length ? c.cs.slice(0, S.open['cs' + d.id] ? 200 : 5).map(function (x) {
     var it = (d.items || []).filter(function (i) { return i.k === x.item; })[0], fk = Object.keys(x.links || {})[0];
     return '<div class="ki">' + (fk ? plIcon(fk) : plIcon('drv')) + '<div class="g click" data-a="content-edit" data-id="' + esc(x.id) + '" style="cursor:pointer">' + esc(x.title || (it ? it.name : t('Content'))) + '<small>' + dShort(x.date) + (d.plan === 'month' ? ' · ' + mShort(x.month) : '') + '</small></div>' + workLinks(x) + '</div>';
   }).join('') + (c.cs.length > 5 ? '<button class="btn xs ghost" data-a="more" data-k="cs' + esc(d.id) + '">' + (S.open['cs' + d.id] ? t('Show less') : t('Show all {0}', N(c.cs.length))) + '</button>' : '')
     : '<div class="muted" style="font-size:13px">' + (c.got ? t('{0} received before (no links)', N(c.got)) : t('Nothing yet.')) + '</div>') +
     (d.status === 'active' ? '<button class="btn sm pri w" style="margin-top:10px" data-a="content-new" data-did="' + esc(d.id) + '">' + icon('plus', 's') + t('Add content') + '</button>' : '');
   return '<div class="' + (inPast ? '' : 'card') + '" style="' + (inPast ? 'border-top:1px solid var(--line)' : 'margin-bottom:16px') + '">' + head +
-    '<div class="deal3"><div><h4>' + t('Deliverables') + '</h4>' + del + '</div>' +
+    '<div class="deal3"><div><h4>' + (c.ad ? t('Ad airtime') : t('Deliverables')) + '</h4>' + del + '</div>' +
     '<div><h4>' + t('Payments') + ' · <span>' + t('{0} paid, {1} due', tkS(c.paid), tkS(c.open + c.unk)) + '</span></h4>' + money + '</div>' +
-    '<div><h4>' + t('Received') + ' · <span>' + N(c.got) + '</span></h4>' + got + '</div></div>' +
+    '<div><h4>' + (c.ad ? t('Proof each month') + ' · <span>' + t('{0} of {1}', N(c.pm.filter(function (r) { return r.w; }).length), N(c.pm.filter(function (r) { return r.st !== 'future'; }).length)) + '</span>' : t('Received') + ' · <span>' + N(c.got) + '</span>') + '</h4>' + got + '</div></div>' +
     (d.note ? '<div style="padding:0 20px 16px"><div class="note">' + esc(d.note).replace(/\n/g, '<br>') + '</div></div>' : '') + '</div>';
 }
 
@@ -1598,7 +1712,8 @@ function contractsPage() {
       L.map(function (d) {
         var c = calc(d), p = S.P[d.pid] || {};
         var term = d.start ? '<div class="mini"><span>' + mShort(d.start.slice(0, 7)) + ' – ' + (d.end ? mShort(d.end.slice(0, 7)) : '…') + '</span><b>' + t('{0}/{1} mo', N(c.mGone), N(c.mTotal)) + '</b></div><div class="bar time"><i style="width:' + (c.mTotal ? Math.round(c.mGone / c.mTotal * 100) : 0) + '%"></i></div>' : '<span class="muted">' + t('No term set') + '</span>';
-        var cont = d.plan === 'month' && c.cur ? '<div class="mini"><span>' + t('This month {0}/{1}', N(c.cur.got), N(c.cur.exp)) + '</span></div><div class="bar"><i style="width:' + Math.round(c.cur.got / (c.cur.exp || 1) * 100) + '%"></i></div>'
+        var cont = c.ad ? '<div class="mini"><span>' + airtimeTxt(d.ad) + '</span></div>' + (c.missProof ? '<span class="neg" style="font-size:12px">' + t('{0} month(s) without proof', N(c.missProof)) + '</span>' : '<span class="muted" style="font-size:12px">' + t('proof up to date') + '</span>')
+          : d.plan === 'month' && c.cur ? '<div class="mini"><span>' + t('This month {0}/{1}', N(c.cur.got), N(c.cur.exp)) + '</span></div><div class="bar"><i style="width:' + Math.round(c.cur.got / (c.cur.exp || 1) * 100) + '%"></i></div>'
           : c.exp ? '<div class="mini"><span>' + N(c.got) + '/' + N(c.exp) + '</span></div><div class="bar"><i style="width:' + Math.min(100, Math.round(c.got / c.exp * 100)) + '%"></i></div>' : '<span class="muted">' + (c.got ? N(c.got) : '—') + '</span>';
         var money = d.model === 'upfront' && c.ks.length && c.ks.every(function (k) { return k.st === 'paid'; }) ? '<span class="pill ok">' + t('{0} paid in full', tkS(c.paid)) + '</span>'
           : d.model === 'per' ? '<div class="mini"><span>' + t('{0} each', tkS(d.rate)) + '</span></div>' : c.total ? '<div class="mini"><span>' + tkS(c.paid) + ' / ' + tkS(c.total) + '</span></div><div class="bar ok"><i style="width:' + Math.min(100, Math.round(c.paid / c.total * 100)) + '%"></i></div>' : '<span class="muted">—</span>';
@@ -1744,159 +1859,6 @@ function contentForm(o) {
     payBox +
     '<label class="fl">' + t('Note') + ' <em>(' + t('optional') + ')</em></label><input class="in" id="cf_note" value="' + esc(c ? c.note : '') + '">' +
     foot(c ? '<button class="btn red" data-a="cf-del">' + icon('trash', 's') + t('Delete') + '</button>' : '', 'cf-save'));
-}
-
-/* ---------- চুক্তি — ৩ ধাপ: ধরন → মেয়াদ ও কাজ → টাকা ---------- */
-function dealForm(id, pid) {
-  var d = id ? JSON.parse(JSON.stringify(S.D[id])) : { pid: pid, title: '', model: '', plan: 'month', start: today(), end: '', total: '', rate: '', payDays: 0, items: [], status: 'active', note: '' };
-  if (!d.plan) d.plan = 'total';
-  var pays = id ? JSON.parse(JSON.stringify((S.KB[id] || []).filter(function (k) { return !S.works.some(function (w) { return w.payId === k.id; }); }))) : [];
-  DF = { d: d, pays: pays, up: { date: '', st: 'paid' }, step: id ? 2 : 1 };
-  if (d.model === 'upfront' && pays.length === 1) DF.up = { date: pays[0].due || d.start || today(), st: pays[0].st === 'paid' ? 'paid' : 'due' };
-  if (!id && !d.title) d.title = '';
-  drawDealForm();
-}
-/* নবায়ন — আগের চুক্তির সব শর্ত; শুরু = আগের শেষের পরদিন, একই দৈর্ঘ্য, কিস্তি একই ধাঁচে সামনে */
-function renewForm(oldId) {
-  var o = S.D[oldId]; if (!o) return;
-  var n = dealMonths(o).length || 12, start = o.end ? addDays(o.end, 1) : today();
-  var d = JSON.parse(JSON.stringify(o));
-  delete d.id; d.prev = o.id; d.status = 'active'; d.start = start; d.end = addDays(addMonths(start, n), -1);
-  d.items = (o.items || []).map(function (it) { return { k: it.k, name: it.name, qty: it.qty, where: it.where, base: 0 }; });
-  var add = Math.max(1, Math.round(n / 12));
-  var toN = function (x) { return +String(x).replace(/[০-৯]/g, function (c) { return '০১২৩৪৫৬৭৮৯'.indexOf(c); }); };
-  var yr = function (s) {
-    return String(s || '').replace(/([২2][০0][০-৯0-9]{2})(?:(\s*[-–]\s*)([০-৯0-9]{2})(?![০-৯0-9]))?/g, function (m0, y4, sep, y2) {
-      var bn = /[০-৯]/.test(y4), f = function (v) { return bn ? String(v).replace(/[0-9]/g, function (x) { return '০১২৩৪৫৬৭৮৯'[x]; }) : String(v); };
-      return f(toN(y4) + add) + (sep ? sep + f(('0' + ((toN(y2) + add) % 100)).slice(-2)) : '');
-    });
-  };
-  d.title = yr(o.title) === o.title ? o.title + ' — ' + t('Renewal') : yr(o.title);
-  var oldPays = (S.KB[oldId] || []).filter(function (k) { return !S.works.some(function (w) { return w.payId === k.id; }); });
-  var pays = oldPays.map(function (k) { return { label: k.label, due: !k.due ? '' : k.due === o.start ? start : addMonths(k.due, n), amount: k.amount, mode: k.mode, st: 'due' }; });
-  DF = { d: d, pays: pays, up: { date: start, st: 'due' }, renew: o, step: 2 };
-  if (d.model === 'one' && pays.length === 1) DF.one = { due: pays[0].due, mode: pays[0].mode, st: 'due' };
-  drawDealForm();
-}
-function dfSimple() { var d = DF.d; return (d.model === 'upfront' || d.model === 'one') && DF.pays.length <= 1; }
-function drawDealForm() {
-  var d = DF.d, p = S.P[d.pid] || {}, st = DF.step;
-  var y = $('ov') ? $('ov').querySelector('.sheet').scrollTop : 0;
-  var names = ['Contract type', 'Term & deliverables', 'Money'];
-  var html = '<div class="steps">' + [1, 2, 3].map(function (i) { return '<span class="' + (i <= st ? 'on' : '') + '"></span>'; }).join('') + '</div>' +
-    '<div class="tabs" style="margin:8px 0 0">' + [1, 2, 3].map(function (i) { return '<button data-a="d-step" data-v="' + i + '" class="' + (i === st ? 'on' : '') + '"' + (!d.model && i > 1 ? ' disabled' : '') + '>' + N(i) + '. ' + t(names[i - 1]) + '</button>'; }).join('') + '</div>';
-  if (DF.renew) html += '<div class="note" style="margin-top:12px">' + icon('renew', 's') + ' ' + t('All terms are copied from {0} ({1} – {2}). Change only what is different. Saving marks the old one as ended.', '<b>' + esc(DF.renew.title) + '</b>', dShort(DF.renew.start), dShort(DF.renew.end)) + '</div>';
-  if (st === 1) {
-    html += '<div class="sh-sec">' + t('What kind of contract?') + '</div><div class="mopts">' + Object.keys(MODELS).map(function (k) {
-      var m = MODELS[k];
-      return '<button class="mopt' + (d.model === k ? ' on' : '') + '" data-a="d-model" data-v="' + k + '"><span class="ti" style="color:' + m.c + '">' + icon(m.i) + '</span><span><b>' + t(m.l) + '</b><small>' + t(m.d) + '</small></span></button>';
-    }).join('') + '</div>';
-  } else if (st === 2) {
-    var itemRows = d.items.map(function (it, i) {
-      return '<tr><td style="width:46%"><input class="in" data-it="' + i + '" data-f="name" value="' + esc(it.name) + '" placeholder="' + t('What (e.g. video)') + '"></td>' +
-        '<td style="width:90px"><input class="in" type="number" min="0" data-it="' + i + '" data-f="qty" value="' + esc(it.qty) + '" title="' + t('0 = as needed') + '"></td>' +
-        '<td><input class="in" data-it="' + i + '" data-f="where" value="' + esc(it.where || '') + '" placeholder="' + t('Which page') + '"></td>' +
-        '<td style="width:30px"><button class="x" data-a="it-del" data-i="' + i + '">' + icon('x', 's') + '</button></td></tr>';
-    }).join('');
-    html += '<label class="fl">' + t('Title') + ' *</label><input class="in" id="d_title" value="' + esc(d.title) + '" placeholder="' + t('e.g. Annual contract 2026-27') + '">' +
-      '<div class="g2"><div><label class="fl">' + t('Start') + '</label><input class="in" type="date" id="d_start" value="' + esc(d.start || '') + '"></div>' +
-      '<div><label class="fl">' + t('End') + '</label><input class="in" type="date" id="d_end" value="' + esc(d.end || '') + '"></div></div>' +
-      '<div class="presets">' + [[1, '1 month'], [3, '3 months'], [6, '6 months'], [12, '1 year']].map(function (x) { return '<button data-a="d-len" data-m="' + x[0] + '">' + t(x[1]) + '</button>'; }).join('') + '</div>' +
-      '<div class="sh-sec">' + t('Deliverables') + '</div>' +
-      segH('d_plan', [['month', t('Every month')], ['total', t('Total over the term')]], d.plan === 'month' ? 'month' : 'total') +
-      '<div class="muted" style="font-size:12.5px;margin-top:6px">' + (d.plan === 'month' ? t('e.g. 2 videos a month — you will see who delivered each month.') : t('e.g. 12 videos and 10 posts in the year — you will see progress over time.')) + '</div>' +
-      (d.items.length ? '<table class="itbl"><tr><th>' + t('What') + '</th><th>' + (d.plan === 'month' ? t('Per month') : t('Total')) + '</th><th>' + t('Where') + '</th><th></th></tr>' + itemRows + '</table>' : '') +
-      '<div class="presets">' + ITEM_PRESETS.map(function (n) { return '<button data-a="it-preset" data-n="' + esc(n) + '">+ ' + esc(t(n)) + '</button>'; }).join('') + '<button data-a="it-add">+ ' + t('Something else') + '</button></div>';
-  } else {
-    html += '<div class="sh-sec">' + t('Money') + ' <small>' + mdl(d.model) + '</small></div>' + dealMoney() +
-      '<div class="sh-sec">' + t('Status') + '</div>' + segH('d_status', objOpts(DST), d.status) +
-      '<label class="fl">' + t('Terms & notes') + '</label><textarea class="in" id="d_note">' + esc(d.note || '') + '</textarea>';
-  }
-  var left = d.id ? '<button class="btn red" data-a="deal-del" data-id="' + esc(d.id) + '">' + icon('trash', 's') + t('Delete') + '</button>' : '';
-  var nav = (st > 1 ? '<button class="btn" data-a="d-step" data-v="' + (st - 1) + '">' + icon('left', 's') + t('Back') + '</button>' : '') +
-    (st < 3 ? '<button class="btn' + (d.id ? '' : ' pri') + '" data-a="d-step" data-v="' + (st + 1) + '"' + (d.model ? '' : ' disabled') + '>' + t('Next') + icon('right', 's') + '</button>' : '');
-  var save = st === 3 || d.id ? '<button class="btn pri" data-a="deal-save">' + icon('check', 's') + (DF.renew ? t('Save renewal') : t('Save contract')) + '</button>' : '';
-  openSheet((d.id ? t('Edit contract') : DF.renew ? t('Renew contract') : t('New contract')) + ' — ' + esc(p.name || ''), html +
-    '<div class="sh-f">' + left + '<span class="grow"></span>' + nav + save + '</div>', { cls: 'mid' });
-  $('ov').querySelector('.sheet').scrollTop = st === DF._lastStep ? y : 0;
-  DF._lastStep = st;
-}
-function dealMoney() {
-  var d = DF.d, simple = dfSimple();
-  if (d.model === 'per') {
-    var exp = d.items.reduce(function (s, it) { return s + num(it.qty); }, 0) * (d.plan === 'month' ? Math.max(1, dealMonths(d).length) : 1);
-    return '<div class="g2"><div><label class="fl">' + t('Amount per content') + ' *</label><input class="in" type="number" min="0" id="d_rate" value="' + esc(d.rate || '') + '" placeholder="25000"></div>' +
-      '<div><label class="fl">' + t('Pay within (days of delivery)') + '</label><input class="in" type="number" min="0" max="90" id="d_payDays" value="' + esc(d.payDays || 0) + '"></div></div>' +
-      '<div class="muted" style="font-size:12.5px;margin-top:8px">' + t('Every time you add content, this amount is added to Payments as due.') + (num(d.rate) && exp ? ' ' + t('About {0} over the whole term ({1} pieces).', tk(num(d.rate) * exp), N(exp)) : '') + '</div>';
-  }
-  if (d.model === 'upfront' && simple) return '<div class="g2"><div><label class="fl">' + t('Total amount') + ' *</label><input class="in" type="number" min="0" id="d_total" value="' + esc(d.total || '') + '"></div>' +
-    '<div><label class="fl">' + t('Paid / to be paid on') + '</label><input class="in" type="date" id="up_date" value="' + esc(DF.up.date || d.start || today()) + '"></div></div>' +
-    '<label class="fl">' + t('Status') + '</label>' + segH('up_st', [['paid', t('Already paid')], ['due', t('Still to pay')]], DF.up.st === 'paid' ? 'paid' : 'due') +
-    '<div style="margin-top:10px"><button class="btn xs ghost" data-a="k-split">' + t('Split into installments instead') + '</button></div>';
-  if (d.model === 'one' && simple) {
-    var k0 = DF.pays[0] || {}, o = DF.one || { due: k0.due, mode: k0.mode, st: k0.st };
-    return '<div class="g3"><div><label class="fl">' + t('Amount') + ' *</label><input class="in" type="number" min="0" id="d_total" value="' + esc(d.total || k0.amount || '') + '"></div>' +
-      '<div><label class="fl">' + t('Due on') + '</label><input class="in" type="date" id="one_due" value="' + esc(o.due || '') + '"></div>' +
-      '<div><label class="fl">' + t('Who pays') + '</label>' + sel(objOpts(PMODE), o.mode || S.set.payMode, 'id="one_mode"') + '</div></div>' +
-      '<label class="fl">' + t('Status') + '</label>' + segH('one_st', [['due', t('Due')], ['paid', t('Already paid')]], o.st === 'paid' ? 'paid' : 'due') +
-      '<div style="margin-top:10px"><button class="btn xs ghost" data-a="k-split">' + t('Split into installments instead') + '</button></div>';
-  }
-  var sum = DF.pays.reduce(function (s, k) { return s + num(k.amount); }, 0);
-  var rows = DF.pays.map(function (k, i) {
-    return '<tr><td><input class="in" data-k="' + i + '" data-f="label" value="' + esc(lbl(k.label || '')) + '"></td>' +
-      '<td style="width:150px"><input class="in" type="date" data-k="' + i + '" data-f="due" value="' + esc(k.due || '') + '"></td>' +
-      '<td style="width:120px"><input class="in" type="number" min="0" data-k="' + i + '" data-f="amount" value="' + esc(k.amount) + '"></td>' +
-      '<td style="width:150px">' + sel(objOpts(PMODE), k.mode || S.set.payMode, 'data-k="' + i + '" data-f="mode"') + '</td>' +
-      '<td style="width:130px">' + sel(objOpts(PST), k.st || 'due', 'data-k="' + i + '" data-f="st"') + '</td>' +
-      '<td style="width:30px"><button class="x" data-a="k-del" data-i="' + i + '">' + icon('x', 's') + '</button></td></tr>';
-  }).join('');
-  return '<label class="fl">' + t('Total amount') + '</label><input class="in" type="number" min="0" id="d_total" value="' + esc(d.total || '') + '">' +
-    '<div class="gen"><div><label class="fl">' + t('How many') + '</label><input class="in" type="number" min="1" max="60" id="g_n" value="' + (DF.pays.length || 4) + '"></div>' +
-    '<div><label class="fl">' + t('First on') + '</label><input class="in" type="date" id="g_first" value="' + esc(d.start || today()) + '"></div>' +
-    '<div><label class="fl">' + t('Every (months)') + '</label><input class="in" type="number" min="0" max="24" id="g_every" value="3"></div>' +
-    '<div><label class="fl">' + t('Each') + ' <em>(' + t('blank = equal') + ')</em></label><input class="in" type="number" min="0" id="g_amt"></div>' +
-    '<button class="btn sm" data-a="k-gen">' + t('Create') + '</button></div>' +
-    (DF.pays.length ? '<div style="overflow-x:auto"><table class="itbl" style="min-width:680px"><tr><th>' + t('Installment') + '</th><th>' + t('Date') + '</th><th>' + t('Amount') + '</th><th>' + t('Who pays') + '</th><th>' + t('Status') + '</th><th></th></tr>' + rows + '</table></div>' : '') +
-    '<div class="sumline"><button class="btn xs" data-a="k-add">' + icon('plus', 's') + t('Installment') + '</button><span id="dfSum">' + sumTxt(sum, num(d.total)) + '</span></div>';
-}
-function sumTxt(sum, tot) { return t('Sum') + ': <b>' + tk(sum) + '</b>' + (tot && DF && DF.pays.length && Math.abs(sum - tot) > 1 ? ' · <span class="neg">' + t('{0} off from the total', tk(tot - sum)) + '</span>' : ''); }
-function readDealForm() {
-  if (!DF || !$('ov')) return;
-  var d = DF.d, g = function (id) { var e = $(id); return e ? e.value : undefined; };
-  ['title', 'start', 'end', 'total', 'note', 'rate', 'payDays'].forEach(function (k) { var v = g('d_' + k); if (v !== undefined) d[k] = v; });
-  if ($('d_plan')) d.plan = segVal('d_plan');
-  if ($('d_status')) d.status = segVal('d_status');
-  document.querySelectorAll('#ov [data-it]').forEach(function (e) { var it = d.items[+e.dataset.it]; if (it) it[e.dataset.f] = e.value; });
-  document.querySelectorAll('#ov [data-k][data-f]').forEach(function (e) { var k = DF.pays[+e.dataset.k]; if (k) k[e.dataset.f] = e.value; });
-  if ($('up_date')) DF.up.date = $('up_date').value;
-  if ($('up_st')) DF.up.st = segVal('up_st');
-  if ($('one_due')) DF.one = { due: $('one_due').value, mode: $('one_mode').value, st: segVal('one_st') };
-}
-function instLabel(i) { return t('{0} installment', ord(i + 1)); }
-function genPays() {
-  readDealForm();
-  var n = Math.max(1, Math.min(60, Math.round(num($('g_n').value) || 1)));
-  var first = $('g_first').value || DF.d.start || today(), every = Math.max(0, Math.round(num($('g_every').value)));
-  var each = num($('g_amt').value), tot = num(DF.d.total);
-  if (!each && !tot) { toast(t('Enter the total amount, or the amount of each installment.')); return; }
-  if (DF.pays.some(function (k) { return k.st === 'paid'; }) && !confirm(t('Some installments are marked paid — creating new ones replaces the list. Continue?'))) return;
-  var base = each || Math.floor(tot / n), rest = each ? 0 : tot - base * n;
-  DF.pays = [];
-  for (var i = 0; i < n; i++) DF.pays.push({ label: instLabel(i), due: addMonths(first, i * every), amount: base + (i === n - 1 ? rest : 0), mode: S.set.payMode, st: 'due' });
-  drawDealForm();
-}
-function dealPayload() {
-  var d = DF.d, pays, simple = dfSimple();
-  if (d.model === 'per') pays = [];
-  else if (d.model === 'upfront' && simple) {
-    var k = DF.pays[0] || {};
-    pays = num(d.total) ? [{ id: k.id || '', label: k.label || t('Full amount (upfront)'), due: DF.up.date || d.start, amount: d.total, mode: k.mode || S.set.payMode, st: DF.up.st === 'paid' ? 'paid' : 'due' }] : [];
-  } else if (d.model === 'one' && simple) {
-    var k1 = DF.pays[0] || {}, o = DF.one || { due: k1.due, mode: k1.mode, st: k1.st };
-    pays = num(d.total) ? [{ id: k1.id || '', label: k1.label || t('Full amount'), due: o.due, amount: d.total, mode: o.mode || S.set.payMode, st: o.st === 'paid' ? 'paid' : 'due' }] : [];
-  } else pays = DF.pays.map(function (k) { return { id: k.id || '', label: k.label, due: k.due, amount: k.amount, mode: k.mode, st: k.st, note: k.note }; });
-  return { id: d.id || '', pid: d.pid, title: d.title, model: d.model, plan: d.plan, start: d.start, end: d.end, total: d.model === 'per' ? '' : d.total,
-           rate: d.rate, payDays: d.payDays, items: d.items, status: d.status, note: d.note, type: d.type || '', prev: d.id ? '' : (d.prev || ''), pays: pays };
 }
 
 /* ---------- ক্রিয়েটর ---------- */
@@ -2242,6 +2204,366 @@ function photoSheet(pid) {
     '<div class="sh-f"><span class="grow"></span><button class="btn" data-a="close">' + t('Done') + '</button></div>');
 }
 
+/* ═════════════════════════ PR Desk — contract form (one page), ads ═════════════════════════
+ * মূল কথা: শুধু মূল তথ্য দিন — মেয়াদ, মোট টাকা, অগ্রিম, বাকিটা কয় কিস্তিতে কত মাস পরপর — কিস্তির তালিকা নিজে তৈরি।
+ * না মিললে "আলাদা করে বদলান" দিয়ে যেকোনো লাইন হাতে। নবায়নে প্রতিটা ঘরের পাশে আগের মান। */
+var AD_UNIT = { min: 'min', sec: 'sec', spots: 'times' };
+var AD_PER = { hour: '{0} {1} per hour', day: '{0} {1} per day', week: '{0} {1} per week', month: '{0} {1} per month' };
+function airtimeTxt(ad) { return ad && num(ad.qty) ? t(AD_PER[ad.per] || AD_PER.hour, N(ad.qty), t(AD_UNIT[ad.unit] || 'min')) : ''; }
+function isAdDeal(d) { return !!(d && d.ad && num(d.ad.qty)); }
+function monthsBetween(a, b) { var x = a.split('-'), y = b.split('-'); return (+y[0] - +x[0]) * 12 + (+y[1] - +x[1]); }
+function termMonths(d) { return d.start && d.end && d.end >= d.start ? Math.max(1, Math.round((dd(d.start, d.end) + 1) / 30.44)) : 0; }
+function freePays(id) { return (S.KB[id] || []).filter(function (k) { return !S.works.some(function (w) { return w.payId === k.id; }); }); }
+
+/* পুরনো চুক্তির কিস্তি দেখে মূল তথ্য আন্দাজ (যাদের pplan নেই) */
+function derivePlan(d, pays) {
+  var P = { adv: 0, advPaid: false, advDate: '', n: d.model === 'install' ? 4 : 0, every: 3, first: '', mode: (pays[0] || {}).mode || S.set.payMode || 'acc' };
+  if (!pays.length) return P;
+  if (d.model !== 'install') { P.adv = num(pays[0].amount); P.advDate = pays[0].due || ''; P.advPaid = pays[0].st === 'paid'; P.n = 0; return P; }
+  var f = pays[0], isAdv = /advance|অগ্রিম|upfront/i.test(f.label || '') || (pays.length > 2 && num(f.amount) !== num(pays[1].amount) && num(pays[1].amount) === num(pays[2].amount));
+  var rest = isAdv ? pays.slice(1) : pays;
+  if (isAdv) { P.adv = num(f.amount); P.advDate = f.due || ''; P.advPaid = f.st === 'paid'; }
+  P.n = rest.length; P.first = (rest[0] || {}).due || '';
+  P.every = rest.length > 1 && rest[0].due && rest[1].due ? Math.max(0, monthsBetween(rest[0].due, rest[1].due)) : 3;
+  return P;
+}
+/* মূল তথ্য → কিস্তির তালিকা। আগের তালিকা থাকলে একই জায়গার লাইনের id আর অবস্থা (দেওয়া/হিসাবে) থাকে */
+function buildPays() {
+  var d = DF.d, P = DF.P, T = num(d.total), out = [], start = d.start || today();
+  if (!d.model || d.model === 'per') return [];
+  var inst = d.model === 'install', adv = inst ? Math.min(num(P.adv), T) : T;
+  if (!inst || adv > 0) out.push({ kind: 'adv', label: d.model === 'upfront' ? 'Full amount (upfront)' : d.model === 'one' ? 'Full amount' : 'Advance', due: P.advDate || start, amount: adv });
+  if (inst) {
+    var rest = Math.max(0, T - adv), n = Math.max(rest > 0 ? 1 : 0, Math.round(num(P.n))), every = Math.max(0, Math.round(num(P.every)));
+    var first = P.first || (adv > 0 ? addMonths(start, every || 1) : start), each = n ? Math.floor(rest / n) : 0;
+    for (var i = 0; i < n; i++) out.push({ kind: 'inst', label: ordEn(i + 1) + ' installment', due: addMonths(first, i * every), amount: each + (i === n - 1 ? rest - each * n : 0) });
+  }
+  var base = DF.base || [];
+  out.forEach(function (k, i) {
+    var o = base[i];
+    k.mode = P.mode || S.set.payMode || 'acc';
+    if (o) { k.id = o.id; k.note = o.note; }
+    if (k.kind === 'adv') k.st = P.advPaid ? 'paid' : (o && o.st === 'req' ? 'req' : 'due');
+    else k.st = o && o.st !== 'unk' ? o.st : 'due';
+  });
+  return out;
+}
+function ordEn(n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+function samePays(a, b) {
+  return a.length === b.length && a.every(function (k, i) { return Math.abs(num(k.amount) - num(b[i].amount)) <= 1 && (k.due || '') === (b[i].due || ''); });
+}
+
+/* ---------- খোলা: নতুন / বদল / নবায়ন ---------- */
+function dealForm(id, pid) {
+  var src = id ? S.D[id] : null;
+  var d = src ? JSON.parse(JSON.stringify(src)) : { pid: pid, title: '', model: '', plan: 'month', start: today(), end: addDays(addMonths(today(), 12), -1), total: '', rate: '', payDays: 0, items: [], status: 'active', note: '', ad: null };
+  if (!d.plan) d.plan = 'total';
+  var pays = id ? JSON.parse(JSON.stringify(freePays(id))) : [];
+  DF = { d: d, P: d.pplan ? JSON.parse(JSON.stringify(d.pplan)) : derivePlan(d, pays), base: pays, pays: pays, what: isAdDeal(d) ? 'ad' : 'content', len: id ? termMonths(d) : 12, creative: { title: '', link: '' } };
+  delete DF.P.manual;
+  if (!id) DF.manual = false;
+  else { var built = buildPays(); DF.manual = !!(d.pplan && d.pplan.manual) || (d.model !== 'per' && !samePays(built, pays)); if (!DF.manual) DF.pays = built; }
+  drawDealForm();
+}
+function renewForm(oldId) {
+  var o = S.D[oldId]; if (!o) return;
+  var n = termMonths(o) || 12, start = o.end ? addDays(o.end, 1) : today();
+  var d = JSON.parse(JSON.stringify(o));
+  delete d.id; d.prev = o.id; d.status = 'active'; d.start = start; d.end = addDays(addMonths(start, n), -1); d.note = '';
+  d.items = (o.items || []).map(function (it) { return { k: it.k, name: it.name, qty: it.qty, where: it.where, base: 0 }; });
+  var add = Math.max(1, Math.round(n / 12));
+  var toN = function (x) { return +String(x).replace(/[০-৯]/g, function (c) { return '০১২৩৪৫৬৭৮৯'.indexOf(c); }); };
+  var yr = function (s) {
+    return String(s || '').replace(/([২2][০0][০-৯0-9]{2})(?:(\s*[-–]\s*)([০-৯0-9]{2})(?![০-৯0-9]))?/g, function (m0, y4, sep, y2) {
+      var bn = /[০-৯]/.test(y4), f = function (v) { return bn ? String(v).replace(/[0-9]/g, function (x) { return '০১২৩৪৫৬৭৮৯'[x]; }) : String(v); };
+      return f(toN(y4) + add) + (sep ? sep + f(('0' + ((toN(y2) + add) % 100)).slice(-2)) : '');
+    });
+  };
+  d.title = yr(o.title) === o.title ? o.title + ' — ' + t('Renewal') : yr(o.title);
+  var op = freePays(oldId), P = o.pplan ? JSON.parse(JSON.stringify(o.pplan)) : derivePlan(o, op);
+  P.advPaid = false; P.advDate = ''; P.first = ''; delete P.manual;   // নতুন শুরু থেকে তারিখ নিজে
+  var c = calc(o), ads = (S.AB[oldId] || [])[0];
+  DF = { d: d, P: P, base: [], pays: [], manual: false, what: isAdDeal(d) ? 'ad' : 'content', len: n, renew: o, creative: { title: '', link: '' }, keepAd: !!ads,
+         was: { term: n, total: num(o.total) || c.total, adv: num(P.adv), n: P.n, every: P.every, rate: num(o.rate), air: airtimeTxt(o.ad), items: (o.items || []).map(function (it) { return it.name + ' ×' + N(it.qty); }).join(', '), ad: ads } };
+  DF.pays = buildPays();
+  drawDealForm();
+}
+
+/* ---------- আঁকা ---------- */
+function wasH(v) { return DF.was && v !== '' && v != null ? '<small class="was">' + t('was {0}', v) + '</small>' : ''; }
+function ckl(id, on, txt) { return '<label class="ckl"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span>' + txt + '</span></label>'; }
+function drawDealForm() {
+  var d = DF.d, p = S.P[d.pid] || {}, W = DF.was;
+  var y = $('ov') ? $('ov').querySelector('.sheet').scrollTop : 0;
+  var h = '';
+  if (DF.renew) h += '<div class="note" style="margin-top:12px">' + icon('renew', 's') + ' ' + t('Renewing {0}. Everything is filled in from it — change only what is different. The old contract is marked ended when you save.', '<b>' + esc(DF.renew.title) + '</b>') + '</div>';
+  // ধরন
+  h += '<div class="sh-sec">' + t('Contract type') + '</div><div class="mopts m4">' + Object.keys(MODELS).map(function (k) {
+    var m = MODELS[k];
+    return '<button class="mopt' + (d.model === k ? ' on' : '') + '" data-a="df-model" data-v="' + k + '"><span class="ti" style="color:' + m.c + '">' + icon(m.i) + '</span><span><b>' + t(m.s) + '</b><small>' + t(m.d) + '</small></span></button>';
+  }).join('') + '</div>';
+  if (!d.model) {
+    h += '<div class="muted" style="font-size:13px;margin-top:12px">' + t('Pick the type first.') + '</div>';
+  } else {
+    // শিরোনাম + মেয়াদ
+    h += '<label class="fl">' + t('Title') + ' *</label><input class="in" id="d_title" data-df value="' + esc(d.title) + '" placeholder="' + t('e.g. Annual contract 2026-27') + '">' +
+      '<div class="sh-sec">' + t('Term') + '</div>' +
+      '<div class="g3"><div><label class="fl">' + t('Start') + '</label><input class="in" type="date" id="d_start" data-df value="' + esc(d.start || '') + '"></div>' +
+      '<div><label class="fl">' + t('Length') + '</label>' + sel([['1', t('1 month')], ['3', t('3 months')], ['6', t('6 months')], ['12', t('1 year')], ['24', t('2 years')], ['', t('Custom')]], DF.len && [1, 3, 6, 12, 24].indexOf(DF.len) !== -1 ? String(DF.len) : '', 'id="d_len" data-df') + (W ? wasH(t('{0} months', N(W.term))) : '') + '</div>' +
+      '<div><label class="fl">' + t('End') + '</label><input class="in" type="date" id="d_end" data-df value="' + esc(d.end || '') + '"></div></div>';
+    // কী দেবেন
+    h += '<div class="sh-sec">' + t('What they give') + '</div>' + segH('d_what', [['content', t('Content (videos, posts)')], ['ad', t('Ad airtime (screen / TV)')]], DF.what, 'full');
+    if (DF.what === 'ad') {
+      var ad = d.ad || { qty: 1, unit: 'min', per: 'hour', where: '', slot: '' };
+      h += '<div class="g3"><div><label class="fl">' + t('How much') + '</label><input class="in" type="number" min="0" step="any" id="a_qty" data-df value="' + esc(ad.qty) + '"></div>' +
+        '<div><label class="fl">&nbsp;</label>' + sel([['min', t('minutes')], ['sec', t('seconds')], ['spots', t('times (spots)')]], ad.unit, 'id="a_unit" data-df') + '</div>' +
+        '<div><label class="fl">' + t('Every') + '</label>' + sel([['hour', t('hour')], ['day', t('day')], ['week', t('week')], ['month', t('month')]], ad.per, 'id="a_per" data-df') + '</div></div>' +
+        (W && W.air ? wasH(W.air) : '') +
+        '<div class="g2"><div><label class="fl">' + t('Where it runs') + '</label><input class="in" id="a_where" data-df value="' + esc(ad.where || '') + '" placeholder="' + t('e.g. Metro Rail station screens') + '"></div>' +
+        '<div><label class="fl">' + t('Time slot') + ' <em>(' + t('optional') + ')</em></label><input class="in" id="a_slot" data-df value="' + esc(ad.slot || '') + '" placeholder="' + t('e.g. 7 am – 10 pm') + '"></div></div>';
+      if (DF.renew && W.ad) h += '<div style="margin-top:10px">' + ckl('c_keep', DF.keepAd, t('Keep the same ad running: {0}', '<b>' + esc(W.ad.title || t('Ad video')) + '</b>')) + '</div>';
+      if (!d.id && !(DF.renew && W.ad && DF.keepAd)) h += '<div class="g2"><div><label class="fl">' + t('Ad that will run') + ' <em>(' + t('optional') + ')</em></label><input class="in" id="c_title" data-df value="' + esc(DF.creative.title) + '" placeholder="' + t('e.g. Admission ad 2027') + '"></div>' +
+        '<div><label class="fl">' + t('Video link') + '</label><input class="in" id="c_link" data-df value="' + esc(DF.creative.link) + '" placeholder="' + t('Drive / YouTube link') + '"></div></div>';
+    } else {
+      var itemRows = d.items.map(function (it, i) {
+        return '<tr><td style="width:46%"><input class="in" data-it="' + i + '" data-f="name" value="' + esc(it.name) + '" placeholder="' + t('What (e.g. video)') + '"></td>' +
+          '<td style="width:90px"><input class="in" type="number" min="0" data-it="' + i + '" data-f="qty" value="' + esc(it.qty) + '" title="' + t('0 = as needed') + '"></td>' +
+          '<td><input class="in" data-it="' + i + '" data-f="where" value="' + esc(it.where || '') + '" placeholder="' + t('Which page') + '"></td>' +
+          '<td style="width:30px"><button class="x" data-a="df-it-del" data-i="' + i + '">' + icon('x', 's') + '</button></td></tr>';
+      }).join('');
+      h += '<div style="margin-top:10px">' + segH('d_plan', [['month', t('Every month')], ['total', t('Total over the term')]], d.plan === 'month' ? 'month' : 'total') + '</div>' +
+        (d.items.length ? '<table class="itbl"><tr><th>' + t('What') + '</th><th>' + (d.plan === 'month' ? t('Per month') : t('Total')) + '</th><th>' + t('Where') + '</th><th></th></tr>' + itemRows + '</table>' : '') +
+        '<div class="presets">' + ITEM_PRESETS.map(function (n) { return '<button data-a="df-it-preset" data-n="' + esc(n) + '">+ ' + esc(t(n)) + '</button>'; }).join('') + '<button data-a="df-it-add">+ ' + t('Something else') + '</button></div>' +
+        (W && W.items ? wasH(W.items) : '');
+    }
+    // টাকা
+    h += '<div class="sh-sec">' + t('Money') + '</div>' + dealMoney();
+    if (d.id) h += '<div class="sh-sec">' + t('Status') + '</div>' + segH('d_status', objOpts(DST), d.status);
+    h += '<label class="fl">' + t('Terms & notes') + '</label><textarea class="in" id="d_note" data-df>' + esc(d.note || '') + '</textarea>';
+  }
+  var left = d.id ? '<button class="btn red" data-a="deal-del" data-id="' + esc(d.id) + '">' + icon('trash', 's') + t('Delete') + '</button>' : '';
+  openSheet((d.id ? t('Edit contract') : DF.renew ? t('Renew contract') : t('New contract')) + ' — ' + esc(p.name || ''), h +
+    '<div class="sh-f">' + left + '<span class="grow"></span><button class="btn" data-a="close">' + t('Cancel') + '</button>' +
+    '<button class="btn pri" data-a="deal-save"' + (d.model ? '' : ' disabled') + '>' + icon('check', 's') + (DF.renew ? t('Save renewal') : t('Save contract')) + '</button></div>', { cls: 'mid' });
+  $('ov').querySelector('.sheet').scrollTop = y;
+}
+function dealMoney() {
+  var d = DF.d, P = DF.P, W = DF.was;
+  if (d.model === 'per') {
+    var exp = d.items.reduce(function (s, it) { return s + num(it.qty); }, 0) * (d.plan === 'month' ? Math.max(1, dealMonths(d).length) : 1);
+    return '<div class="g2"><div><label class="fl">' + t('Amount per content') + ' *</label><input class="in" type="number" min="0" id="d_rate" data-df value="' + esc(d.rate || '') + '" placeholder="25000">' + (W ? wasH(tk(W.rate)) : '') + '</div>' +
+      '<div><label class="fl">' + t('Pay within (days of delivery)') + '</label><input class="in" type="number" min="0" max="90" id="d_payDays" data-df value="' + esc(d.payDays || 0) + '"></div></div>' +
+      '<div class="muted" style="font-size:12.5px;margin-top:8px">' + t('Every time you add content, this amount is added to Payments as due.') + (num(d.rate) && exp ? ' ' + t('About {0} over the whole term ({1} pieces).', tk(num(d.rate) * exp), N(exp)) : '') + '</div>';
+  }
+  var h = '<div class="g3"><div><label class="fl">' + (d.model === 'one' ? t('Amount') : t('Total amount')) + ' *</label><input class="in" type="number" min="0" id="d_total" data-df value="' + esc(d.total || '') + '">' + (W ? wasH(tk(W.total)) : '') + '</div>';
+  if (d.model === 'install') {
+    h += '<div><label class="fl">' + t('Advance') + ' <em>(' + t('0 if none') + ')</em></label><input class="in" type="number" min="0" id="p_adv" data-df value="' + esc(P.adv || 0) + '">' + (W ? wasH(tk(W.adv)) : '') + '</div>' +
+      '<div><label class="fl">' + t('Advance on') + '</label><input class="in" type="date" id="p_advDate" data-df value="' + esc(P.advDate || d.start || '') + '"></div></div>' +
+      (num(P.adv) ? ckl('p_advPaid', P.advPaid, t('The advance is already paid')) : '') +
+      '<div class="rest"><span>' + t('The rest in') + '</span><input class="in" type="number" min="1" max="60" id="p_n" data-df value="' + esc(P.n || 1) + '"><span>' + t('installments, every') + '</span>' +
+      '<input class="in" type="number" min="0" max="24" id="p_every" data-df value="' + esc(P.every) + '"><span>' + t('months, first on') + '</span><input class="in" type="date" id="p_first" data-df value="' + esc(P.first || '') + '" title="' + t('Leave blank — it is set from the start date') + '"></div>' +
+      (W ? wasH(t('{0} installments, every {1} months', N(W.n), N(W.every))) : '');
+  } else {
+    h += '<div><label class="fl">' + (d.model === 'one' ? t('Due on') : t('Paid / to be paid on')) + '</label><input class="in" type="date" id="p_advDate" data-df value="' + esc(P.advDate || d.start || '') + '"></div><div></div></div>' +
+      ckl('p_advPaid', P.advPaid, t('Already paid'));
+  }
+  h += '<div style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="muted" style="font-size:12.5px">' + t('Who pays') + '</span>' + segH('p_mode', objOpts(PMODE), P.mode || S.set.payMode) + '</div>';
+  return h + '<div id="dfPlan">' + planBox() + '</div>';
+}
+/* তৈরি হওয়া কিস্তির তালিকা — নিজে (শুধু দেখা) বা হাতে বদলানো */
+function planBox() {
+  var d = DF.d, sum = DF.pays.reduce(function (s, k) { return s + num(k.amount); }, 0), tot = num(d.total);
+  var check = tot ? (Math.abs(sum - tot) <= 1 ? '<span class="pos">✓ ' + t('matches the total') + '</span>' : '<span class="neg">' + t('{0} off from the total', tk(tot - sum)) + '</span>') : '';
+  if (!DF.manual) {
+    return '<div class="plan"><div class="ph"><b>' + t('Payments') + '</b><span class="muted">' + t('made automatically') + '</span><span class="grow"></span><button class="btn xs" data-a="df-manual">' + icon('edit', 's') + t('Edit individually') + '</button></div>' +
+      (DF.pays.length ? DF.pays.map(function (k) {
+        return '<div class="pr">' + (k.st === 'paid' ? '<span class="ck ok">✓</span>' : '<span class="ck no"></span>') + '<span class="g">' + esc(lbl(k.label)) + '</span><span class="nw">' + (k.due ? dShort(k.due) : '—') + '</span><b class="nw">' + tk(k.amount) + '</b><span class="st">' + (k.st === 'paid' ? t('Paid') : k.st === 'req' ? t('With accounts') : '') + '</span></div>';
+      }).join('') : '<div class="muted" style="padding:10px 0;font-size:13px">' + t('Enter the total amount.') + '</div>') +
+      '<div class="pf"><span>' + t('Sum') + ': <b>' + tk(sum) + '</b></span>' + check + '</div></div>';
+  }
+  var rows = DF.pays.map(function (k, i) {
+    return '<tr><td><input class="in" data-k="' + i + '" data-f="label" value="' + esc(lbl(k.label || '')) + '"></td>' +
+      '<td style="width:150px"><input class="in" type="date" data-k="' + i + '" data-f="due" value="' + esc(k.due || '') + '"></td>' +
+      '<td style="width:120px"><input class="in" type="number" min="0" data-k="' + i + '" data-f="amount" value="' + esc(k.amount) + '"></td>' +
+      '<td style="width:150px">' + sel(objOpts(PMODE), k.mode || S.set.payMode, 'data-k="' + i + '" data-f="mode"') + '</td>' +
+      '<td style="width:130px">' + sel(objOpts(PST), k.st || 'due', 'data-k="' + i + '" data-f="st"') + '</td>' +
+      '<td style="width:30px"><button class="x" data-a="df-k-del" data-i="' + i + '">' + icon('x', 's') + '</button></td></tr>';
+  }).join('');
+  return '<div class="plan"><div class="ph"><b>' + t('Payments') + '</b><span class="muted">' + t('edited by hand') + '</span><span class="grow"></span><button class="btn xs" data-a="df-rebuild">' + icon('renew', 's') + t('Rebuild from the basics') + '</button></div>' +
+    '<div style="overflow-x:auto"><table class="itbl" style="min-width:680px"><tr><th>' + t('Installment') + '</th><th>' + t('Date') + '</th><th>' + t('Amount') + '</th><th>' + t('Who pays') + '</th><th>' + t('Status') + '</th><th></th></tr>' + rows + '</table></div>' +
+    '<div class="pf"><button class="btn xs" data-a="df-k-add">' + icon('plus', 's') + t('Installment') + '</button><span class="grow"></span><span>' + t('Sum') + ': <b>' + tk(sum) + '</b></span>' + check + '</div></div>';
+}
+function readDealForm() {
+  if (!DF || !$('ov')) return;
+  var d = DF.d, P = DF.P, v = function (id) { var e = $(id); return e ? e.value : undefined; }, set = function (o, k, val) { if (val !== undefined) o[k] = val; };
+  ['title', 'start', 'end', 'total', 'note', 'rate', 'payDays'].forEach(function (k) { set(d, k, v('d_' + k)); });
+  if ($('d_plan')) d.plan = segVal('d_plan');
+  if ($('d_status')) d.status = segVal('d_status');
+  document.querySelectorAll('#ov [data-it]').forEach(function (e) { var it = d.items[+e.dataset.it]; if (it) it[e.dataset.f] = e.value; });
+  if (DF.manual) document.querySelectorAll('#ov [data-k][data-f]').forEach(function (e) { var k = DF.pays[+e.dataset.k]; if (k) k[e.dataset.f] = e.value; });
+  ['adv', 'advDate', 'n', 'every', 'first'].forEach(function (k) { set(P, k, v('p_' + k)); });
+  if ($('p_advPaid')) P.advPaid = $('p_advPaid').checked;
+  if ($('p_mode')) P.mode = segVal('p_mode');
+  if ($('a_qty')) d.ad = { qty: v('a_qty'), unit: v('a_unit'), per: v('a_per'), where: v('a_where'), slot: v('a_slot') };
+  if ($('c_title')) DF.creative = { title: v('c_title'), link: v('c_link').trim() };
+  if ($('c_keep')) DF.keepAd = $('c_keep').checked;
+}
+/* ঘর বদলালে: মেয়াদের শেষ নিজে, আর কিস্তির তালিকা নতুন করে (হাতে বদলানো না থাকলে) */
+function dfChanged(el) {
+  readDealForm();
+  var d = DF.d;
+  if (el && el.id === 'd_len') { DF.len = +el.value || 0; if (DF.len && d.start) { d.end = addDays(addMonths(d.start, DF.len), -1); $('d_end').value = d.end; } }
+  else if (el && el.id === 'd_start' && DF.len && d.start) { d.end = addDays(addMonths(d.start, DF.len), -1); $('d_end').value = d.end; if ($('p_advDate') && (!DF.P.advDate || DF._autoAdv)) { DF.P.advDate = d.start; $('p_advDate').value = d.start; DF._autoAdv = true; } }
+  else if (el && el.id === 'd_end') { DF.len = termMonths(d); if ($('d_len')) $('d_len').value = [1, 3, 6, 12, 24].indexOf(DF.len) !== -1 ? String(DF.len) : ''; }
+  if (el && el.id === 'p_advDate') DF._autoAdv = false;
+  if (el && (el.id === 'p_adv' || el.id === 'p_advPaid') && !!$('p_advPaid') !== num(DF.P.adv) > 0) { if (!DF.manual) DF.pays = buildPays(); drawDealForm(); return; }
+  if (!DF.manual && d.model !== 'per') { DF.pays = buildPays(); $('dfPlan').innerHTML = planBox(); }
+  else if (DF.manual) { var sp = $('dfPlan').querySelector('.pf'); if (sp) { var tmp = document.createElement('div'); tmp.innerHTML = planBox(); sp.innerHTML = tmp.querySelector('.pf').innerHTML; } }
+}
+function dealPayload() {
+  var d = DF.d, P = DF.P;
+  var pays = d.model === 'per' ? [] : DF.pays.map(function (k) { return { id: k.id || '', label: k.label, due: k.due, amount: k.amount, mode: k.mode, st: k.st, note: k.note }; });
+  return { id: d.id || '', pid: d.pid, title: d.title, model: d.model, plan: DF.what === 'ad' ? 'month' : d.plan, start: d.start, end: d.end,
+           total: d.model === 'per' ? '' : d.total, rate: d.rate, payDays: d.payDays, items: DF.what === 'ad' ? [] : d.items, status: d.status || 'active', note: d.note,
+           type: d.type || '', prev: d.id ? '' : (d.prev || ''), pays: pays, ad: DF.what === 'ad' ? d.ad : null,
+           pplan: d.model === 'per' ? null : { adv: P.adv, advPaid: P.advPaid, advDate: P.advDate, n: P.n, every: P.every, first: P.first, mode: P.mode, manual: !!DF.manual } };
+}
+function dealSave(a) {
+  readDealForm();
+  var d = DF.d;
+  if (!d.model) { toast(t('Pick a contract type.')); return; }
+  if (!String(d.title || '').trim()) { toast(t('Enter a title.')); $('d_title').focus(); return; }
+  if (d.start && d.end && d.end < d.start) { toast(t('The end date cannot be before the start.')); return; }
+  if (d.model === 'per' && !num(d.rate)) { toast(t('Enter the amount per content.')); $('d_rate').focus(); return; }
+  if (d.model !== 'per' && !num(d.total) && !confirm(t('No amount entered — save without payments?'))) return;
+  if (DF.what === 'ad' && !num((d.ad || {}).qty)) { toast(t('Enter how much airtime (e.g. 1 minute per hour).')); $('a_qty').focus(); return; }
+  d.items = DF.what === 'ad' ? [] : d.items.filter(function (it) { return String(it.name || '').trim(); });
+  var P0 = dealPayload(), ts = P0.pays.reduce(function (s, k) { return s + num(k.amount); }, 0);
+  if (d.model !== 'per' && num(P0.total) && P0.pays.length && Math.abs(ts - num(P0.total)) > 1 && !confirm(t('The installments add up to {0}, but the total is {1}. Save anyway?', tk(ts), tk(P0.total)))) return;
+  var renew = DF.renew, keep = DF.keepAd && DF.was && DF.was.ad, cr = DF.creative;
+  api('apiSaveDeal', [P0], a).then(function (r) {
+    afterDeal(r);
+    var nd = r.deal, after = Promise.resolve();
+    if (DF.what === 'ad' && renew && keep) after = saveW({ did: nd.id, item: '_ad', date: nd.start || today(), title: keep.title, links: keep.links, drive: keep.drive, note: '' });
+    else if (DF.what === 'ad' && !d.id && cr && (cr.link || cr.title)) after = saveW(Object.assign({ did: nd.id, item: '_ad', date: nd.start || today(), title: cr.title, note: '' }, linkSplit(cr.link)));
+    return after.then(function () {
+      closeOv(); toast(r.prevDeal ? t('Renewed — the previous term is marked ended') : t('Contract saved')); go('#p/' + nd.pid + '/' + nd.id);
+    });
+  });
+}
+
+/* ---------- বিজ্ঞাপন: চলতি বিজ্ঞাপন আর মাসের প্রমাণ ---------- */
+function linkSplit(u) {
+  u = String(u || '').trim(); if (!u) return { links: {}, drive: '' };
+  var k = platOf(u), o = { links: {}, drive: '' };
+  if (k === 'drv') o.drive = u; else o.links[['yt', 'fb', 'ig', 'tt'].indexOf(k) !== -1 ? k : 'web'] = u;
+  return o;
+}
+function wLink(w) { var L = w.links || {}; return w.drive || L.yt || L.fb || L.ig || L.tt || L.web || ''; }
+function saveW(x) { return api('apiSaveContent', [x]).then(function (r) { upsert(S.works, r.content); index(); return r; }); }
+function adWForm(kind, o) {   // kind: _ad (চলতি বিজ্ঞাপন) | _proof (মাসের প্রমাণ)
+  o = o || {};
+  var w = o.id ? S.works.filter(function (x) { return x.id === o.id; })[0] : null;
+  var did = w ? w.did : o.did, d = S.D[did]; if (!d) return;
+  var p = S.P[d.pid] || {}, isAd = kind === '_ad';
+  var months = dealMonths(d).filter(function (m) { return m <= curM(); });
+  if (!months.length) months = [curM()];
+  var defM = w ? w.month : o.m || months[months.length - 1];
+  if (months.indexOf(defM) === -1) months.push(defM);
+  CF = { kind: kind, id: w ? w.id : '', did: did };
+  openSheet((isAd ? (w ? t('Edit ad') : t('Change the running ad')) : (w ? t('Edit proof') : t('Add proof'))) + ' — ' + esc(p.name || ''),
+    '<div class="muted" style="font-size:13px;margin-top:12px">' + esc(d.title) + ' · ' + airtimeTxt(d.ad) + (d.ad && d.ad.where ? ' · ' + esc(d.ad.where) : '') + '</div>' +
+    (isAd ? '<label class="fl">' + t('Ad name') + '</label><input class="in" id="w_title" value="' + esc(w ? w.title : '') + '" placeholder="' + t('e.g. Admission ad 2027') + '">' +
+      '<div class="g2"><div><label class="fl">' + t('Video link') + '</label><input class="in" id="w_link" value="' + esc(w ? wLink(w) : '') + '" placeholder="' + t('Drive / YouTube link') + '"></div>' +
+      '<div><label class="fl">' + t('Running since') + '</label><input class="in" type="date" id="w_date" value="' + esc(w ? w.date : today()) + '"></div></div>'
+      : '<div class="g2"><div><label class="fl">' + t('For which month') + '</label>' + sel(months.map(function (m) { return [m, mLabel(m)]; }), defM, 'id="w_m"') + '</div>' +
+      '<div><label class="fl">' + t('Received on') + '</label><input class="in" type="date" id="w_date" value="' + esc(w ? w.date : today()) + '"></div></div>' +
+      '<label class="fl">' + t('Report / photo link') + '</label><input class="in" id="w_link" value="' + esc(w ? wLink(w) : '') + '" placeholder="' + t('Drive folder, photo or report link') + '">') +
+    '<label class="fl">' + t('Note') + ' <em>(' + t('optional') + ')</em></label><input class="in" id="w_note" value="' + esc(w ? w.note : '') + '">' +
+    foot(w ? '<button class="btn red" data-a="w-del">' + icon('trash', 's') + t('Delete') + '</button>' : '', 'w-save'));
+}
+
+/* প্রোফাইলের চুক্তি-কার্ডে বিজ্ঞাপনের অংশ */
+function adDeliverables(d, c) {
+  var ad = d.ad || {}, list = S.AB[d.id] || [], cur = list[0];
+  return '<div class="sc"><span>' + t('Airtime') + '</span><b>' + airtimeTxt(ad) + '</b></div>' +
+    (ad.where ? '<div class="sc"><span>' + t('Where') + '</span><b>' + esc(ad.where) + '</b></div>' : '') +
+    (ad.slot ? '<div class="sc"><span>' + t('Time slot') + '</span><b>' + esc(ad.slot) + '</b></div>' : '') +
+    '<div class="nowad"><small>' + t('Running now') + '</small>' + (cur ? '<div class="g">' + (wLink(cur) ? '<a class="lnk-a" href="' + esc(wLink(cur)) + '" target="_blank" rel="noopener">' + esc(cur.title || t('Ad video')) + '</a>' : '<b>' + esc(cur.title || t('Ad video')) + '</b>') +
+      '<small>' + t('since {0}', dShort(cur.date)) + '</small></div><button class="x" data-a="w-edit" data-id="' + esc(cur.id) + '" title="' + t('Edit') + '">' + icon('edit', 's') + '</button>' : '<div class="g muted">' + t('Not added yet') + '</div>') + '</div>' +
+    (list.length > 1 ? '<details class="adhist"><summary>' + t('Earlier ads ({0})', N(list.length - 1)) + '</summary>' + list.slice(1).map(function (w) {
+      return '<div class="ki"><div class="g">' + (wLink(w) ? '<a class="lnk-a" href="' + esc(wLink(w)) + '" target="_blank" rel="noopener">' + esc(w.title || t('Ad video')) + '</a>' : esc(w.title || t('Ad video'))) + '<small>' + t('from {0}', dShort(w.date)) + '</small></div><button class="x" data-a="w-edit" data-id="' + esc(w.id) + '">' + icon('edit', 's') + '</button></div>';
+    }).join('') + '</details>' : '') +
+    (d.status === 'active' ? '<button class="btn sm w" style="margin-top:8px" data-a="ad-new" data-did="' + esc(d.id) + '">' + icon('renew', 's') + t('Change the running ad') + '</button>' : '') +
+    (c.mTotal ? '<div class="sc" style="margin-top:10px"><span class="muted">' + t('Term') + '</span><b>' + t('{0}/{1} months', N(c.mGone), N(c.mTotal)) + '</b><div class="bar time"><i style="width:' + Math.round(c.mGone / c.mTotal * 100) + '%"></i></div></div>' : '');
+}
+function adProofs(d, c) {
+  var cm = curM();
+  var cells = c.pm.map(function (r) {
+    var slot = r.w ? '<button class="slot got" data-a="w-edit" data-id="' + esc(r.w.id) + '" title="' + esc(wLink(r.w)) + '">✓</button>'
+      : r.st === 'future' || d.status !== 'active' ? '<span class="slot"></span>' : '<button class="slot" data-a="proof-new" data-did="' + esc(d.id) + '" data-m="' + r.m + '" title="' + t('Add proof') + '">+</button>';
+    return '<div class="mo ' + (r.st === 'miss' ? 'short' : r.st) + '"><div class="mh">' + mShort(r.m) + '<span>' + (r.st === 'ok' ? '✓' : r.st === 'miss' ? '!' : '') + '</span></div><div class="slots">' + slot + '</div></div>';
+  }).join('');
+  return (c.pm.length ? '<div class="mgrid">' + cells + '</div>' : '<div class="muted" style="font-size:13px">' + t('No term set') + '</div>') +
+    (c.missProof ? '<div class="note warn" style="margin-top:10px">' + t('{0} month(s) without proof', N(c.missProof)) + '</div>' : '') +
+    (d.status === 'active' ? '<button class="btn sm pri w" style="margin-top:10px" data-a="proof-new" data-did="' + esc(d.id) + '" data-m="' + ((c.pm.filter(function (r) { return r.st === 'miss'; }).pop() || {}).m || (c.pm.some(function (r) { return r.m === cm; }) ? cm : '')) + '">' + icon('plus', 's') + t('Add proof') + '</button>' : '');
+}
+
+/* ---------- এই ফর্মের ক্লিক আর লেখা ---------- */
+document.addEventListener('click', function (ev) {
+  var a = ev.target.closest('[data-a]'), sb = ev.target.closest('#ov .seg button');
+  if (DF && sb && sb.parentNode && ['d_what', 'd_plan', 'p_mode', 'd_status'].indexOf(sb.parentNode.id) !== -1) {
+    setTimeout(function () {
+      readDealForm();
+      var sid = sb.parentNode.id, v = sb.getAttribute('data-v');
+      if (sid === 'd_what') { DF.what = v; if (v === 'ad' && !DF.d.ad) DF.d.ad = { qty: 1, unit: 'min', per: 'hour', where: '', slot: '' }; if (v === 'content' && !DF.d.items.length) DF.d.items.push({ name: 'Video', qty: 1, where: '', base: 0 }); drawDealForm(); }
+      else if (sid === 'd_plan') { DF.d.plan = v; drawDealForm(); }
+      else if (sid === 'p_mode') { if (!DF.manual) { DF.pays = buildPays(); $('dfPlan').innerHTML = planBox(); } }
+    }, 0);
+    return;
+  }
+  if (!a) return;
+  var A = a.getAttribute('data-a');
+  if (!/^(df-|ad-new|proof-new|w-)/.test(A)) return;
+  if (A === 'df-model') {
+    readDealForm(); var d = DF.d; d.model = a.dataset.v;
+    if (!d.items.length && DF.what === 'content') d.items.push({ name: 'Video', qty: d.model === 'per' ? 2 : 1, where: '', base: 0 });
+    if (d.model === 'one') d.plan = 'total';
+    if (d.model === 'install' && !num(DF.P.n)) DF.P.n = 4;
+    if (!d.title) { var y = (d.start || today()).slice(0, 4); d.title = d.model === 'one' ? t('One-off video {0}', y) : t('Contract {0}', y + '-' + String(+y.slice(2) + 1)); }
+    if (!DF.manual) DF.pays = buildPays();
+    drawDealForm();
+  }
+  else if (A === 'df-it-add') { readDealForm(); DF.d.items.push({ name: '', qty: 1, where: '', base: 0 }); drawDealForm(); }
+  else if (A === 'df-it-preset') { readDealForm(); DF.d.items.push({ name: a.dataset.n, qty: 1, where: '', base: 0 }); drawDealForm(); }
+  else if (A === 'df-it-del') { readDealForm(); DF.d.items.splice(+a.dataset.i, 1); drawDealForm(); }
+  else if (A === 'df-manual') { readDealForm(); DF.manual = true; drawDealForm(); }
+  else if (A === 'df-rebuild') {
+    readDealForm();
+    if (DF.pays.some(function (k) { return k.st === 'paid'; }) && !confirm(t('Rebuild the list from the basics? Your hand edits will be replaced (paid lines stay paid).'))) return;
+    DF.base = DF.pays.slice(); DF.manual = false; DF.pays = buildPays(); drawDealForm();
+  }
+  else if (A === 'df-k-add') { readDealForm(); var last = DF.pays[DF.pays.length - 1]; DF.pays.push({ label: ordEn(DF.pays.length + 1) + ' installment', due: last && last.due ? addMonths(last.due, 1) : (DF.d.start || today()), amount: '', mode: DF.P.mode || S.set.payMode, st: 'due' }); drawDealForm(); }
+  else if (A === 'df-k-del') { readDealForm(); var kk = DF.pays[+a.dataset.i]; if (kk && kk.st === 'paid' && !confirm(t('This installment is marked paid — remove it anyway?'))) return; DF.pays.splice(+a.dataset.i, 1); drawDealForm(); }
+  else if (A === 'ad-new') adWForm('_ad', { did: a.dataset.did });
+  else if (A === 'proof-new') adWForm('_proof', { did: a.dataset.did, m: a.dataset.m });
+  else if (A === 'w-edit') { var w = S.works.filter(function (x) { return x.id === a.dataset.id; })[0]; if (w) adWForm(w.item, { id: w.id }); }
+  else if (A === 'w-save') {
+    var lk = $('w_link').value.trim();
+    if (CF.kind === '_proof' && !lk && !$('w_note').value.trim() && !confirm(t('No link — mark this month as received anyway?'))) return;
+    var x = Object.assign({ id: CF.id, did: CF.did, item: CF.kind, date: $('w_date').value || today(), title: $('w_title') ? $('w_title').value : '', note: $('w_note').value }, linkSplit(lk));
+    x.month = $('w_m') ? $('w_m').value : (x.date || today()).slice(0, 7);
+    api('apiSaveContent', [x], a).then(function (r) { upsert(S.works, r.content); index(); closeOv(); rerender(); toast(CF && CF.kind === '_ad' ? t('Running ad saved') : t('Proof saved')); });
+  }
+  else if (A === 'w-del') {
+    if (!confirm(t('Delete this?'))) return;
+    var wid = CF.id;
+    api('apiDeleteContent', [wid], a).then(function () { removeId(S.works, wid); index(); closeOv(); rerender(); toast(t('Deleted')); });
+  }
+});
+document.addEventListener('input', function (ev) { var e = ev.target; if (DF && $('ov') && e.closest && e.closest('#ov') && (e.hasAttribute('data-df') || e.hasAttribute('data-it') || (DF.manual && e.hasAttribute('data-k')))) { if (e.tagName !== 'SELECT' && e.type !== 'date' && e.type !== 'checkbox') dfChanged(e); } });
+document.addEventListener('change', function (ev) { var e = ev.target; if (DF && $('ov') && e.closest && e.closest('#ov') && (e.hasAttribute('data-df') || e.id === 'p_advPaid' || e.id === 'c_keep' || (DF.manual && e.hasAttribute('data-k')))) { if (e.id === 'c_keep') { readDealForm(); drawDealForm(); return; } dfChanged(e); } });
+
 /* ═════════════════════════ PR Desk — Discover, Reports, Tidy, Settings ═════════════════════════ */
 
 /* ═════════ Discover ═════════ */
@@ -2409,6 +2731,7 @@ function shareRows() {
     var inR = RF.per === 'all' || cs.length || ds.some(function (d) { return d.start && d.start <= b && (!d.end || d.end >= a); });
     if (!inR) return;
     var work = []; cs.forEach(function (c) { Object.keys(c.links || {}).forEach(function (k) { if (c.links[k]) work.push(c.links[k]); }); });
+    ds.forEach(function (d) { (S.AB[d.id] || []).forEach(function (w) { var u = wLink(w); if (u && work.indexOf(u) === -1 && (RF.per === 'all' || (w.date >= a && w.date <= b))) work.push(u); }); });
     var n = cs.length + (RF.per === 'all' ? ds.reduce(function (s, d) { return s + (d.items || []).reduce(function (x, it) { return x + num(it.base); }, 0); }, 0) : 0);
     rows.push({ p: p, pages: allLinks(p), work: work, n: n });
   });
@@ -2569,13 +2892,15 @@ function workTable() {
 function monthlyReport() {
   var cm = curM(); if (!RF.m) RF.m = cm;
   var months = []; for (var i = 5; i >= 0; i--) months.push(mAdd(RF.m, -i));
-  var ds = S.deals.filter(function (d) { return d.plan === 'month' && d.status !== 'cancel' && dealMonths(d).some(function (m) { return months.indexOf(m) !== -1; }); })
+  var ds = S.deals.filter(function (d) { return (d.plan === 'month' || isAdDeal(d)) && d.status !== 'cancel' && dealMonths(d).some(function (m) { return months.indexOf(m) !== -1; }); })
     .sort(function (a, b) { return ((S.P[a.pid] || {}).name || '').localeCompare((S.P[b.pid] || {}).name || ''); });
-  var list = S.works.filter(function (w) { return w.month === RF.m; }).sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  var list = S.works.filter(function (w) { return w.month === RF.m && isWork(w); }).sort(function (a, b) { return a.date < b.date ? 1 : -1; });
   var grid = ds.length ? '<div style="overflow-x:auto"><table class="tb"><tr><th>' + t('Creator') + '</th>' + months.map(function (m) { return '<th style="text-align:center">' + mShort(m) + '</th>'; }).join('') + '</tr>' +
     ds.map(function (d) {
       var c = calc(d), p = S.P[d.pid] || {};
       return '<tr><td><div class="who click" data-go="#p/' + esc(d.pid) + '/' + esc(d.id) + '">' + av(p) + '<div style="min-width:0"><b>' + esc(p.name || '') + '</b><small>' + esc(d.title) + '</small></div></div></td>' + months.map(function (m) {
+        if (c.ad) { var q = c.pm.filter(function (x) { return x.m === m; })[0]; if (!q) return '<td style="text-align:center" class="muted">·</td>';
+          return '<td style="text-align:center"><span class="pill ' + (q.st === 'ok' ? 'ok' : q.st === 'miss' ? 'bad' : q.st === 'cur' ? 'warn' : '') + '">' + (q.st === 'ok' ? '✓ ' + t('proof') : q.st === 'future' ? '—' : t('no proof')) + '</span></td>'; }
         var r = c.months.filter(function (x) { return x.m === m; })[0];
         if (!r) return '<td style="text-align:center" class="muted">·</td>';
         var cls = r.st === 'ok' ? 'ok' : r.st === 'short' ? 'bad' : r.st === 'cur' ? 'warn' : '';
@@ -2584,7 +2909,7 @@ function monthlyReport() {
     }).join('') + '</table></div>' : empty('cal', t('No monthly contracts in these months.'));
   return '<div class="tools"><button class="btn sm" data-a="rm-m" data-k="-1">' + icon('left', 's') + '</button><b style="min-width:150px;text-align:center">' + mLabel(RF.m) + '</b><button class="btn sm" data-a="rm-m" data-k="1"' + (RF.m >= cm ? ' disabled' : '') + '>' + icon('right', 's') + '</button>' +
     (RF.m !== cm ? '<button class="btn sm ghost" data-a="rm-m" data-k="0">' + t('This month') + '</button>' : '') + '</div>' +
-    '<div class="card"><div class="ch"><h3>' + t('Who delivered each month') + '</h3><span class="muted" style="font-size:12.5px">' + t('received / expected') + '</span></div>' + grid + '</div>' +
+    '<div class="card"><div class="ch"><h3>' + t('Who delivered each month') + '</h3><span class="muted" style="font-size:12.5px">' + t('received / expected · ads: proof') + '</span></div>' + grid + '</div>' +
     '<div class="card"><div class="ch"><h3>' + t('Content received in {0}', mLabel(RF.m)) + '</h3><span class="c">' + N(list.length) + '</span></div>' +
     (list.length ? '<div class="rows">' + list.map(function (c) { return contentRow(c); }).join('') + '</div>' : empty('inbox', t('Nothing received this month.'))) + '</div>';
 }
@@ -2701,8 +3026,7 @@ document.addEventListener('click', function (ev) {
       rerender(); return;
     }
     el.parentNode.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', b === el); });
-    if (pid0 === 'd_plan') { readDealForm(); DF.d.plan = v; drawDealForm(); }
-    else if (pid0 === 'lgVia') LG2.via = v;
+    if (pid0 === 'lgVia') LG2.via = v;
     else if (pid0 === 'ffLang') { var autoQ = !FF.q || FF.q === kwOf(FF.cat, FF.lang); FF.q = $('ffQ').value; if (FF.q === kwOf(FF.cat, FF.lang)) autoQ = true; FF.lang = v; if (autoQ) { FF.q = kwOf(FF.cat, FF.lang); $('ffQ').value = FF.q; } }
     else if (pid0 === 'rfPer') { RF.per = v; rerender(); }
     else if (pid0 === 'rfOrder') { RF.order = v; rerender(); }
@@ -2880,45 +3204,7 @@ document.addEventListener('click', function (ev) {
       if (a.dataset.v === 'done' && !confirm(t('Mark this contract as ended?') + (dc.open ? '\n' + t('({0} is still due — it stays in Payments.)', tk(dc.open)) : ''))) return;
       api('apiDealStatus', [id, a.dataset.v], a).then(function (d) { upsert(S.deals, d); index(); rerender(); toast(d.status === 'done' ? t('Contract ended — press "Renew" to continue it') : t('Contract reopened')); });
       break;
-    case 'd-step':
-      readDealForm();
-      var to2 = +a.dataset.v;
-      if (to2 > 1 && !DF.d.model) { toast(t('Pick a contract type.')); return; }
-      if (to2 > 2 && !String(DF.d.title || '').trim()) { toast(t('Enter a title.')); if (DF.step !== 2) { DF.step = 2; drawDealForm(); } if ($('d_title')) $('d_title').focus(); return; }
-      if (to2 > 2 && DF.d.end && DF.d.start && DF.d.end < DF.d.start) { toast(t('The end date cannot be before the start.')); return; }
-      DF.step = to2; drawDealForm(); break;
-    case 'd-model':
-      readDealForm(); DF.d.model = a.dataset.v;
-      if (!DF.d.items.length) DF.d.items.push({ name: 'Video', qty: DF.d.model === 'per' ? 2 : 1, where: '', base: 0 });
-      if (DF.d.model === 'one') DF.d.plan = 'total';
-      if (!DF.d.title) { var dyp = (DF.d.start || today()).slice(0, 4); DF.d.title = DF.d.model === 'one' ? t('One-off video {0}', dyp) : t('Contract {0}', dyp + '-' + String(+dyp.slice(2) + 1)); }
-      DF.step = 2; drawDealForm(); break;
-    case 'd-len': readDealForm(); if (!DF.d.start) DF.d.start = today(); DF.d.end = addDays(addMonths(DF.d.start, +a.dataset.m), -1); drawDealForm(); break;
-    case 'it-add': readDealForm(); DF.d.items.push({ name: '', qty: 1, where: '', base: 0 }); drawDealForm(); break;
-    case 'it-preset': readDealForm(); DF.d.items.push({ name: a.dataset.n, qty: 1, where: '', base: 0 }); drawDealForm(); break;
-    case 'it-del': readDealForm(); DF.d.items.splice(+a.dataset.i, 1); drawDealForm(); break;
-    case 'k-split': readDealForm(); if (!DF.pays.length && num(DF.d.total)) DF.pays = [{ label: instLabel(0), due: DF.d.start || today(), amount: DF.d.total, mode: S.set.payMode, st: 'due' }, { label: instLabel(1), due: addMonths(DF.d.start || today(), 3), amount: 0, mode: S.set.payMode, st: 'due' }];
-      else if (DF.pays.length === 1) DF.pays.push({ label: instLabel(1), due: addMonths(DF.pays[0].due || today(), 3), amount: 0, mode: S.set.payMode, st: 'due' });
-      else DF.pays = [{ label: instLabel(0), due: DF.d.start || today(), amount: '', mode: S.set.payMode, st: 'due' }, { label: instLabel(1), due: addMonths(DF.d.start || today(), 3), amount: '', mode: S.set.payMode, st: 'due' }];
-      drawDealForm(); break;
-    case 'k-add': readDealForm(); var last = DF.pays[DF.pays.length - 1];
-      DF.pays.push({ label: instLabel(DF.pays.length), due: last && last.due ? addMonths(last.due, 1) : (DF.d.start || today()), amount: '', mode: S.set.payMode, st: 'due' }); drawDealForm(); break;
-    case 'k-del': readDealForm(); var kk = DF.pays[+a.dataset.i];
-      if (kk && kk.st === 'paid' && !confirm(t('This installment is marked paid — remove it anyway?'))) return;
-      DF.pays.splice(+a.dataset.i, 1); drawDealForm(); break;
-    case 'k-gen': genPays(); break;
-    case 'deal-save':
-      readDealForm();
-      if (!DF.d.model) { DF.step = 1; drawDealForm(); toast(t('Pick a contract type.')); return; }
-      if (!String(DF.d.title).trim()) { DF.step = 2; drawDealForm(); toast(t('Enter a title.')); return; }
-      if (DF.d.model === 'per' && !num(DF.d.rate)) { DF.step = 3; drawDealForm(); toast(t('Enter the amount per content.')); if ($('d_rate')) $('d_rate').focus(); return; }
-      DF.d.items = DF.d.items.filter(function (it) { return String(it.name || '').trim(); });
-      var P0 = dealPayload();
-      if (P0.pays.length > 1 || DF.d.model === 'install') { var ts = P0.pays.reduce(function (s, k) { return s + num(k.amount); }, 0); if (num(P0.total) && P0.pays.length && Math.abs(ts - num(P0.total)) > 1 && !confirm(t('The installments add up to {0}, but the total is {1}. Save anyway?', tk(ts), tk(P0.total)))) return; }
-      api('apiSaveDeal', [P0], a).then(function (r) {
-        afterDeal(r); closeOv(); toast(r.prevDeal ? t('Renewed — the previous term is marked ended') : t('Contract saved')); go('#p/' + r.deal.pid + '/' + r.deal.id);
-      });
-      break;
+    case 'deal-save': dealSave(a); break;
     case 'deal-del':
       if (!confirm(t('Delete this contract with all its payments and content? This cannot be undone.\n(If it is finished, marking it "Ended" is better.)'))) return;
       var dpid2 = (S.D[id] || {}).pid;
@@ -3014,10 +3300,6 @@ document.addEventListener('input', function (ev) {
   else if (tg.id === 'pr_body' || tg.id === 'pr_subj') { if ($('prPrev')) $('prPrev').innerHTML = letterPreview($('pr_body').value); }
   else if (tg.classList && tg.classList.contains('cf-l')) { if (ev.inputType !== 'insertText' && ev.inputType !== 'deleteContentBackward') moveLink(tg); }   // পেস্ট করলে সঙ্গে সঙ্গে; লিখলে ঘর ছাড়ার পর
   else if (tg.id === 'bkTxt') { var L = bulkParse(tg.value), dup = L.filter(function (x) { return findDup(x.name, [x.link]); }).length; $('bkPrev').textContent = L.length ? t('{0} found', N(L.length)) + (dup ? ' · ' + t('{0} already in your list (will be skipped)', N(dup)) : '') : ''; }
-  else if (DF && (tg.id === 'd_total' || (tg.dataset && tg.dataset.f === 'amount'))) {
-    readDealForm(); var s = $('dfSum');
-    if (s) s.innerHTML = sumTxt(DF.pays.reduce(function (a2, k) { return a2 + num(k.amount); }, 0), num(DF.d.total));
-  }
 });
 document.addEventListener('change', function (ev) {
   var tg = ev.target;
