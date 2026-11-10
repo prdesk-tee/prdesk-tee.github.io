@@ -309,6 +309,11 @@ table.tb{width:100%;border-collapse:collapse}
 .hero h2{font-size:26px;font-weight:700;line-height:1.3}
 .hero .meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px;color:var(--ink3);font-size:13.5px}
 .hero .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.avbtn{position:relative;padding:0;border:0;background:none;border-radius:26px;flex:none;cursor:pointer}
+.avbtn .cam{position:absolute;right:-6px;bottom:-6px;width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink2);box-shadow:var(--sh);opacity:.85}
+.avbtn:hover .cam{opacity:1;color:var(--acc)}
+.phbox{display:flex;gap:16px;align-items:flex-start}
+.phbox .g{flex:1;min-width:0}.phbox b{display:block;font-size:14px}.phbox small{display:block;color:var(--ink3);font-size:12.5px}
 .links{display:flex;gap:8px;flex-wrap:wrap;padding:0 26px 22px}
 .lnk{display:flex;align-items:center;gap:10px;padding:7px 14px 7px 7px;border-radius:12px;background:var(--card2);border:1px solid var(--line);min-width:0;max-width:280px}
 .lnk:hover{border-color:color-mix(in srgb,var(--acc) 40%,var(--line))}
@@ -887,6 +892,18 @@ var BN = {
   'Moved to the {0} box': '{0}-এর ঘরে বসানো হলো', '{0} found': '{0} জন পাওয়া গেছে', '{0} already in your list (will be skipped)': '{0} জন আগেই আছেন (বাদ যাবেন)',
 
   /* লগইন */
+  'Profile photo': 'প্রোফাইলের ছবি', 'Profile photos': 'প্রোফাইলের ছবি', 'From YouTube': 'YouTube থেকে', 'From Facebook': 'Facebook থেকে', 'Uploaded': 'আপলোড করা', 'From an image link': 'ছবির লিংক থেকে',
+  'Added by you': 'আপনার দেওয়া', 'No photo found automatically': 'নিজে থেকে ছবি পাওয়া যায়নি', 'No photo yet': 'এখনো ছবি নেই', 'From their links': 'তাঁদের লিংক থেকে', 'Upload': 'আপলোড',
+  'Or paste an image link': 'অথবা ছবির লিংক দিন', 'Use': 'বসান', 'Done': 'ঠিক আছে', 'That file is not an image.': 'ফাইলটা ছবি নয়।',
+  'No photo found on their YouTube or Facebook. Upload one or paste an image link.': 'তাঁর YouTube বা Facebook-এ ছবি পাওয়া যায়নি। আপলোড করুন বা ছবির লিংক দিন।',
+  'Everyone with a YouTube or Facebook link already has a photo.': 'YouTube বা Facebook লিংক আছে এমন সবার ছবি আগেই আছে।', 'Fetching photos… {0}/{1}': 'ছবি আনা হচ্ছে… {0}/{1}',
+  'Fetch photos for everyone': 'সবার ছবি আনুন', '{0} photos added': '{0}টা ছবি বসল',
+  'YouTube channels and Facebook pages give their photo automatically. Instagram and TikTok do not share photos with other apps — upload one or paste an image link.': 'YouTube চ্যানেল আর Facebook পেজের ছবি নিজে আসে। Instagram আর TikTok অন্য অ্যাপকে ছবি দেয় না — আপলোড করুন বা ছবির লিংক দিন।',
+  'The photo comes from their YouTube or Facebook after saving — or add one later.': 'সেভ করার পর ছবি তাঁর YouTube বা Facebook থেকে নিজে আসবে — চাইলে পরে নিজেও দিতে পারবেন।',
+  'Paste an image link.': 'ছবির লিংক দিন।', 'Photo saved': 'ছবি বসানো হলো', 'Remove this photo?': 'ছবিটা সরাবেন?', 'Photo removed': 'ছবি সরানো হলো',
+  '{0} creators have a YouTube or Facebook link but no photo yet': '{0} জনের YouTube বা Facebook লিংক আছে, কিন্তু ছবি নেই',
+  "Taken from YouTube channels and Facebook pages. You can change any photo from the creator's profile.": 'YouTube চ্যানেল আর Facebook পেজ থেকে নেওয়া। যেকোনো ছবি ক্রিয়েটরের প্রোফাইল থেকে বদলাতে পারবেন।',
+  '{0} with a photo · {1} still to fetch': '{0} জনের ছবি আছে · {1} জনের আনা বাকি',
   'PR & partnerships': 'পিআর ও পার্টনারশিপ', '6-digit code from your email': 'ইমেইলে আসা ৬ সংখ্যার কোড', 'Another email': 'অন্য ইমেইল', 'Send code': 'কোড পাঠান', 'Log in': 'লগইন',
   '{0} — the code is in your inbox (check Spam too).': '{0} — ইনবক্সে কোড গেছে (Spam-ও দেখুন)।', 'Sending…': 'পাঠানো হচ্ছে…', 'Enter the 6-digit code.': '৬ সংখ্যার কোড লিখুন।', 'Checking…': 'যাচাই হচ্ছে…'
 };
@@ -922,11 +939,14 @@ var SRV_EN = {
   'পার্টনার পাওয়া যায়নি — পেজটা রিফ্রেশ করুন।': 'Creator not found — refresh the page.', 'পার্টনার পাওয়া যায়নি।': 'Creator not found.', 'প্রতিটা কনটেন্টের টাকা লিখুন।': 'Enter the amount per content.',
   'বেশি বার ভুল হয়েছে — নতুন কোড নিন।': 'Too many wrong tries — get a new code.', 'ভিডিওটা পাওয়া যায়নি।': 'Video not found.', 'লেখাটা পাওয়া যায়নি।': 'Note not found.',
   'শেষের তারিখ শুরুর আগে হতে পারে না।': 'The end date cannot be before the start.',
-  'সার্ভারে পৌঁছানো যায়নি — ইন্টারনেট দেখুন।': 'Could not reach the server — check your internet.'
+  'সার্ভারে পৌঁছানো যায়নি — ইন্টারনেট দেখুন।': 'Could not reach the server — check your internet.',
+  'ছবিটা ঠিক নয়।': 'Invalid image.', 'ছবিটা অনেক বড়।': 'The image is too large.', 'ক্রিয়েটর পাওয়া যায়নি।': 'Creator not found.',
+  'লিংকটা ছবির নয়। ছবিটা খুলে তার ছবির ঠিকানা (image address) কপি করে দিন।': 'That link is not an image. Open the picture, copy its image address, and paste that.',
+  'ঠিক ইমেইল লিখুন।': 'Enter a valid email address.', 'বিষয় আর চিঠির লেখা দুটোই লাগবে।': 'Subject and letter text are required.', 'আজকের ইমেইলের সীমা শেষ — কাল আবার চেষ্টা করুন।': 'Daily email limit reached — try again tomorrow.'
 };
 function srvMsg(m) {
   m = String(m || '').replace(/^YT_OFF:\s*/, '');
-  if (LANG === 'bn') { var r = Object.keys(SRV_EN).filter(function (k) { return SRV_EN[k] === m; })[0]; return r || m; }
+  if (LANG === 'bn') { var r = Object.keys(SRV_EN).filter(function (k) { return SRV_EN[k] === m; }); return r[r.length - 1] || m; }
   return SRV_EN[m] || m;
 }
 
@@ -961,7 +981,7 @@ var ICONS = {
   menu: 'M4 6h16|M4 12h16|M4 18h16', ext: 'M14 4h6v6|M20 4l-9 9|M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5', copy: 'M9 9h11v11H9z|M5 15H4V4h11v1', undo: 'M9 14 4 9l5-5|M4 9h11a5 5 0 0 1 0 10h-1',
   spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z', broom: 'M14 4l6 6|M17 7 9 15|M4 20l5-5 3 3-5 5z', inbox: 'M22 12h-6l-2 3h-4l-2-3H2|M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z',
   dl: 'M12 4v12|m6 10 6 6 6-6|M4 20h16', cal: 'M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z|M8 3v4|M16 3v4|M3 10h18', user: 'M20 21v-1a5 5 0 0 0-5-5H9a5 5 0 0 0-5 5v1|M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-  dots: 'M5 12h.01|M12 12h.01|M19 12h.01'
+  dots: 'M5 12h.01|M12 12h.01|M19 12h.01', up: 'M12 20V9|m6 14 6-6 6 6|M5 4h14'
 };
 function icon(n, cls) { return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[n] || '').split('|').map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>'; }
 
@@ -1033,7 +1053,8 @@ function dateBox(s, cls) {
 }
 function initials(n) { var w = String(n || '?').replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(Boolean); return ((w[0] || '?')[0] + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase(); }
 function avC(id) { var h = 0; String(id).split('').forEach(function (c) { h = (h * 31 + c.charCodeAt(0)) >>> 0; }); return AV_C[h % AV_C.length]; }
-function av(p, lg) { p = p || {}; return '<div class="av' + (lg ? ' lg' : '') + '"' + (lg ? '' : ' style="--c:' + avC(p.id || p.name) + '"') + '>' + esc(initials(p.name)) + '</div>'; }
+/* ছবি থাকলে ছবি, নাহলে নামের আদ্যক্ষর; data-pid দিয়ে ছবি পরে এলে নিজে বদলায় */
+function av(p, lg) { p = p || {}; var ph = p.id && PH[p.id]; return '<div class="av' + (lg ? ' lg' : '') + '"' + (p.id ? ' data-pid="' + esc(p.id) + '"' : '') + (lg ? '' : ' style="--c:' + avC(p.id || p.name) + '"') + '>' + (ph ? '<img src="' + ph + '" alt="">' : esc(initials(p.name))) + '</div>'; }
 function mdl(m) { return MODELS[m] ? '<span class="mdl m-' + m + '">' + t(MODELS[m].s) + '</span>' : '<span class="mdl m-none">' + t('Type not set') + '</span>'; }
 function sel(opts, cur, attrs) { return '<select class="sel" ' + (attrs || '') + '>' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select>'; }
 function objOpts(o) { return Object.keys(o).map(function (k) { return [k, t(o[k])]; }); }
@@ -1211,12 +1232,14 @@ function tidyData() {
 /* ---------- শুরু / লোড ---------- */
 function applyBoot(d) {
   S.me = d.me; S.set = d.set || {}; S.sync = d.sync || null;
+  S.photos = d.photos || []; S.PI = {}; S.photos.forEach(function (x) { S.PI[x[0]] = { at: x[1], src: x[2] }; });
   S.partners = d.partners || []; S.logs = d.logs || []; S.deals = d.deals || []; S.pays = d.pays || []; S.works = d.works || [];
   ORG = S.set.org || ORG;
   index(); S.booted = true;
+  setTimeout(loadPhotos, 0);
 }
 function saveBootCache() {
-  try { localStorage.setItem(BOOT_KEY, JSON.stringify({ key: AUTH.slice(-16), data: { me: S.me, set: S.set, sync: S.sync, partners: S.partners, logs: S.logs, deals: S.deals, pays: S.pays, works: S.works } })); } catch (e) {}
+  try { localStorage.setItem(BOOT_KEY, JSON.stringify({ key: AUTH.slice(-16), data: { me: S.me, set: S.set, sync: S.sync, photos: S.photos, partners: S.partners, logs: S.logs, deals: S.deals, pays: S.pays, works: S.works } })); } catch (e) {}
 }
 function boot() {
   var cached = null;
@@ -1292,6 +1315,7 @@ function render() {
   }
   if (S.page === 'settings') loadSecurity();
   if (S.page === 'discover') afterDiscover();
+  if (S.page === 'profile' && S.P[S.pid]) setTimeout(function () { maybePhoto(S.pid); }, 300);
 }
 function rerender() { var y = window.scrollY; render(); window.scrollTo(0, y); }
 
@@ -1452,7 +1476,7 @@ function profilePage(id) {
   if (LG2.pid !== id) LG2 = { pid: id, via: 'phone', next: st === 'talks' || st === 'prospect' ? addDays(td, num(S.set.fuDays) || 3) : '' };
   var first = deals.map(function (d) { return d.start; }).filter(Boolean).sort()[0];
   var wa = waHref(p);
-  var hero = '<div class="card"><div class="hero">' + av(p, true) + '<div class="g"><h2>' + esc(p.name) + '</h2>' +
+  var hero = '<div class="card"><div class="hero"><button class="avbtn" data-a="photo" data-id="' + esc(p.id) + '" title="' + t('Profile photo') + '">' + av(p, true) + '<span class="cam">' + icon('edit', 's') + '</span></button>' + '<div class="g"><h2>' + esc(p.name) + '</h2>' +
     '<div class="meta">' + stagePill(p) + (p.cat ? '<span>' + esc(p.cat) + '</span>' : '') + (fo ? '<span>·</span><span>' + t('{0} followers', N(fFmt(fo))) + '</span>' : '') +
     (first ? '<span>·</span><span>' + t('Working together since {0}', N(first.slice(0, 4))) + '</span>' : '') + (p.kind !== 'creator' ? '<span>·</span><span>' + t(KINDS[p.kind] || '') + '</span>' : '') + '</div>' +
     '<div class="acts"><button class="btn grad" data-a="propose" data-id="' + esc(p.id) + '">' + icon('send', 's') + t('Send proposal') + '</button>' +
@@ -1884,6 +1908,7 @@ function creatorForm(id, pre) {
   var stOpts = STAGE_SET.map(function (x) { return [x[0], t(x[1])]; });
   if (['prospect', 'contacted', 'cancel'].indexOf(p.stage) === -1) stOpts.unshift([p.stage, ['todo', 'talking', 'hold'].indexOf(p.stage) !== -1 ? t('In talks') : t('Worked before')]);
   openSheet(id ? t('Edit') + ' — ' + esc(p.name) : t('New creator'),
+    (id ? '<div style="padding-top:10px">' + photoBox(id) + '</div>' : '<div class="muted" style="font-size:12.5px;margin-top:10px">' + t('The photo comes from their YouTube or Facebook after saving — or add one later.') + '</div>') +
     '<label class="fl">' + t('Name') + ' *</label><input class="in" id="f_name" value="' + esc(p.name || '') + '">' +
     '<div id="fDup"></div>' +
     '<div class="g3"><div><label class="fl">' + t('Type') + '</label>' + sel(objOpts(KINDS), p.kind, 'id="f_kind"') + '</div>' +
@@ -2091,6 +2116,132 @@ function tplForm(id) {
     foot(id ? '<button class="btn red" data-a="tpl-del" data-id="' + esc(id) + '">' + icon('trash', 's') + t('Delete') + '</button>' : '', 'tpl-save" data-id="' + esc(id || '')), { cls: 'mid' });
 }
 
+/* ═════════════════════════ PR Desk — creator photos ═════════════════════════
+ * উৎস: YouTube চ্যানেলের ছবি, Facebook পেজের ছবি (দুটোই অফিসিয়াল), নাহলে নিজে আপলোড বা ছবির লিংক।
+ * ছবি ১৬০px JPEG করে সার্ভারের PHOTOS শিটে; এই ডিভাইসে prd_photos-এ জমা থাকে, শুধু বদলগুলো আসে। */
+var PH = {}, PH_KEY = 'prd_photos', PH_TRIED = {}, PH_BULK = null;
+var PH_SRC = { youtube: 'From YouTube', facebook: 'From Facebook', upload: 'Uploaded', link: 'From an image link', manual: 'Added by you' };
+
+function phCache() { try { return JSON.parse(localStorage.getItem(PH_KEY) || '{}') || {}; } catch (e) { return {}; } }
+function phSaveCache(c) { try { localStorage.setItem(PH_KEY, JSON.stringify(c)); } catch (e) {} }
+/* ক্যাশ থেকে সঙ্গে সঙ্গে, তারপর নতুন/বদলানোগুলো সার্ভার থেকে */
+function loadPhotos() {
+  var c = phCache(), need = [], keep = {};
+  Object.keys(S.PI || {}).forEach(function (id) {
+    var x = S.PI[id];
+    if (x.src === 'none') return;
+    if (c[id] && c[id].at === x.at) { PH[id] = c[id].d; keep[id] = c[id]; } else need.push(id);
+  });
+  Object.keys(PH).forEach(function (id) { if (!S.PI[id] || S.PI[id].src === 'none') delete PH[id]; });
+  refreshAv();
+  if (!need.length) { phSaveCache(keep); return; }
+  var step = function (i) {
+    if (i >= need.length || !AUTH) { phSaveCache(keep); return; }
+    callServer('apiPhotos', [need.slice(i, i + 60)]).then(function (r) {
+      Object.keys(r).forEach(function (id) { if (r[id].d) { PH[id] = r[id].d; keep[id] = { at: r[id].at, d: r[id].d }; } });
+      refreshAv(); step(i + 60);
+    }, function () { phSaveCache(keep); });
+  };
+  step(0);
+}
+/* পাতা আবার না এঁকে শুধু গোল ছবিগুলো বদলানো */
+function refreshAv() {
+  document.querySelectorAll('.av[data-pid]').forEach(function (e) {
+    var id = e.getAttribute('data-pid'), d = PH[id], img = e.querySelector('img');
+    if (d && (!img || img.getAttribute('src') !== d)) e.innerHTML = '<img src="' + d + '" alt="">';
+    else if (!d && img) e.textContent = initials((S.P[id] || {}).name);
+  });
+  var b = $('phBox'); if (b) b.outerHTML = photoBox(b.getAttribute('data-id'));
+}
+
+/* যেকোনো ছবি → মাঝখান থেকে বর্গ কেটে ১৬০px JPEG */
+function toJpeg(src, size) {
+  size = size || 160;
+  return new Promise(function (res, rej) {
+    var im = new Image();
+    im.onload = function () {
+      var s = Math.min(im.naturalWidth, im.naturalHeight); if (!s) return rej(new Error(t('That file is not an image.')));
+      var cv = document.createElement('canvas'); cv.width = cv.height = size;
+      var x = cv.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, size, size);
+      x.imageSmoothingQuality = 'high';
+      x.drawImage(im, (im.naturalWidth - s) / 2, (im.naturalHeight - s) / 2, s, s, 0, 0, size, size);
+      var d = cv.toDataURL('image/jpeg', 0.84);
+      if (d.length > 45000) d = cv.toDataURL('image/jpeg', 0.6);
+      res(d);
+    };
+    im.onerror = function () { rej(new Error(t('That file is not an image.'))); };
+    im.src = src;
+  });
+}
+function setPhoto(pid, data, src, btn) {
+  return api('apiSetPhoto', [pid, data, src], btn).then(function (r) {
+    S.PI[pid] = { at: r.at, src: r.src };
+    S.photos = Object.keys(S.PI).map(function (id) { return [id, S.PI[id].at, S.PI[id].src]; });
+    var c = phCache();
+    if (data) { PH[pid] = data; c[pid] = { at: r.at, d: data }; } else { delete PH[pid]; delete c[pid]; }
+    phSaveCache(c); saveBootCache(); refreshAv();
+    return r;
+  });
+}
+function canAuto(p) { return !!(p && (p.yt || p.fb || (p.more || []).some(function (m) { return /youtube\.com|youtu\.be|facebook\.com|fb\.com/i.test(m.u); }))); }
+/* ক্রিয়েটরের YouTube/Facebook থেকে ছবি; silent = কিছু না পেলে চুপচাপ "চেষ্টা হয়েছে" লিখে রাখে */
+function autoPhoto(pid, silent, btn) {
+  if (btn) { btn.disabled = true; btn.dataset.l = btn.innerHTML; btn.innerHTML = t('Looking up…'); }
+  var done = function () { if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.l; } };
+  return callServer('apiPhotoSource', [{ pid: pid }]).then(function (img) {
+    return toJpeg('data:' + img.mime + ';base64,' + img.b64).then(function (d) { done(); return setPhoto(pid, d, img.src).then(function () { return img.src; }); });
+  }).catch(function (e) {
+    done();
+    if (/NO_PHOTO/.test(e.message)) { if (silent) return setPhoto(pid, '', 'none').then(function () { return ''; }, function () { return ''; }); toast(t('No photo found on their YouTube or Facebook. Upload one or paste an image link.'), 6000); return ''; }
+    if (!silent) toast(srvMsg(e.message), 5000);
+    return '';
+  });
+}
+/* প্রোফাইল খুললে বা নতুন যোগ হলে — ছবি নেই, আগে চেষ্টাও হয়নি, আর YouTube/Facebook আছে */
+function maybePhoto(pid) {
+  var p = S.P[pid];
+  if (!p || PH_TRIED[pid] || (S.PI || {})[pid] || !canAuto(p)) return;
+  PH_TRIED[pid] = 1;
+  autoPhoto(pid, true);
+}
+/* সবার ছবি একসাথে — একসাথে ৩টা করে */
+function photosAll(btn) {
+  if (PH_BULK) return;
+  var L = S.partners.filter(function (p) { return !(S.PI || {})[p.id] && canAuto(p); }).map(function (p) { return p.id; });
+  if (!L.length) { toast(t('Everyone with a YouTube or Facebook link already has a photo.')); return; }
+  PH_BULK = { n: L.length, done: 0, got: 0 };
+  var show = function () { document.querySelectorAll('[data-a="ph-all"]').forEach(function (b) { b.disabled = !!PH_BULK; b.innerHTML = PH_BULK ? t('Fetching photos… {0}/{1}', N(PH_BULK.done), N(PH_BULK.n)) : icon('user', 's') + t('Fetch photos for everyone'); }); };
+  show();
+  var next = function () {
+    var id = L.shift(); if (!id) return Promise.resolve();
+    PH_TRIED[id] = 1;
+    return autoPhoto(id, true).then(function (src) { PH_BULK.done++; if (src) PH_BULK.got++; show(); return next(); });
+  };
+  Promise.all([next(), next(), next()]).then(function () {
+    var g = PH_BULK.got; PH_BULK = null; show(); toast(t('{0} photos added', N(g)), 6000); if (!$('ov')) rerender();
+  });
+}
+function phNeedCount() { return S.partners.filter(function (p) { return !(S.PI || {})[p.id] && canAuto(p); }).length; }
+
+/* ছবির বাক্স — প্রোফাইলের ছবিতে চাপলে, আর ক্রিয়েটরের ফর্মে */
+function photoBox(pid) {
+  var p = S.P[pid] || {}, x = (S.PI || {})[pid], has = !!PH[pid];
+  var srcTxt = has ? t(PH_SRC[x && x.src] || 'Added by you') : x && x.src === 'none' ? t('No photo found automatically') : t('No photo yet');
+  return '<div class="phbox" id="phBox" data-id="' + esc(pid) + '">' + av(p, true) +
+    '<div class="g"><b>' + t('Profile photo') + '</b><small>' + srcTxt + '</small>' +
+    '<div class="pls" style="margin-top:8px">' + (canAuto(p) ? '<button class="btn sm" data-a="ph-auto" data-id="' + esc(pid) + '">' + icon('renew', 's') + t('From their links') + '</button>' : '') +
+    '<button class="btn sm" data-a="ph-up" data-id="' + esc(pid) + '">' + icon('up', 's') + t('Upload') + '</button>' +
+    (has ? '<button class="btn sm ghost" style="color:var(--neg)" data-a="ph-del" data-id="' + esc(pid) + '">' + t('Remove') + '</button>' : '') + '</div>' +
+    '<div class="linkin" style="grid-template-columns:1fr auto;margin-top:8px"><input class="in" id="ph_url" placeholder="' + t('Or paste an image link') + '"><button class="btn sm" data-a="ph-url" data-id="' + esc(pid) + '">' + t('Use') + '</button></div>' +
+    '<input type="file" id="ph_file" accept="image/*" hidden data-id="' + esc(pid) + '"></div></div>';
+}
+function photoSheet(pid) {
+  var p = S.P[pid]; if (!p) return;
+  openSheet(t('Profile photo') + ' — ' + esc(p.name), '<div style="padding-top:12px">' + photoBox(pid) + '</div>' +
+    '<div class="muted" style="font-size:12.5px;margin-top:14px">' + t('YouTube channels and Facebook pages give their photo automatically. Instagram and TikTok do not share photos with other apps — upload one or paste an image link.') + '</div>' +
+    '<div class="sh-f"><span class="grow"></span><button class="btn" data-a="close">' + t('Done') + '</button></div>');
+}
+
 /* ═════════════════════════ PR Desk — Discover, Reports, Tidy, Settings ═════════════════════════ */
 
 /* ═════════ Discover ═════════ */
@@ -2224,6 +2375,7 @@ function ytAdd(list, btn, then) {
 function ytAdd2(list, btn, then) {
   return api('apiQuickAdd', [list.map(ytPayload)], btn).then(function (r) {
     r.added.forEach(function (p) { S.partners.push(p); }); index();
+    r.added.forEach(function (p) { maybePhoto(p.id); });
     list.forEach(function (c) { delete FF.sel[c.id]; });
     drawFind(); renderShell();
     toast(r.added.length ? (r.added.length === 1 ? t('{0} added to your list', r.added[0].name) : t('{0} added to your list', t('{0} people', N(r.added.length)))) + (r.skipped.length ? ' · ' + t('{0} were already there', N(r.skipped.length)) : '') : t('Already in your list'), 5000,
@@ -2441,7 +2593,8 @@ function monthlyReport() {
 function tidyPage() {
   var T = tidyData();
   var sec = function (title, sub, n, html) { return n ? '<div class="card"><div class="ch"><h3>' + title + '</h3><span class="c">' + N(n) + '</span></div><div class="muted" style="font-size:12.5px;padding:0 20px 10px">' + sub + '</div><div class="rows">' + html + '</div></div>' : ''; };
-  return '<div class="top"><div class="grow"><h1>' + t('Tidy up old data') + '</h1><p>' + t('Things from the old sheet that are incomplete — kept here so they do not crowd your daily list') + '</p></div></div>' +
+  return     '<div class="top"><div class="grow"><h1>' + t('Tidy up old data') + '</h1><p>' + t('Things from the old sheet that are incomplete — kept here so they do not crowd your daily list') + '</p></div></div>' +
+    (phNeedCount() || PH_BULK ? '<div class="card tidy"><div class="g"><b>' + t('Profile photos') + '</b><small>' + t('{0} creators have a YouTube or Facebook link but no photo yet', N(phNeedCount())) + '</small></div><button class="btn sm" data-a="ph-all">' + icon('user', 's') + t('Fetch photos for everyone') + '</button></div>' : '') +
     (T.n ? '' : '<div class="card">' + empty('check', t('All tidy — nothing left to fix.')) + '</div>') +
     sec(t('Payments with unknown status'), t('Blank in the old sheet. If it was paid, press "Was paid"; otherwise "Still due".'), T.unk.length, T.unk.slice(0, S.open.tu ? 999 : 30).map(function (k) { return payRow(k); }).join('') + (T.unk.length > 30 && !S.open.tu ? '<button class="more" data-a="more" data-k="tu">' + t('Show all {0}', N(T.unk.length)) + '</button>' : '')) +
     sec(t('Contracts missing details'), t('Add the missing parts so payments and content can be tracked.'), T.inc.length, T.inc.map(function (d) {
@@ -2472,6 +2625,8 @@ function settingsPage() {
     '<label class="fl">' + t('Who usually pays') + '</label>' + segH('s_payMode', objOpts(PMODE), s.payMode) +
     '<div style="margin-top:14px">' + sw('todo', 'Send tasks to To-Do', 'Follow-ups, payments (before and on the day), missing content, contract end') + sw('digest', 'Morning email', "Today's list at 7 am (skipped when empty)") + '</div>' +
     '<div style="margin-top:14px;text-align:right"><button class="btn pri" data-a="set-rem">' + t('Save') + '</button></div></div>' +
+    '<div class="card cpad"><h3>' + t('Profile photos') + '</h3><div class="muted" style="font-size:13px;margin-top:6px">' + t('Taken from YouTube channels and Facebook pages. You can change any photo from the creator\'s profile.') + '</div>' +
+    '<div class="muted" style="font-size:12.5px;margin-top:4px">' + t('{0} with a photo · {1} still to fetch', N(Object.keys(PH).length), N(phNeedCount())) + '</div><button class="btn sm" data-a="ph-all" style="margin-top:10px">' + icon('user', 's') + t('Fetch photos for everyone') + '</button></div>' +
     '<div class="card cpad"><h3>' + t('To-Do link') + '</h3><div class="muted" style="font-size:13px;margin-top:6px">' + syTxt + '</div><div class="muted" style="font-size:12.5px">' + t('Changes go within 15 minutes; new day tasks at 7 am.') + '</div>' +
     '<button class="btn sm" data-a="sync-now" style="margin-top:10px">' + t('Send now') + '</button></div>' +
     '<div class="card cpad"><h3>' + t('Categories') + '</h3><div class="tchips">' + (s.cats || []).map(function (c, i) { return '<span>' + esc(c) + '<button data-a="cat-del" data-i="' + i + '" title="' + t('Remove') + '">✕</button></span>'; }).join('') + '</div>' +
@@ -2603,7 +2758,11 @@ document.addEventListener('click', function (ev) {
     case 'creator-save':
       if (!$('f_name').value.trim()) { toast(t('Enter a name.')); $('f_name').focus(); return; }
       var isNew = !PF.id;
-      savePartner(readCreatorForm(), a, function (p) { closeOv(); toast(t('Saved')); if (isNew) go('#p/' + p.id); else rerender(); });
+      savePartner(readCreatorForm(), a, function (p) {
+        closeOv(); toast(t('Saved'));
+        if (!PH[p.id] && canAuto(p) && (!S.PI[p.id] || S.PI[p.id].src === 'none')) { PH_TRIED[p.id] = 1; autoPhoto(p.id, true); }
+        if (isNew) go('#p/' + p.id); else rerender();
+      });
       break;
     case 'creator-del':
       var dp = S.P[id], nd = (S.DB[id] || []).length;
@@ -2642,6 +2801,17 @@ document.addEventListener('click', function (ev) {
         toast(t('{0} added', N(r.added.length)) + (r.skipped.length ? ' · ' + t('{0} skipped (already there)', N(r.skipped.length)) : ''), 6000);
       });
       break;
+
+    /* ছবি */
+    case 'photo': photoSheet(id); break;
+    case 'ph-auto': autoPhoto(id, false, a).then(function (src) { if (src) toast(t(PH_SRC[src] || 'Saved')); }); break;
+    case 'ph-up': var pf = $('ph_file'); if (pf) pf.click(); break;
+    case 'ph-url':
+      var pu = $('ph_url').value.trim(); if (!pu) { toast(t('Paste an image link.')); $('ph_url').focus(); return; }
+      api('apiPhotoSource', [{ url: pu }], a).then(function (img) { return toJpeg('data:' + img.mime + ';base64,' + img.b64).then(function (d) { return setPhoto(id, d, 'link'); }); }).then(function () { toast(t('Photo saved')); }, function (e) { if (e && !/busy/.test(e.message)) toast(srvMsg(e.message), 5000); });
+      break;
+    case 'ph-del': if (!confirm(t('Remove this photo?'))) return; setPhoto(id, '', 'none', a).then(function () { toast(t('Photo removed')); }); break;
+    case 'ph-all': photosAll(a); break;
 
     /* প্রস্তাব */
     case 'propose': proposeForm(id); break;
@@ -2860,6 +3030,10 @@ document.addEventListener('change', function (ev) {
   else if (tg.id === 'rfA' || tg.id === 'rfB') { RF[tg.id === 'rfA' ? 'a' : 'b'] = tg.value; rerender(); }
   else if (tg.id === 'rfTitle') rerender();
   else if (tg.classList && tg.classList.contains('cf-l')) moveLink(tg);
+  else if (tg.id === 'ph_file' && tg.files && tg.files[0]) {
+    var fid = tg.getAttribute('data-id'), fu = URL.createObjectURL(tg.files[0]);
+    toJpeg(fu).then(function (d) { URL.revokeObjectURL(fu); return setPhoto(fid, d, 'upload'); }).then(function () { toast(t('Photo saved')); }, function (e) { toast(srvMsg(e.message), 5000); });
+  }
 });
 /* ভুল ঘরে দেওয়া লিংক ঠিক ঘরে (YouTube-এর ঘরে Facebook ইত্যাদি) */
 function moveLink(tg) {
