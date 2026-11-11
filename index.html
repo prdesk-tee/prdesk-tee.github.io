@@ -521,6 +521,48 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
   .side,.topbar,.bnav,.fab,.dev-foot,.toast,.noprint{display:none!important}
   .shell{display:block}main{padding:0;max-width:none}
 }
+/* ── চুক্তিপত্র (agree.js) ── */
+.ag-sheet{max-width:1240px}
+.split.ag-split{grid-template-columns:420px minmax(0,1fr)}
+.ag-split>.r{align-items:center}
+.ag-pv{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ag-host{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+.ag-wrap{position:relative;flex:none;box-shadow:0 10px 30px rgba(0,0,0,.28);border-radius:3px;overflow:hidden;background:#fff}
+.ag-wrap .agp{position:absolute;left:0;top:0;transform-origin:0 0}
+.ag-off{position:fixed;left:-20000px;top:0;width:794px;z-index:-1}
+.ag-off .agp{margin-bottom:10px}
+.agp{width:794px;height:1123px;position:relative;background:#fff;color:#000;font:16px/1.15 'Times New Roman',Times,'Liberation Serif',serif;overflow:hidden;text-rendering:geometricPrecision}
+.agp .agh{position:absolute;left:0;top:0;width:794px;height:auto;display:block}
+.agp .agf{position:absolute;left:0;bottom:0;width:794px;height:auto;display:block}
+.agp .agb{position:absolute;left:85px;right:85px;top:128px;max-height:846px}
+.agp b{font-weight:700}
+.ag-t{text-align:center;font-weight:700;font-size:24px;line-height:1.2;margin-top:2px}
+.ag-s{text-align:center;font-style:italic;font-size:17.3px;margin:2px 0 19px;min-height:4px}
+.ag-p{text-align:justify;margin:0 0 6.7px 48px}
+.ag-p.intro{margin-left:0}
+.ag-p.gap,.ag-a.gap,.ag-i.gap{margin-bottom:10.7px}
+.ag-h{font-weight:700;margin:8px 0 6.7px;padding-left:48px;position:relative}
+.ag-h>span{position:absolute;left:24px}
+.ag-a,.ag-i{text-align:justify;position:relative;padding-left:96px}
+.ag-a>span{position:absolute;left:72px}
+.ag-i{padding-left:152px}.ag-i>span{position:absolute;left:118px}
+.ag-sigs{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;line-height:1.15}
+.ag-sg{height:73px;display:flex;align-items:flex-end}
+.ag-sg img{width:140px;height:auto;display:block;margin-bottom:-6px}
+.ag-ln{width:266px;border-bottom:1px solid #000;margin:4px 0 2px}
+.ag-blank{display:inline-block;width:200px;border-bottom:1px solid #000;transform:translateY(-3px)}
+.ag-link{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+.ag-link .chk{width:auto;padding:0}
+.ag-sr{display:grid;grid-template-columns:18px 1fr 1fr auto;gap:6px;align-items:center;margin-bottom:6px}
+.ag-dl{display:flex;gap:8px;margin-top:16px;position:sticky;bottom:0;background:var(--card);padding:10px 0;border-top:1px solid var(--line)}
+.ag-sigthumb{height:22px;margin-left:8px;background:#fff;border-radius:4px;padding:1px 4px}
+.ag-sigbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;min-height:70px}
+.ag-sigbox img{max-height:70px;max-width:100%}
+.in.bad{border-color:var(--neg,#ef4444)}
+.ag-rows .row{padding:10px 12px}
+.side-card .ag-rows .row{padding:9px 0}
+.side-card .ag-rows .row:first-child{border-top:0}
+@media(max-width:999px){.split.ag-split{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1001,7 +1043,101 @@ var BN = {
   "Taken from YouTube channels and Facebook pages. You can change any photo from the creator's profile.": 'YouTube চ্যানেল আর Facebook পেজ থেকে নেওয়া। যেকোনো ছবি ক্রিয়েটরের প্রোফাইল থেকে বদলাতে পারবেন।',
   '{0} with a photo · {1} still to fetch': '{0} জনের ছবি আছে · {1} জনের আনা বাকি',
   'PR & partnerships': 'পিআর ও পার্টনারশিপ', '6-digit code from your email': 'ইমেইলে আসা ৬ সংখ্যার কোড', 'Another email': 'অন্য ইমেইল', 'Send code': 'কোড পাঠান', 'Log in': 'লগইন',
-  '{0} — the code is in your inbox (check Spam too).': '{0} — ইনবক্সে কোড গেছে (Spam-ও দেখুন)।', 'Sending…': 'পাঠানো হচ্ছে…', 'Enter the 6-digit code.': '৬ সংখ্যার কোড লিখুন।', 'Checking…': 'যাচাই হচ্ছে…'
+  '{0} — the code is in your inbox (check Spam too).': '{0} — ইনবক্সে কোড গেছে (Spam-ও দেখুন)।', 'Sending…': 'পাঠানো হচ্ছে…', 'Enter the 6-digit code.': '৬ সংখ্যার কোড লিখুন।', 'Checking…': 'যাচাই হচ্ছে…',
+  /* চুক্তিপত্র */
+  "Agreement paper": "চুক্তিপত্র",
+  "Agreement papers": "চুক্তিপত্র",
+  "New agreement paper": "নতুন চুক্তিপত্র",
+  "Make the signed Work Agreement — Word, PDF or JPG": "সই করার চুক্তিপত্র বানান — ওয়ার্ড, পিডিএফ বা ছবি",
+  "Could not load the file maker — check the internet and try again.": "ফাইল বানানোর অংশ আনা গেল না — ইন্টারনেট দেখে আবার চেষ্টা করুন।",
+  "Pick from Creators or type a new name": "ক্রিয়েটরদের তালিকা থেকে বাছুন বা নতুন নাম লিখুন",
+  "Also add to Creators (not in the list yet)": "ক্রিয়েটরদের তালিকাতেও যোগ করুন (এখনো তালিকায় নেই)",
+  "Page / platform name": "পেজ / প্ল্যাটফর্মের নাম",
+  "Links to show": "যে লিংক দেখাবে",
+  "tick the ones to put in the agreement": "যেগুলো চুক্তিপত্রে থাকবে টিক দিন",
+  "Add a link": "লিংক যোগ করুন",
+  "Address": "ঠিকানা",
+  "Agreement": "চুক্তি",
+  "The creator will": "ক্রিয়েটর যা করবেন",
+  "Make content": "কনটেন্ট বানাবেন",
+  "Run an advertisement": "বিজ্ঞাপন চালাবেন",
+  "Agreement date": "চুক্তির তারিখ",
+  "Starts": "শুরু",
+  "Ends": "শেষ",
+  "Term in words": "মেয়াদ কথায়",
+  "automatic": "নিজে বসে",
+  "Work": "কাজ",
+  "Advertisement": "বিজ্ঞাপন",
+  "how long, how often": "কতক্ষণ, কতবার",
+  "e.g. for 1 minute every hour": "যেমন: for 1 minute every hour",
+  "Where it runs": "কোথায় চলবে",
+  "e.g. the Facebook page and YouTube channel": "যেমন: the Facebook page and YouTube channel",
+  "Number of videos": "কয়টা ভিডিও",
+  "Videos per month": "মাসে কয়টা ভিডিও",
+  "at least": "কমপক্ষে",
+  "Money": "টাকা",
+  "Amount per video (BDT)": "প্রতি ভিডিওতে টাকা",
+  "Total amount (BDT)": "মোট টাকা",
+  "Paid in advance on or before": "অগ্রিম দেওয়া হবে যেদিনের মধ্যে",
+  "Split the total evenly": "মোট টাকা সমান ভাগ করুন",
+  "Installments add up to {0} of {1}": "কিস্তির যোগফল {0} — মোট {1}",
+  "Signatures": "সই",
+  "Signs for the company": "প্রতিষ্ঠানের পক্ষে সই করবেন",
+  "Put the signature image": "সইয়ের ছবি বসান",
+  "No signature image — add one in Settings → Agreement paper.": "সইয়ের ছবি নেই — সেটিংস → চুক্তিপত্র থেকে দিন।",
+  "Date under the creator's signature": "ক্রিয়েটরের সইয়ের নিচের তারিখ",
+  "Same as agreement date": "চুক্তির তারিখই",
+  "Leave blank to write by hand": "ফাঁকা থাকবে, হাতে লিখবেন",
+  "Heading and wording": "শিরোনাম ও লেখা",
+  "Line under the title": "শিরোনামের নিচের লাইন",
+  "Wording of this agreement only": "শুধু এই চুক্তিপত্রের লেখা",
+  "lines starting with ## = clause, - = (a), -- = (i), **bold**": "## দিয়ে শুরু = ধারা, - = (a), -- = (i), **মোটা**",
+  "While you edit the wording here, changes to the boxes above do not change the text.": "এখানে লেখা বদলালে উপরের ঘর বদলে আর লেখা বদলাবে না।",
+  "Go back to automatic wording": "আবার নিজে-বসা লেখায় ফিরুন",
+  "Edit the wording for this agreement": "এই চুক্তিপত্রের লেখা বদলান",
+  "Fill in: {0}": "পূরণ করুন: {0}",
+  "Each download also saves the PDF to your Google Drive and keeps a record here.": "যেকোনোটা নামালে PDF আপনার Google Drive-এ জমা হয়, আর এখানে রেকর্ড থাকে।",
+  "Saved to Google Drive · {0}": "Google Drive-এ জমা হয়েছে · {0}",
+  "Open PDF": "PDF খুলুন",
+  "Record saved, but the PDF is not in Drive yet — it will go with the next download.": "রেকর্ড রাখা হয়েছে, কিন্তু PDF এখনো Drive-এ যায়নি — পরের বার নামালে যাবে।",
+  "changed since": "এরপর বদলেছে",
+  "{0} pages · A4": "{0} পাতা · A4",
+  "Saving to Drive…": "Drive-এ রাখা হচ্ছে…",
+  "Saved here, but Google Drive said: {0}": "এখানে রাখা হয়েছে, কিন্তু Google Drive বলল: {0}",
+  "Open PDF in Google Drive": "Google Drive-এ PDF খুলুন",
+  "Not in Drive yet": "এখনো Drive-এ নেই",
+  "No PDF": "PDF নেই",
+  "Remove from this list (the PDF stays in Drive)": "তালিকা থেকে সরান (PDF Drive-এ থেকে যাবে)",
+  "None yet.": "এখনো নেই।",
+  "No agreement papers yet — make one with \"New agreement paper\".": "এখনো কোনো চুক্তিপত্র নেই — \"নতুন চুক্তিপত্র\" দিয়ে বানান।",
+  "Remove this agreement paper from the list? The PDF stays in your Google Drive.": "এই চুক্তিপত্র তালিকা থেকে সরাবেন? PDF আপনার Google Drive-এ থেকে যাবে।",
+  "Removed": "সরানো হয়েছে",
+  "Organisation address (in the agreement)": "প্রতিষ্ঠানের ঠিকানা (চুক্তিপত্রে)",
+  "Organisation phone (in the agreement)": "প্রতিষ্ঠানের ফোন (চুক্তিপত্রে)",
+  "Signature image": "সইয়ের ছবি",
+  "No signature image": "সইয়ের ছবি নেই",
+  "Upload new": "নতুন দিন",
+  "Use the original": "আগেরটা ফেরান",
+  "A photo of the signature on white paper works — the white background is removed automatically.": "সাদা কাগজে করা সইয়ের ছবি দিলেই হবে — সাদা পটভূমি নিজে সরে যায়।",
+  "Wording": "লেখা",
+  "You have changed the standard wording.": "মূল লেখা আপনি বদলেছেন।",
+  "Standard wording (as in the Akib Ahmed agreement).": "মূল লেখা (আকিব আহমেদের চুক্তিপত্রের মতো)।",
+  "Edit the standard wording": "মূল লেখা বদলান",
+  "Standard wording of the agreement paper": "চুক্তিপত্রের মূল লেখা",
+  "## = numbered clause · - = (a) (b) · -- = (i) (ii) · **bold** · [ad] / [content] = only for advertisement / content · [per] [install] [upfront] [one] = only for that payment type.": "## = নম্বরসহ ধারা · - = (a) (b) · -- = (i) (ii) · **মোটা** · [ad] / [content] = শুধু বিজ্ঞাপন / কনটেন্টের চুক্তিতে · [per] [install] [upfront] [one] = শুধু সেই ধরনের টাকায়।",
+  "Filled in automatically: {0}": "নিজে বসে: {0}",
+  "Back to the original": "আগের লেখায় ফিরুন",
+  "Throw away your changes to the wording and use the automatic wording again?": "লেখায় আপনার বদলগুলো বাদ দিয়ে আবার নিজে-বসা লেখা নেবেন?",
+  "Remove the signature image? Agreements will then have an empty space to sign by hand.": "সইয়ের ছবি সরাবেন? তখন চুক্তিপত্রে হাতে সই করার ফাঁকা জায়গা থাকবে।",
+  "Put back the original wording? Your changes to the standard wording will be lost.": "আগের মূল লেখা ফেরাবেন? মূল লেখায় আপনার বদলগুলো মুছে যাবে।",
+  "creator name": "ক্রিয়েটরের নাম",
+  "agreement date": "চুক্তির তারিখ",
+  "start and end dates": "শুরু আর শেষের তারিখ",
+  "amount per video": "প্রতি ভিডিওর টাকা",
+  "total amount": "মোট টাকা",
+  "advertisement details": "বিজ্ঞাপনের বিবরণ",
+  "installments": "কিস্তি",
+  "installments do not add up to the total": "কিস্তির যোগফল মোট টাকার সমান নয়"
 };
 
 /* কিস্তির নাম — পুরনো শিটে বাংলায় লেখা ("১ম কিস্তি", "পুরো টাকা (অগ্রিম)"), নতুনগুলো ইংরেজিতে; যে ভাষা চালু সেই ভাষায় দেখানো */
@@ -1100,7 +1236,7 @@ var AV_C = ['#db2777', '#7c3aed', '#2563eb', '#0891b2', '#16a34a', '#d97706', '#
 
 var S = {
   booted: false, bootErr: '', set: {}, me: null, sync: null,
-  partners: [], logs: [], deals: [], pays: [], works: [],
+  partners: [], logs: [], deals: [], pays: [], works: [], agrees: [],
   P: {}, LB: {}, DB: {}, D: {}, KB: {}, K: {}, CB: {}, CP: {},
   page: 'home', pid: '', did: '',
   cf: { tab: 'active', q: '', cat: '' }, df: { tab: 'active' }, mf: { tab: 'due' }, rf: { tab: 'share' },
@@ -1340,13 +1476,13 @@ function tidyData() {
 function applyBoot(d) {
   S.me = d.me; S.set = d.set || {}; S.sync = d.sync || null;
   S.photos = d.photos || []; S.PI = {}; S.photos.forEach(function (x) { S.PI[x[0]] = { at: x[1], src: x[2] }; });
-  S.partners = d.partners || []; S.logs = d.logs || []; S.deals = d.deals || []; S.pays = d.pays || []; S.works = d.works || [];
+  S.partners = d.partners || []; S.logs = d.logs || []; S.deals = d.deals || []; S.pays = d.pays || []; S.works = d.works || []; S.agrees = d.agrees || [];
   ORG = S.set.org || ORG;
   index(); S.booted = true;
   setTimeout(loadPhotos, 0);
 }
 function saveBootCache() {
-  try { localStorage.setItem(BOOT_KEY, JSON.stringify({ key: AUTH.slice(-16), data: { me: S.me, set: S.set, sync: S.sync, photos: S.photos, partners: S.partners, logs: S.logs, deals: S.deals, pays: S.pays, works: S.works } })); } catch (e) {}
+  try { localStorage.setItem(BOOT_KEY, JSON.stringify({ key: AUTH.slice(-16), data: { me: S.me, set: S.set, sync: S.sync, photos: S.photos, partners: S.partners, logs: S.logs, deals: S.deals, pays: S.pays, works: S.works, agrees: S.agrees } })); } catch (e) {}
 }
 function boot() {
   var cached = null;
@@ -1596,6 +1732,7 @@ function profilePage(id) {
     (p.phone ? '<a class="btn" href="tel:' + esc(telOf(p)) + '">' + icon('phone', 's') + t('Call') + '</a>' : '') +
     (wa ? '<a class="btn" href="' + esc(wa) + '" target="_blank" rel="noopener">' + icon('chat', 's') + 'WhatsApp</a>' : '') +
     (p.email ? '<a class="btn" href="mailto:' + esc(p.email) + '">' + icon('mail', 's') + t('Email') + '</a>' : '') +
+    '<button class="btn" data-a="ag-new" data-pid="' + esc(p.id) + '">' + icon('pen', 's') + t('Agreement paper') + '</button>' +
     '<button class="btn" data-a="creator-edit" data-id="' + esc(p.id) + '">' + icon('edit', 's') + t('Edit') + '</button>' +
     '<button class="btn ghost" data-a="creator-del" data-id="' + esc(p.id) + '">' + icon('trash', 's') + t('Delete') + '</button></div></div></div>' +
     '<div class="links">' + allLinks(p).map(function (x) {
@@ -1623,7 +1760,7 @@ function profilePage(id) {
 
   var paidAll = 0, dueAll = 0;
   deals.forEach(function (d) { var c = calc(d); paidAll += c.paid; dueAll += c.open; });
-  var side = '<div class="card side-card"><h4>' + t('Contact') + '</h4>' +
+  var side = agProfileCard(p.id) + '<div class="card side-card"><h4>' + t('Contact') + '</h4>' +
     '<div class="kv"><span>' + t('Phone / WhatsApp') + '</span><b>' + (p.phone ? esc(p.phone) : '—') + '</b></div>' +
     '<div class="kv"><span>' + t('Email') + '</span><b>' + (p.email ? esc(p.email) : '—') + '</b></div>' +
     (p.person ? '<div class="kv"><span>' + t('Manager') + '</span><b>' + esc(p.person) + '</b></div>' : '') +
@@ -1653,6 +1790,7 @@ function dealBlock(d, inPast) {
   var term = d.start ? dLong(d.start) + ' – ' + (d.end ? dLong(d.end) : t('open-ended')) : t('No term set');
   var head = '<div class="ch" id="deal-' + esc(d.id) + '"><h3>' + esc(d.title) + '</h3>' + mdl(d.model) + '<span class="muted" style="font-size:13px">' + term + (c.total ? ' · ' + tk(c.total) + (d.model === 'per' ? ' (' + t('est.') + ')' : '') : '') + '</span>' +
     (d.status !== 'active' ? '<span class="pill">' + t(DST[d.status]) + '</span>' : c.ended ? '<span class="pill bad">' + t('Term ended') + '</span>' : '') + '<span class="grow"></span>' +
+    '<button class="btn sm" data-a="ag-new" data-did="' + esc(d.id) + '">' + icon('pen', 's') + t('Agreement paper') + '</button>' +
     (d.status === 'active' ? '<button class="btn sm" data-a="renew" data-id="' + esc(d.id) + '">' + icon('renew', 's') + t('Renew') + '</button>' : '') +
     '<button class="btn sm ghost" data-a="deal-edit" data-id="' + esc(d.id) + '">' + t('Edit') + '</button>' +
     (d.status === 'active' ? '<button class="btn sm ghost" data-a="deal-st" data-id="' + esc(d.id) + '" data-v="done">' + t('Mark ended') + '</button>' : '<button class="btn sm ghost" data-a="deal-st" data-id="' + esc(d.id) + '" data-v="active">' + t('Reopen') + '</button>') + '</div>';
@@ -1701,13 +1839,13 @@ function contractsPage() {
   var f = S.df, act = activeDeals(), td = today();
   var ending = act.filter(function (d) { return d.end && dd(td, d.end) <= (num(S.set.endWarn) || 30); });
   var inc = act.filter(function (d) { return calc(d).missing.length; });
-  var G = { active: act, ending: ending, inc: inc, done: S.deals.filter(function (d) { return d.status === 'done'; }), all: S.deals.filter(function (d) { return d.status !== 'cancel'; }) };
+  var G = { active: act, ending: ending, inc: inc, done: S.deals.filter(function (d) { return d.status === 'done'; }), all: S.deals.filter(function (d) { return d.status !== 'cancel'; }), papers: S.agrees || [] };
   var L = (G[f.tab] || act).slice().sort(function (a, b) { var ca = calc(a), cb = calc(b); return (cb.over - ca.over) || ((S.P[a.pid] || {}).name || '').localeCompare((S.P[b.pid] || {}).name || ''); });
   return '<div class="top"><div class="grow"><h1>' + t('Contracts') + '</h1><p>' + t("Every contract in one list — click one to open it in the creator's profile") + '</p></div>' +
-    '<div class="acts"><button class="btn pri" data-a="deal-new">' + icon('plus', 's') + t('New contract') + '</button></div></div>' +
-    '<div class="tabs" id="dfTab">' + [['active', 'Active'], ['ending', 'Ending soon'], ['inc', 'Needs info'], ['done', 'Ended'], ['all', 'All']].map(function (x) {
+    '<div class="acts"><button class="btn" data-a="ag-new">' + icon('pen', 's') + t('New agreement paper') + '</button><button class="btn pri" data-a="deal-new">' + icon('plus', 's') + t('New contract') + '</button></div></div>' +
+    '<div class="tabs" id="dfTab">' + [['active', 'Active'], ['ending', 'Ending soon'], ['inc', 'Needs info'], ['done', 'Ended'], ['all', 'All'], ['papers', 'Agreement papers']].map(function (x) {
       return '<button data-v="' + x[0] + '" class="' + (f.tab === x[0] ? 'on' : '') + '">' + t(x[1]) + '<em>' + N(G[x[0]].length) + '</em></button>';
-    }).join('') + '</div>' +
+    }).join('') + '</div>' + (f.tab === 'papers' ? agListPage() :
     '<div class="card">' + (L.length ? '<table class="tb"><tr><th>' + t('Creator') + '</th><th>' + t('Type') + '</th><th class="hm">' + t('Term') + '</th><th>' + t('Content') + '</th><th class="hm">' + t('Payment') + '</th><th class="hm">' + t('Next payment') + '</th></tr>' +
       L.map(function (d) {
         var c = calc(d), p = S.P[d.pid] || {};
@@ -1720,7 +1858,7 @@ function contractsPage() {
         var nxt = c.over ? '<span class="neg" style="font-weight:600">' + t('{0} overdue', N(c.over)) + '</span>' : c.next ? '<span>' + tkS(c.next.amount) + (c.next.due ? ' · ' + dShort(c.next.due) : '') + '</span>' : c.unk ? '<span class="warn">' + t('{0} to verify', N(c.ks.filter(function (k) { return k.st === 'unk'; }).length)) + '</span>' : d.model === 'per' ? '<span class="muted">' + t('On delivery') + '</span>' : '<span class="muted">—</span>';
         return '<tr class="click" data-go="#p/' + esc(d.pid) + '/' + esc(d.id) + '"><td><div class="who">' + av(p) + '<div style="min-width:0"><b>' + esc(p.name || '—') + '</b><small>' + esc(d.title) + (c.missing.length ? ' · <span class="warn">' + t('needs info') + '</span>' : '') + '</small></div></div></td>' +
           '<td>' + mdl(d.model) + '</td><td class="hm" style="min-width:170px">' + term + '</td><td style="min-width:120px">' + cont + '</td><td class="hm" style="min-width:150px">' + money + '</td><td class="hm">' + nxt + '</td></tr>';
-      }).join('') + '</table>' : empty('deal', t('No contracts here.'))) + '</div>';
+      }).join('') + '</table>' : empty('deal', t('No contracts here.'))) + '</div>');
 }
 
 /* ═════════ Payments ═════════ */
@@ -1766,7 +1904,7 @@ function openSheet(title, html, o) {
   $('ovHost').innerHTML = '<div class="ov" id="ov"><div class="sheet' + (o.cls ? ' ' + o.cls : '') + '"><div class="sh-h"><h3>' + title + '</h3><button class="btn sm ghost" data-a="close" aria-label="' + t('Close') + '">' + icon('x') + '</button></div>' + html + '</div></div>';
   $('ov').addEventListener('mousedown', function (e) { if (e.target.id === 'ov') closeOv(); });
 }
-function closeOv() { $('ovHost').innerHTML = ''; CF = null; DF = null; PF = null; PR = null; }
+function closeOv() { $('ovHost').innerHTML = ''; CF = null; DF = null; PF = null; PR = null; AG = null; }
 function segVal(id) { var b = document.querySelector('#' + id + ' button.on'); return b ? b.getAttribute('data-v') : ''; }
 function segH(id, opts, cur, cls) { return '<div class="seg' + (cls ? ' ' + cls : '') + '" id="' + id + '">' + opts.map(function (o) { return '<button type="button" data-v="' + esc(o[0]) + '" class="' + (String(cur) === String(o[0]) ? 'on' : '') + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>'; }
 function foot(left, saveA, saveTxt, extra) {
@@ -1781,6 +1919,7 @@ function newMenu() {
     it('content-new', 'film', 'var(--pos)', 'Add content', 'Someone delivered a video or post — save the links and main file') +
     it('log-pick', 'pen', 'var(--info)', 'Log a contact', 'You talked to someone') +
     it('deal-new', 'deal', 'var(--acc)', 'New contract', 'Upfront, installments, per content or one-off') +
+    it('ag-new', 'pen', 'var(--pos)', 'Agreement paper', 'Make the signed Work Agreement — Word, PDF or JPG') +
     it('creator-new', 'user', 'var(--ink2)', 'New creator', 'Someone you found or know — save their details') +
     it('go-discover', 'search', 'var(--warn)', 'Find on YouTube', 'Search by category and language') + '</div>');
 }
@@ -2959,6 +3098,7 @@ function settingsPage() {
     '</div><div>' +
     '<div class="card"><div class="ch"><h3>' + t('Proposal templates') + '</h3><span class="grow"></span><button class="btn sm" data-a="tpl-new">' + icon('plus', 's') + t('New template') + '</button></div><div class="rows">' +
     tplList().map(function (x) { return '<div class="row click" data-a="tpl-edit" data-id="' + esc(x.id) + '"><span class="pl p-mail">@</span><div class="g"><div class="t">' + esc(x.name) + '</div><div class="s">' + esc(x.desc || x.subject) + '</div></div>' + icon('edit', 's') + '</div>'; }).join('') + '</div></div>' +
+    agSettingsCard() +
     '<div class="card cpad"><h3>' + t('WhatsApp message') + '</h3><div class="muted" style="font-size:12.5px;margin-top:4px">' + t('{name} = creator, {org} = organisation, {me} = your name.') + '</div>' +
     '<textarea class="in" id="s_waBody" style="margin-top:10px">' + esc(s.waBody) + '</textarea><div style="margin-top:10px;text-align:right"><button class="btn pri" data-a="set-wa">' + t('Save') + '</button></div></div>' +
     '<div class="card cpad"><h3>' + t('Security') + '</h3><div id="secBox"><div class="sk"></div></div></div>' +
@@ -2975,6 +3115,616 @@ function drawSecurity(s) {
     }).join('') + '</div>' +
     (s.sessions.length > 1 ? '<button class="btn sm red" data-a="sec-others" style="margin-top:8px">' + t('Sign out all other devices') + '</button>' : '') +
     '<div class="muted" style="font-size:12.5px;margin-top:10px">' + t('To change the PIN: Lock → "Change PIN?"') + '</div>';
+}
+
+/* ═════════════ PR Desk — Work Agreement engine (লেখা বানানো + Word) ═════════════
+ * ব্রাউজার আর node দুই জায়গাতেই চলে (node-এ পরীক্ষার জন্য module.exports)।
+ * চুক্তিপত্রের লেখা সবসময় ইংরেজিতে — অ্যাপের ভাষা যা-ই হোক। */
+var AGE = (function () {
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var ONES = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen',
+              'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+  var TENS = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+  function two(n) { return n < 20 ? ONES[n] : TENS[Math.floor(n / 10)] + (n % 10 ? '-' + ONES[n % 10] : ''); }
+  function three(n) { var h = Math.floor(n / 100), r = n % 100; return (h ? ONES[h] + ' Hundred' + (r ? ' ' : '') : '') + (r ? two(r) : ''); }
+  /* বাংলাদেশি ধাঁচে: 150000 → One Lakh Fifty Thousand */
+  function words(n) {
+    n = Math.floor(Math.abs(Number(n) || 0));
+    if (!n) return 'Zero';
+    var cr = Math.floor(n / 1e7), lk = Math.floor(n / 1e5) % 100, th = Math.floor(n / 1000) % 100, rest = n % 1000, out = [];
+    if (cr) out.push((cr >= 100 ? words(cr) : two(cr)) + ' Crore');
+    if (lk) out.push(two(lk) + ' Lakh');
+    if (th) out.push(two(th) + ' Thousand');
+    if (rest) out.push(three(rest));
+    return out.join(' ');
+  }
+  function grp(n) { n = Math.round(Number(n) || 0); var s = String(Math.abs(n)); if (s.length > 3) s = s.slice(0, -3).replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + s.slice(-3); return (n < 0 ? '-' : '') + s; }
+  function bdt(n) { return 'BDT ' + grp(n); }
+  function money(n) { return bdt(n) + ' (' + words(n) + ' Taka only)'; }
+  /* 1 → "one (1)" */
+  function countW(n) { n = Math.max(0, Math.round(Number(n) || 0)); return words(n).toLowerCase() + ' (' + n + ')'; }
+  function ordinal(n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+  function dLong(s) { if (!s) return ''; var p = String(s).split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0]; }
+  function dNum(s) { if (!s) return ''; var p = String(s).split('-'); return p[2] + '/' + p[1] + '/' + p[0]; }
+  function months(start, end) {
+    if (!start || !end || end < start) return 0;
+    var a = start.split('-'), b = end.split('-');
+    var d = (Date.UTC(+b[0], +b[1] - 1, +b[2]) - Date.UTC(+a[0], +a[1] - 1, +a[2])) / 864e5 + 1;
+    return Math.max(1, Math.round(d / 30.44));
+  }
+  /* মেয়াদ কথায়: ১২ মাস → "one (1) year", ১৮ → "eighteen (18) months" */
+  function termWords(start, end) {
+    var m = months(start, end);
+    if (!m) return '';
+    if (m % 12 === 0) { var y = m / 12; return countW(y) + ' year' + (y > 1 ? 's' : ''); }
+    return countW(m) + ' month' + (m > 1 ? 's' : '');
+  }
+
+  /* নমুনা → ধারার তালিকা।  F = ফর্মের ঘর, org = { name, addr, phone } */
+  function vars(F, org) {
+    var links = (F.links || []).filter(function (l) { return l.on && String(l.u || '').trim(); })
+      .map(function (l) { return (String(l.t || '').trim() || 'Link') + ': ' + String(l.u).trim(); });
+    var contact = [];
+    if (String(F.addr || '').trim()) contact.push('address: ' + String(F.addr).trim());
+    if (String(F.phone || '').trim()) contact.push('contact: ' + String(F.phone).trim());
+    var pm = Math.max(1, Math.round(Number(F.perMonth) || 1)), vd = Math.max(1, Math.round(Number(F.videos) || 1));
+    var sch = (F.sched || []).filter(function (r) { return Number(r.a) > 0 || r.d; });
+    return {
+      date: dLong(F.date), org: org.name || '', orgAddr: org.addr || '', orgPhone: org.phone || '',
+      creator: String(F.creator || '').trim(), page: String(F.page || F.creator || '').trim(),
+      links: links.length ? ' (' + links.join('; ') + ')' : '',
+      creatorContact: contact.length ? ', ' + contact.join(', ') : '',
+      term: String(F.term || '').trim() || termWords(F.start, F.end), start: dLong(F.start), end: dLong(F.end),
+      perMonth: countW(pm), perMonthS: pm > 1 ? 's' : '', videos: countW(vd), videosS: vd > 1 ? 's' : '', videosHas: vd > 1 ? 'have' : 'has',
+      rate: money(F.rate), rateShort: bdt(F.rate), total: money(F.total), totalShort: bdt(F.total),
+      count: countW(sch.length), advance: F.advDate ? ' on or before ' + dLong(F.advDate) : '',
+      adText: String(F.adText || '').trim(), adWhere: String(F.adWhere || '').trim() || 'the Creator’s page(s)/platform(s)',
+      _sched: sch.map(function (r, i) { return '-- ' + (String(r.l || '').trim() || ordinal(i + 1) + ' installment') + ': ' + bdt(r.a) + (r.d ? ', on or before ' + dLong(r.d) : ''); })
+    };
+  }
+  var KIND_TAGS = { content: 1, ad: 1 }, MODEL_TAGS = { per: 1, install: 1, upfront: 1, one: 1 };
+  /* নমুনা থেকে শুধু এই চুক্তির লাইন, ঘরের মান বসিয়ে — সাধারণ লেখা (এখানে হাতে বদলানো যায়) */
+  function fillText(tpl, F, org) {
+    var V = vars(F, org), out = [];
+    String(tpl || '').replace(/\r\n/g, '\n').split('\n').forEach(function (line) {
+      var tags = [], m;
+      while ((m = /^\s*\[([a-z,|!\s]+)\]/i.exec(line))) { m[1].split(/[,|\s]+/).forEach(function (x) { if (x) tags.push(x.toLowerCase()); }); line = line.slice(m[0].length); }
+      var kt = tags.filter(function (x) { return KIND_TAGS[x]; }), mt = tags.filter(function (x) { return MODEL_TAGS[x]; });
+      if (kt.length && kt.indexOf(F.kind || 'content') === -1) return;
+      if (mt.length && mt.indexOf(F.model || 'per') === -1) return;
+      if (/^\s*\{schedule\}\s*$/.test(line)) { V._sched.forEach(function (l) { out.push(l); }); return; }
+      out.push(line);
+    });
+    // খালি লাইন একটার বেশি নয়
+    var txt = out.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    return txt.replace(/\{([a-zA-Z]+)\}/g, function (all, k) { return V[k] != null && k.charAt(0) !== '_' ? V[k] : all; });
+  }
+  /* সাধারণ লেখা → ধারা: h (নম্বরসহ শিরোনাম), p (অনুচ্ছেদ; intro = প্রথম শিরোনামের আগে), a ((a)…), i ((i)…) */
+  function blocks(text) {
+    var lines = String(text || '').split('\n'), heads = {}, n = 0;
+    lines.forEach(function (l) { var m = /^\s*##\s*(.+?)\s*$/.exec(l); if (m) heads[m[1].toLowerCase()] = ++n; });
+    var ref = function (s) { return s.replace(/\{ref:([^}]+)\}/gi, function (all, k) { return heads[k.trim().toLowerCase()] ? String(heads[k.trim().toLowerCase()]) : all; }); };
+    var out = [], hn = 0, an = 0, rn = 0, seenH = false;
+    lines.forEach(function (l) {
+      var s = l.replace(/\s+$/, ''), m;
+      if (!s.trim()) return;
+      if ((m = /^\s*##\s*(.+)$/.exec(s))) { hn++; an = 0; rn = 0; seenH = true; out.push({ t: 'h', n: hn + '.', text: ref(m[1].trim()) }); return; }
+      if ((m = /^\s*--\s+(.+)$/.exec(s))) { rn++; out.push({ t: 'i', n: '(' + roman(rn) + ')', text: ref(m[1]) }); return; }
+      if ((m = /^\s*-\s+(.+)$/.exec(s))) { an++; rn = 0; out.push({ t: 'a', n: '(' + String.fromCharCode(96 + an) + ')', text: ref(m[1]) }); return; }
+      out.push({ t: 'p', intro: !seenH, text: ref(s.trim()) });
+    });
+    return out;
+  }
+  function roman(n) { return ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii', 'xiii', 'xiv', 'xv', 'xvi', 'xvii', 'xviii', 'xix', 'xx'][n] || String(n); }
+  /* **মোটা** → [{s, b}] */
+  function inline(s) {
+    var out = [], parts = String(s).split('**');
+    parts.forEach(function (p, i) { if (p) out.push({ s: p, b: i % 2 === 1 }); });
+    return out;
+  }
+  /* যা খোলা থাকা দরকার কিন্তু নেই — ফর্ম লাল করে দেখায় */
+  function missing(F) {
+    var m = [];
+    if (!String(F.creator || '').trim()) m.push('creator');
+    if (!F.date) m.push('date');
+    if (!F.start || !F.end) m.push('term');
+    if (F.model === 'per' && !(Number(F.rate) > 0)) m.push('rate');
+    if (F.model !== 'per' && !(Number(F.total) > 0)) m.push('total');
+    if (F.kind === 'ad' && !String(F.adText || '').trim()) m.push('adText');
+    if (F.model === 'install') {
+      var s = (F.sched || []).reduce(function (a, r) { return a + (Number(r.a) || 0); }, 0);
+      if (!(F.sched || []).length) m.push('sched');
+      else if (Math.round(s) !== Math.round(Number(F.total) || 0)) m.push('schedSum');
+    }
+    return m;
+  }
+
+  /* ---------- Word (.docx) — D = docx লাইব্রেরি, img = { head, foot, sig } (ArrayBuffer/Buffer) ---------- */
+  function docx(D, F, org, text, img) {
+    var B = blocks(text), TNR = 'Times New Roman';
+    var run = function (seg, o) { o = o || {}; return new D.TextRun({ text: seg.s, bold: seg.b || o.b, italics: o.i, size: o.size, font: TNR }); };
+    var runs = function (s, o) { return inline(s).map(function (x) { return run(x, o); }); };
+    var P = function (o) { var p = new D.Paragraph(o); p._o = o; return p; };
+    var keepNx = function (p) { return p._o ? P(Object.assign({}, p._o, { keepNext: true })) : p; };
+    var J = D.AlignmentType.JUSTIFIED;
+    var body = [
+      P({ alignment: D.AlignmentType.CENTER, spacing: { after: 20 }, children: [new D.TextRun({ text: String(F.title || 'WORK AGREEMENT'), bold: true, size: 36, font: TNR })] }),
+      P({ alignment: D.AlignmentType.CENTER, spacing: { after: 280 }, children: F.sub ? [new D.TextRun({ text: String(F.sub), italics: true, size: 26, font: TNR })] : [] })
+    ];
+    B.forEach(function (b, i) {
+      var nx = B[i + 1], gapAfter = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? 160 : (b.t === 'a' || b.t === 'i') ? 0 : 100;
+      if (b.t === 'h') body.push(P({ keepNext: true, spacing: { before: 120, after: 100 }, indent: { left: 720, hanging: 360 }, tabStops: [{ type: D.TabStopType.LEFT, position: 720 }],
+        children: [new D.TextRun({ text: b.n, bold: true, font: TNR }), new D.TextRun({ text: '\t' + b.text.replace(/\*\*/g, ''), bold: true, font: TNR })] }));
+      else if (b.t === 'p') body.push(P({ alignment: J, spacing: { after: gapAfter }, indent: b.intro ? undefined : { left: 720 }, children: runs(b.text) }));
+      else {
+        var L = b.t === 'a' ? 1440 : 2280, HG = b.t === 'a' ? 360 : 480;
+        body.push(P({ alignment: J, spacing: { after: gapAfter }, indent: { left: L, hanging: HG }, tabStops: [{ type: D.TabStopType.LEFT, position: L }],
+          children: [new D.TextRun({ text: b.n + '\t', font: TNR })].concat(runs(b.text)) }));
+      }
+    });
+    // সইয়ের ঘর — দুই কলামের টেবিল, দাগ ছাড়া; সইয়ের ছবি দাগের ঠিক উপরে
+    var NB = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
+    var borders = { top: NB, bottom: NB, left: NB, right: NB, insideHorizontal: NB, insideVertical: NB };
+    var cell = function (paras, o) { o = o || {}; return new D.TableCell({ width: { size: 4673, type: D.WidthType.DXA }, borders: { top: NB, bottom: NB, left: NB, right: NB }, verticalAlign: o.va, children: paras }); };
+    var line = function () { return P({ keepNext: true, children: [new D.TextRun({ text: '____________________________', font: TNR })] }); };
+    var tx = function (s, b, last) { return P({ keepNext: !last, keepLines: true, children: s ? [new D.TextRun({ text: s, bold: b, font: TNR })] : [] }); };
+    var sigP = img.sig && F.sig ? P({ keepNext: true, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.sig, transformation: { width: 140, height: Math.round(140 * (img.sigH || 279) / (img.sigW || 560)) } })] }) : tx('');
+    var cDate = F.cDateBlank ? '______________________' : dNum(F.cDate || F.date);
+    var rows = [
+      new D.TableRow({ cantSplit: true, children: [cell([tx('For ' + (org.name || 'the Company') + ':', true)]), cell([tx('For the Creator:', true)])] }),
+      new D.TableRow({ cantSplit: true, height: { value: 1100, rule: D.HeightRule.EXACT }, children: [cell([sigP], { va: D.VerticalAlign.BOTTOM }), cell([tx('')], { va: D.VerticalAlign.BOTTOM })] }),
+      new D.TableRow({ cantSplit: true, children: [cell([line()]), cell([line()])] }),
+      new D.TableRow({ cantSplit: true, children: [
+        cell([tx(F.signer || ''), tx(F.signerTitle || ''), tx(org.name || ''), tx('Date: ' + dNum(F.date), false, true)]),
+        cell([tx(String(F.creator || '').trim()), tx(''), tx(''), tx('Date: ' + cDate, false, true)])] })
+    ];
+    // শেষ ধারা (Acceptance) সইয়ের সাথে একই পাতায়
+    for (var k = body.length - 1; k >= 0 && k >= body.length - 2; k--) body[k] = keepNx(body[k]);
+    body.push(P({ keepNext: true, spacing: { before: 360 }, children: [] }));
+    body.push(new D.Table({ width: { size: 9346, type: D.WidthType.DXA }, columnWidths: [4673, 4673], borders: borders, rows: rows }));
+    var pic = function (data, h) { return P({ indent: { left: -1280, right: -1280 }, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: data, transformation: { width: 794, height: h } })] }); };
+    return new D.Document({
+      creator: org.name || 'PR Desk', title: (F.title || 'Work Agreement') + ' - ' + (F.creator || ''),
+      styles: { default: { document: { run: { font: TNR, size: 24 } } } },
+      sections: [{
+        properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1920, bottom: 2240, left: 1280, right: 1280, header: 0, footer: 0 } } },
+        headers: { default: new D.Header({ children: [pic(img.head, 101)] }) },
+        footers: { default: new D.Footer({ children: [pic(img.foot, 131)] }) },
+        children: body
+      }]
+    });
+  }
+
+  return { words: words, money: money, bdt: bdt, countW: countW, ordinal: ordinal, dLong: dLong, dNum: dNum, months: months, termWords: termWords,
+           fillText: fillText, blocks: blocks, inline: inline, missing: missing, docx: docx };
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = AGE;
+
+/* ═════════════════════════ PR Desk — Agreement paper (চুক্তিপত্র) ═════════════════════════
+ * চুক্তি/প্রোফাইল থেকে ঘর নিজে ভরে; শুধু নাম দিয়েও বানানো যায়। বাঁয়ে ঘর, ডানে সঙ্গে সঙ্গে পাতার নমুনা।
+ * Word / PDF / JPG — যেকোনোটা নামালেই PDF Drive-এ জমা হয় আর রেকর্ড থাকে (AGREES)। লেখা AGE (agree-engine.js) বানায়। */
+var AG = null, AGI = null, AGL = {};
+var AG_CDN = {
+  docx: 'https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js',
+  jspdf: 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js',
+  h2c: 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'
+};
+var AG_PAGE = { w: 794, h: 1123, top: 128, bottom: 149, side: 85 };   // A4, পর্দার পিক্সেলে (৯৬ dpi) — Word-এর মার্জিনের সমান
+var AG_KINDS = [['content', 'Content'], ['ad', 'Advertisement']];
+var AG_MODELS = [['per', 'Per content'], ['install', 'Installments'], ['upfront', 'Upfront'], ['one', 'One-off']];
+var AG_SUB = { content: '(Content Creator Agreement)', ad: '(Advertisement Agreement)' };
+
+function agLib(k, ready) {
+  if (ready()) return Promise.resolve();
+  if (!AGL[k]) AGL[k] = new Promise(function (res, rej) {
+    var s = document.createElement('script'); s.src = AG_CDN[k];
+    s.onload = function () { ready() ? res() : rej(new Error(k)); };
+    s.onerror = function () { delete AGL[k]; rej(new Error(t('Could not load the file maker — check the internet and try again.'))); };
+    document.head.appendChild(s);
+  });
+  return AGL[k];
+}
+function agInit(force) { return AGI && !force ? Promise.resolve(AGI) : api('apiAgreeInit', []).then(function (d) { AGI = d; return d; }); }
+function agOrg() { var o = (AGI && AGI.org) || {}; return { name: S.set.org || ORG, addr: o.addr || '', phone: o.phone || '' }; }
+function agText(F) { return F.wording ? F.wording : AGE.fillText((AGI && AGI.tpl) || '', F, agOrg()); }
+function agFileName(F) { return String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim() + ' - ' + AGE.dLong(F.date); }
+
+/* ---------- শুরুর মান: চুক্তি → ক্রিয়েটর → খালি ---------- */
+function agLinks(p) {
+  var L = p ? allLinks(p) : [], firstOn = false;
+  return L.map(function (x) { var on = x.k === 'fb' || x.k === 'yt'; if (on) firstOn = true; return { t: x.t, u: x.u, on: on }; })
+    .map(function (x, i) { if (!firstOn && i === 0) x.on = true; return x; });
+}
+function agBlank() {
+  var td = today(), o = (AGI && AGI.org) || {};
+  return { kind: 'content', model: 'per', title: 'WORK AGREEMENT', sub: AG_SUB.content, date: td, creator: '', page: '', links: [], phone: '', addr: '',
+    start: td, end: addDays(addMonths(td, 12), -1), term: '', perMonth: 1, videos: 1, rate: 0, total: 0, sched: [], advDate: '', adText: '', adWhere: '',
+    signer: o.signer || '', signerTitle: o.signerTitle || '', sig: !!(AGI && AGI.sig), cDateBlank: false, cDate: '', wording: '', pid: '', did: '' };
+}
+function agFromPartner(F, p) {
+  F.pid = p.id; F.creator = p.name; F.page = p.name; F.links = agLinks(p); F.phone = F.phone || '';
+  return F;
+}
+function agFromDeal(F, d) {
+  var p = S.P[d.pid];
+  if (p) agFromPartner(F, p);
+  F.did = d.id; F.kind = d.ad ? 'ad' : 'content'; F.sub = AG_SUB[F.kind];
+  F.model = MODELS[d.model] ? d.model : (d.rate ? 'per' : 'install');
+  if (d.start) F.start = d.start;
+  if (d.end) F.end = d.end; else if (d.start) F.end = addDays(addMonths(d.start, 12), -1);
+  var q = (d.items || []).reduce(function (a, it) { return a + (num(it.qty) || 0); }, 0), mths = AGE.months(F.start, F.end) || 12;
+  F.perMonth = Math.max(1, d.plan === 'month' ? q || 1 : Math.round((q || mths) / mths));
+  F.videos = Math.max(1, q || 1);
+  F.rate = num(d.rate); F.total = num(d.total) || (S.KB[d.id] || []).reduce(function (a, k) { return a + num(k.amount); }, 0);
+  var ks = (S.KB[d.id] || []).filter(function (k) { return k.st !== 'cancel'; });
+  F.sched = ks.map(function (k, i) { return { l: '', d: k.due || '', a: num(k.amount) }; });
+  if (F.model === 'upfront') F.advDate = (d.pplan && d.pplan.advDate) || (ks[0] && ks[0].due) || F.start;
+  if (d.ad) {
+    var A = d.ad, unit = { min: 'minute', sec: 'second', spots: 'time' }[A.unit] || 'minute', n = num(A.qty) || 1;
+    F.adText = A.unit === 'spots' ? n + ' ' + unit + (n > 1 ? 's' : '') + ' every ' + (A.per || 'day') : 'for ' + n + ' ' + unit + (n > 1 ? 's' : '') + ' every ' + (A.per || 'hour');
+    if (A.slot) F.adText += ' (' + A.slot + ')';
+    F.adWhere = A.where || '';
+  }
+  return F;
+}
+
+/* ---------- খোলা: { did } | { pid } | { aid } | {} ---------- */
+function agreeOpen(o) {
+  o = o || {};
+  openSheet(t('Agreement paper'), '<div class="cpad"><div class="sk"></div><div class="sk" style="width:60%"></div></div>', { cls: 'wide split-sheet ag-sheet' });
+  agInit().then(function () {
+    var F = agBlank(), rec = null;
+    if (o.aid) { rec = (S.agrees || []).filter(function (a) { return a.id === o.aid; })[0]; if (rec) F = Object.assign(F, JSON.parse(JSON.stringify(rec.data || {}))); }
+    else if (o.did && S.D[o.did]) agFromDeal(F, S.D[o.did]);
+    else if (o.pid && S.P[o.pid]) {
+      agFromPartner(F, S.P[o.pid]);
+      var ad = (S.DB[o.pid] || []).filter(function (d) { return d.status === 'active'; })[0];
+      if (ad) agFromDeal(F, ad);
+    }
+    AG = { F: F, aid: rec ? rec.id : '', savedKey: rec ? agKey(F) : '', rec: rec, addP: true, showW: !!F.wording };
+    agDraw();
+  }, function (e) { if ($('ov')) closeOv(); });
+}
+function agKey(F) { return JSON.stringify(F); }
+
+function agDraw() {
+  if (!AG || !$('ov')) return;
+  var F = AG.F, sh = document.querySelector('#ov .sheet');
+  sh.innerHTML = '<div class="sh-h"><h3>' + t('Agreement paper') + (F.creator ? ' — ' + esc(F.creator) : '') + '</h3><button class="btn sm ghost" data-a="close" aria-label="' + t('Close') + '">' + icon('x') + '</button></div>' +
+    '<div class="split ag-split"><div class="l" id="agL">' + agFormHtml() + '</div><div class="r"><div class="ag-pv" id="agPrev"></div></div></div>';
+  agBind(); agPreview();
+}
+
+function agFormHtml() {
+  var F = AG.F, m = AGE.missing(F), bad = function (k) { return m.indexOf(k) !== -1 ? ' bad' : ''; };
+  var inp = function (f, v, attrs, cls) { return '<input class="in' + (cls || '') + '" data-f="' + f + '" value="' + esc(v == null ? '' : v) + '" ' + (attrs || '') + '>'; };
+  var lab = function (s, em) { return '<label class="fl">' + t(s) + (em ? ' <em>(' + t(em) + ')</em>' : '') + '</label>'; };
+  var isNew = F.creator.trim() && !F.pid && !S.partners.some(function (p) { return nameKey(p.name) === nameKey(F.creator); });
+  var h = '';
+  /* ক্রিয়েটর */
+  h += '<div class="sh-sec" style="margin-top:0">' + t('Creator') + '</div>' +
+    lab('Name') + '<input class="in' + bad('creator') + '" data-f="creator" list="agPL" value="' + esc(F.creator) + '" placeholder="' + t('Pick from Creators or type a new name') + '">' +
+    '<datalist id="agPL">' + S.partners.filter(function (p) { return p.stage !== 'cancel'; }).slice(0, 400).map(function (p) { return '<option value="' + esc(p.name) + '">'; }).join('') + '</datalist>' +
+    (isNew ? '<button type="button" class="chk' + (AG.addP ? ' on' : '') + '" data-a="ag-addp"><i>' + (AG.addP ? '✓' : '') + '</i>' + t('Also add to Creators (not in the list yet)') + '</button>' : '') +
+    lab('Page / platform name') + inp('page', F.page) +
+    lab('Links to show', 'tick the ones to put in the agreement') + '<div id="agLinks">' + F.links.map(function (l, i) {
+      return '<div class="ag-link"><button type="button" class="chk' + (l.on ? ' on' : '') + '" data-a="ag-link" data-i="' + i + '"><i>' + (l.on ? '✓' : '') + '</i></button>' +
+        '<input class="in" data-li="' + i + '" data-lf="t" value="' + esc(l.t) + '" style="width:110px;flex:none" placeholder="' + t('Name') + '"><input class="in" data-li="' + i + '" data-lf="u" value="' + esc(l.u) + '" placeholder="https://…"><button type="button" class="btn xs ghost" data-a="ag-ldel" data-i="' + i + '" title="' + t('Remove') + '">✕</button></div>';
+    }).join('') + '</div><button type="button" class="btn xs" data-a="ag-ladd" style="margin-top:6px">' + icon('plus', 's') + t('Add a link') + '</button>' +
+    '<div class="g2"><div>' + lab('Phone', 'optional') + inp('phone', F.phone) + '</div><div>' + lab('Address', 'optional') + inp('addr', F.addr) + '</div></div>';
+  /* চুক্তি */
+  h += '<div class="sh-sec">' + t('Agreement') + '</div>' +
+    lab('The creator will') + segH('ag_kind', AG_KINDS.map(function (x) { return [x[0], t(x[0] === 'ad' ? 'Run an advertisement' : 'Make content')]; }), F.kind, 'full') +
+    lab('Payment') + segH('ag_model', AG_MODELS.map(function (x) { return [x[0], t(x[1])]; }), F.model, 'full') +
+    '<div class="g2"><div>' + lab('Agreement date') + inp('date', F.date, 'type="date"', bad('date')) + '</div><div>' + lab('Starts') + inp('start', F.start, 'type="date"', bad('term')) + '</div></div>' +
+    '<div class="g2"><div>' + lab('Ends') + inp('end', F.end, 'type="date"', bad('term')) + '</div><div>' + lab('Term in words', 'automatic') + inp('term', F.term, 'placeholder="' + esc(AGE.termWords(F.start, F.end) || '—') + '"') + '</div></div>';
+  /* কাজ */
+  h += '<div class="sh-sec">' + t('Work') + '</div>' + (F.kind === 'ad'
+    ? lab('Advertisement', 'how long, how often') + inp('adText', F.adText, 'placeholder="' + t('e.g. for 1 minute every hour') + '"', bad('adText')) +
+      lab('Where it runs') + inp('adWhere', F.adWhere, 'placeholder="' + t('e.g. the Facebook page and YouTube channel') + '"')
+    : F.model === 'one' ? lab('Number of videos') + inp('videos', F.videos, 'type="number" min="1" max="100"')
+    : lab('Videos per month', 'at least') + inp('perMonth', F.perMonth, 'type="number" min="1" max="60"'));
+  /* টাকা */
+  h += '<div class="sh-sec">' + t('Money') + '</div>';
+  if (F.model === 'per') h += lab('Amount per video (BDT)') + inp('rate', F.rate || '', 'type="number" min="0" inputmode="numeric"', bad('rate')) + agWordsNote(F.rate);
+  else {
+    h += lab('Total amount (BDT)') + inp('total', F.total || '', 'type="number" min="0" inputmode="numeric"', bad('total')) + agWordsNote(F.total);
+    if (F.model === 'upfront') h += lab('Paid in advance on or before', 'optional') + inp('advDate', F.advDate, 'type="date"');
+    if (F.model === 'install') {
+      var sum = F.sched.reduce(function (a, r) { return a + num(r.a); }, 0);
+      h += lab('Installments') + '<div id="agSched">' + F.sched.map(function (r, i) {
+        return '<div class="ag-sr"><span class="muted">' + N(i + 1) + '</span><input class="in" type="date" data-si="' + i + '" data-sf="d" value="' + esc(r.d) + '"><input class="in" type="number" min="0" data-si="' + i + '" data-sf="a" value="' + esc(r.a || '') + '" placeholder="' + t('Amount') + '"><button type="button" class="btn xs ghost" data-a="ag-sdel" data-i="' + i + '">✕</button></div>';
+      }).join('') + '</div>' +
+        '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button type="button" class="btn xs" data-a="ag-sadd">' + icon('plus', 's') + t('Add') + '</button>' +
+        '<button type="button" class="btn xs" data-a="ag-split">' + t('Split the total evenly') + '</button></div>' +
+        (F.sched.length ? '<div class="muted' + (m.indexOf('schedSum') !== -1 ? ' neg' : '') + '" style="font-size:12.5px;margin-top:6px" id="agSum">' + t('Installments add up to {0} of {1}', tk(sum), tk(F.total)) + '</div>' : '');
+    }
+  }
+  /* সই */
+  h += '<div class="sh-sec">' + t('Signatures') + '</div>' +
+    '<div class="g2"><div>' + lab('Signs for the company') + inp('signer', F.signer) + '</div><div>' + lab('Title') + inp('signerTitle', F.signerTitle) + '</div></div>' +
+    (AGI && AGI.sig ? '<button type="button" class="chk' + (F.sig ? ' on' : '') + '" data-a="ag-sig" style="margin-top:10px"><i>' + (F.sig ? '✓' : '') + '</i>' + t('Put the signature image') + '<img src="' + AGI.sig + '" alt="" class="ag-sigthumb"></button>'
+      : '<div class="muted" style="font-size:12.5px;margin-top:8px">' + t('No signature image — add one in Settings → Agreement paper.') + '</div>') +
+    lab("Date under the creator's signature") + segH('ag_cdate', [['same', t('Same as agreement date')], ['blank', t('Leave blank to write by hand')]], F.cDateBlank ? 'blank' : 'same', 'full');
+  /* শিরোনাম ও লেখা */
+  h += '<div class="sh-sec">' + t('Heading and wording') + '</div>' +
+    '<div class="g2"><div>' + lab('Title') + inp('title', F.title) + '</div><div>' + lab('Line under the title') + inp('sub', F.sub) + '</div></div>' +
+    (AG.showW ? lab('Wording of this agreement only', 'lines starting with ## = clause, - = (a), -- = (i), **bold**') +
+      '<textarea class="in" data-f="wording" id="agW" style="min-height:260px;font-family:Consolas,monospace;font-size:12.5px">' + esc(F.wording || agText(F)) + '</textarea>' +
+      '<div class="note warn" style="margin-top:8px">' + t('While you edit the wording here, changes to the boxes above do not change the text.') + ' <a href="#" class="lnk-a" data-a="ag-woff">' + t('Go back to automatic wording') + '</a></div>'
+      : '<button type="button" class="btn sm" data-a="ag-won" style="margin-top:10px">' + icon('edit', 's') + t('Edit the wording for this agreement') + '</button>');
+  /* নামানো */
+  h += '<div id="agMiss">' + agMissHtml(m) + '</div>' +
+    '<div class="ag-dl"><button class="btn" data-a="ag-word">' + icon('dl', 's') + 'Word</button><button class="btn" data-a="ag-jpg">' + icon('dl', 's') + 'JPG</button>' +
+    '<button class="btn grad" data-a="ag-pdf" style="flex:1">' + icon('dl', 's') + 'PDF</button></div>' +
+    '<div class="muted" style="font-size:12px;margin-top:8px" id="agSaved">' + agSavedHtml() + '</div>';
+  return h;
+}
+function agWordsNote(n) { return num(n) > 0 ? '<div class="muted ag-words" style="font-size:12px;margin-top:4px">' + esc(AGE.money(n)) + '</div>' : ''; }
+var AG_MISS = { creator: 'creator name', date: 'agreement date', term: 'start and end dates', rate: 'amount per video', total: 'total amount', adText: 'advertisement details', sched: 'installments', schedSum: 'installments do not add up to the total' };
+function agMissHtml(m) { return m.length ? '<div class="note warn" style="margin-top:16px">' + t('Fill in: {0}', m.map(function (k) { return t(AG_MISS[k]); }).join(', ')) + '</div>' : ''; }
+function agSavedHtml() {
+  var r = AG && AG.aid ? (S.agrees || []).filter(function (a) { return a.id === AG.aid; })[0] : null;
+  if (!r) return t('Each download also saves the PDF to your Google Drive and keeps a record here.');
+  return (r.file ? icon('check', 's') + ' ' + t('Saved to Google Drive · {0}', esc(r.at)) + ' — <a class="lnk-a" href="' + esc(r.file) + '" target="_blank" rel="noopener">' + t('Open PDF') + '</a>'
+    : '⚠ ' + t('Record saved, but the PDF is not in Drive yet — it will go with the next download.')) + (AG.savedKey && AG.savedKey !== agKey(AG.F) ? ' · <b class="warn">' + t('changed since') + '</b>' : '');
+}
+
+/* ঘর বদলালে F-এ লেখা, তারপর নমুনা; ধরন বদলালে বাঁ দিক আবার আঁকা */
+function agBind() {
+  var L = $('agL'); if (!L) return;
+  L.addEventListener('input', function (e) {
+    var el = e.target, F = AG.F;
+    if (el.dataset.f) {
+      var k = el.dataset.f, v = el.value;
+      F[k] = ['perMonth', 'videos', 'rate', 'total'].indexOf(k) !== -1 ? num(v) : v;
+      if (k === 'creator') {
+        var p = S.partners.filter(function (x) { return nameKey(x.name) === nameKey(v); })[0];
+        if (p && p.id !== F.pid) { agFromPartner(F, p); return agRedrawLeft(); }
+        if (!p && F.pid) { F.pid = ''; }
+      }
+      if (k === 'rate' || k === 'total') { var w = el.parentNode.querySelector('.ag-words') || el.nextElementSibling; var nh = agWordsNote(v); if (w && w.classList && w.classList.contains('ag-words')) w.outerHTML = nh || '<span class="ag-words"></span>'; else el.insertAdjacentHTML('afterend', nh); }
+    } else if (el.dataset.li) { F.links[+el.dataset.li][el.dataset.lf] = el.value; }
+    else if (el.dataset.si) { F.sched[+el.dataset.si][el.dataset.sf] = el.dataset.sf === 'a' ? num(el.value) : el.value; agSumNote(); }
+    agSoon();
+  });
+  L.addEventListener('change', function (e) { if (e.target.dataset.f === 'creator' || e.target.dataset.f === 'start' || e.target.dataset.f === 'end') agRedrawLeft(); });
+}
+function agSumNote() {
+  var s = $('agSum'), F = AG.F; if (!s) return;
+  var sum = F.sched.reduce(function (a, r) { return a + num(r.a); }, 0);
+  s.textContent = t('Installments add up to {0} of {1}', tk(sum), tk(F.total)); s.classList.toggle('neg', Math.round(sum) !== Math.round(num(F.total)));
+}
+function agRedrawLeft() {
+  var L = $('agL'); if (!L) return;
+  var y = L.scrollTop, sh = document.querySelector('#ov .sheet'), sy = sh ? sh.scrollTop : 0, ae = document.activeElement, af = ae && ae.dataset ? ae.dataset.f : '';
+  L.innerHTML = agFormHtml(); L.scrollTop = y; if (sh) sh.scrollTop = sy;
+  if (af) { var n = L.querySelector('[data-f="' + af + '"]'); if (n && n.type !== 'date') { n.focus(); try { n.setSelectionRange(n.value.length, n.value.length); } catch (e) {} } }
+  var hh = document.querySelector('#ov .sh-h h3'); if (hh) hh.innerHTML = t('Agreement paper') + (AG.F.creator ? ' — ' + esc(AG.F.creator) : '');
+  agPreview();
+}
+var agT = 0;
+function agSoon() { clearTimeout(agT); agT = setTimeout(function () { agPreview(); var m = $('agMiss'); if (m) m.innerHTML = agMissHtml(AGE.missing(AG.F)); var sv = $('agSaved'); if (sv) sv.innerHTML = agSavedHtml(); }, 250); }
+function agSeg(id, v) {
+  var F = AG.F;
+  if (id === 'ag_kind') { if (F.sub === AG_SUB[F.kind]) F.sub = AG_SUB[v]; F.kind = v; }
+  else if (id === 'ag_model') { F.model = v; if (v === 'install' && !F.sched.length && F.total) agSplit(3); if (v === 'upfront' && !F.advDate) F.advDate = F.start; }
+  else if (id === 'ag_cdate') F.cDateBlank = v === 'blank';
+  agRedrawLeft();
+}
+function agSplit(n) {
+  var F = AG.F; n = n || F.sched.length || 3;
+  var tot = num(F.total), each = Math.floor(tot / n / 100) * 100, months = AGE.months(F.start, F.end) || 12, step = Math.max(1, Math.floor(months / n));
+  F.sched = [];
+  for (var i = 0; i < n; i++) F.sched.push({ l: '', d: F.start ? addMonths(F.start, i * step) : '', a: i === n - 1 ? tot - each * (n - 1) : each });
+}
+
+/* ---------- পাতা আঁকা (নমুনা আর ফাইল দুটোই এই একই পাতা থেকে) ---------- */
+function agInl(s) { return AGE.inline(s).map(function (x) { return x.b ? '<b>' + esc(x.s) + '</b>' : esc(x.s); }).join(''); }
+function agBlocksHtml(F) {
+  var B = AGE.blocks(agText(F)), org = agOrg(), out = [];
+  out.push({ h: '<div class="ag-t">' + esc(F.title || '') + '</div>' + (F.sub ? '<div class="ag-s">' + esc(F.sub) + '</div>' : '<div class="ag-s"></div>') });
+  B.forEach(function (b, i) {
+    var nx = B[i + 1], gap = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? ' gap' : '';
+    if (b.t === 'h') out.push({ h: '<div class="ag-h"><span>' + esc(b.n) + '</span>' + agInl(b.text.replace(/\*\*/g, '')) + '</div>', keep: true });
+    else if (b.t === 'p') out.push({ h: '<div class="ag-p' + (b.intro ? ' intro' : '') + gap + '">' + agInl(b.text) + '</div>', last: !nx });
+    else out.push({ h: '<div class="ag-' + b.t + gap + '"><span>' + esc(b.n) + '</span>' + agInl(b.text) + '</div>', last: !nx });
+  });
+  var sig = F.sig && AGI && AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '';
+  var cDate = F.cDateBlank ? '<span class="ag-blank"></span>' : esc(AGE.dNum(F.cDate || F.date));
+  out.push({ sig: true, h: '<div class="ag-sigs"><div><b>For ' + esc(org.name) + ':</b><div class="ag-sg">' + sig + '</div><div class="ag-ln"></div>' + esc(F.signer || '') + '<br>' + esc(F.signerTitle || '') + '<br>' + esc(org.name) + '<br>Date: ' + esc(AGE.dNum(F.date)) + '</div>' +
+    '<div><b>For the Creator:</b><div class="ag-sg"></div><div class="ag-ln"></div>' + esc(String(F.creator || '').trim()) + '<br>&nbsp;<br>&nbsp;<br>Date: ' + cDate + '</div></div>' });
+  return out;
+}
+function agPageEl() {
+  var pg = document.createElement('div'); pg.className = 'agp';
+  pg.innerHTML = '<img class="agh" src="pad/header.png" alt=""><div class="agb"></div><img class="agf" src="pad/footer.png" alt="">';
+  return pg;
+}
+/* host-এ পাতাগুলো বানায় (মাপ নিয়ে ভাগ করে): শিরোনাম পাতার শেষে একা থাকে না, শেষ ধারা সইয়ের সাথে থাকে */
+function agBuild(host, F) {
+  host.innerHTML = '';
+  var maxH = AG_PAGE.h - AG_PAGE.top - AG_PAGE.bottom, items = agBlocksHtml(F), pages = [];
+  var pg = agPageEl(); host.appendChild(pg); pages.push(pg);
+  var body = pg.querySelector('.agb');
+  items.forEach(function (it, i) {
+    var tmp = document.createElement('div'); tmp.innerHTML = it.h;
+    var nodes = Array.prototype.slice.call(tmp.childNodes);
+    nodes.forEach(function (n) { body.appendChild(n); });
+    if (body.scrollHeight > maxH && body.childNodes.length > nodes.length) {
+      var move = nodes.slice(), prev = nodes[0].previousSibling;
+      if (it.sig) {
+        // সইয়ের সাথে শেষ ধারা (শিরোনামসহ) পরের পাতায় — যেমন Word-এ
+        while (prev && !prev.classList.contains('ag-h')) { move.unshift(prev); prev = prev.previousSibling; }
+        if (prev) move.unshift(prev);
+      } else if (prev && prev.classList.contains('ag-h')) move.unshift(prev);   // শিরোনাম পাতার শেষে একা নয়
+      if (move.length >= body.childNodes.length) move = nodes.slice();
+      pg = agPageEl(); host.appendChild(pg); pages.push(pg); body = pg.querySelector('.agb');
+      move.forEach(function (n) { body.appendChild(n); });
+    }
+  });
+  return pages;
+}
+function agPreview() {
+  var box = $('agPrev'); if (!box || !AG) return;
+  var w = box.clientWidth || 600, s = Math.min(1, (w - 4) / AG_PAGE.w);
+  var host = document.createElement('div'); host.className = 'ag-host';
+  box.innerHTML = ''; box.appendChild(host);
+  var pages = agBuild(host, AG.F);
+  pages.forEach(function (p) { var wr = document.createElement('div'); wr.className = 'ag-wrap'; wr.style.width = (AG_PAGE.w * s) + 'px'; wr.style.height = (AG_PAGE.h * s) + 'px'; p.style.transform = 'scale(' + s + ')'; host.insertBefore(wr, p); wr.appendChild(p); });
+  box.insertAdjacentHTML('afterbegin', '<div class="muted" style="font-size:12px;text-align:center">' + t('{0} pages · A4', N(pages.length)) + '</div>');
+}
+
+/* ---------- ফাইল ---------- */
+function agImgsReady(el) {
+  var imgs = Array.prototype.slice.call(el.querySelectorAll('img'));
+  return Promise.all(imgs.map(function (i) { return i.complete && i.naturalWidth ? 1 : new Promise(function (r) { i.onload = i.onerror = r; }); }));
+}
+function agCanvases(F) {
+  return agLib('h2c', function () { return !!window.html2canvas; }).then(function () {
+    var off = document.createElement('div'); off.className = 'ag-off'; document.body.appendChild(off);
+    var pages = agBuild(off, F);
+    return agImgsReady(off).then(function () {
+      var out = [];
+      return pages.reduce(function (pr, p) { return pr.then(function () { return html2canvas(p, { scale: 2.5, backgroundColor: '#ffffff', useCORS: true, logging: false, width: AG_PAGE.w, height: AG_PAGE.h }).then(function (c) { out.push(c); }); }); }, Promise.resolve())
+        .then(function () { off.remove(); return out; }, function (e) { off.remove(); throw e; });
+    });
+  });
+}
+function agPdf(canvases) {
+  return agLib('jspdf', function () { return !!(window.jspdf && window.jspdf.jsPDF); }).then(function () {
+    var doc = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4', compress: true });
+    canvases.forEach(function (c, i) { if (i) doc.addPage(); doc.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 595.28, 841.89); });
+    doc.setProperties({ title: agFileName(AG.F), creator: S.set.org || ORG });
+    return doc;
+  });
+}
+function agSave(blob, name) {
+  var a = document.createElement('a'), u = URL.createObjectURL(blob);
+  a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+}
+/* নতুন ক্রিয়েটর হলে (টিক থাকলে) আগে তালিকায় যোগ */
+function agEnsurePartner() {
+  var F = AG.F;
+  if (F.pid || !AG.addP || !F.creator.trim()) return Promise.resolve();
+  var o = { name: F.creator.trim(), kind: 'creator', stage: 'talking', phone: F.phone || '', note: F.addr ? 'Address: ' + F.addr : '', more: [] };
+  F.links.forEach(function (l) { var u = String(l.u || '').trim(), k = platOf(u); if (!u) return; if (['fb', 'yt', 'ig', 'tt'].indexOf(k) !== -1 && !o[k]) o[k] = u; else o.more.push({ t: l.t || nameFromUrl(u), u: u }); });
+  return api('apiSavePartner', [o]).then(function (p) { upsert(S.partners, p); index(); F.pid = p.id; }, function (err) {
+    var m = /^DUP:([^:]+):/.exec(err.message); if (m) { F.pid = m[1]; return; } throw err;
+  });
+}
+/* কাজ: canvases বানানো → PDF → (বদল থাকলে) Drive + রেকর্ড → { canvases, doc } */
+function agPersist(btn) {
+  var F = AG.F, miss = AGE.missing(F);
+  if (miss.length) { toast(t('Fill in: {0}', miss.map(function (k) { return t(AG_MISS[k]); }).join(', ')), 4500); return Promise.reject(new Error('missing')); }
+  var lbl = btn.innerHTML; document.querySelectorAll('.ag-dl .btn').forEach(function (b) { b.disabled = true; }); btn.innerHTML = t('Please wait…');
+  var res = {}, done = function () { document.querySelectorAll('.ag-dl .btn').forEach(function (b) { b.disabled = false; }); btn.innerHTML = lbl; };
+  return agEnsurePartner().then(function () { return agCanvases(F); }).then(function (cs) { res.canvases = cs; return agPdf(cs); }).then(function (doc) {
+    res.doc = doc;
+    var key = agKey(F);
+    if (AG.aid && AG.savedKey === key) { var r0 = (S.agrees || []).filter(function (a) { return a.id === AG.aid; })[0]; if (r0 && r0.file) return; }
+    btn.innerHTML = t('Saving to Drive…');
+    var b64 = doc.output('datauristring').split(',')[1];
+    return api('apiSaveAgreement', [{ id: AG.aid, pid: F.pid, did: F.did, name: F.creator.trim(), date: F.date, data: F, pdf: b64, fileName: agFileName(F) }]).then(function (r) {
+      S.agrees = S.agrees || []; upsert(S.agrees, r); AG.aid = r.id; AG.savedKey = key;
+      rerender();   // পেছনের পাতা (প্রোফাইল / চুক্তিপত্রের তালিকা) সাথে সাথে হালনাগাদ — ফর্ম আলাদা জায়গায়, তাতে হাত পড়ে না
+      if (r.driveErr) toast(t('Saved here, but Google Drive said: {0}', r.driveErr), 7000);
+    });
+  }).then(function () { done(); var sv = $('agSaved'); if (sv) sv.innerHTML = agSavedHtml(); return res; }, function (e) { done(); if (e && e.message !== 'missing' && e.message !== 'busy') toast(srvMsg(e.message), 5000); throw e; });
+}
+function agDlPdf(btn) { agPersist(btn).then(function (r) { agSave(r.doc.output('blob'), agFileName(AG.F) + '.pdf'); }, function () {}); }
+function agDlJpg(btn) {
+  agPersist(btn).then(function (r) {
+    var nm = agFileName(AG.F);
+    r.canvases.forEach(function (c, i) { setTimeout(function () { c.toBlob(function (b) { agSave(b, nm + (r.canvases.length > 1 ? ' - page ' + (i + 1) : '') + '.jpg'); }, 'image/jpeg', 0.92); }, i * 400); });
+  }, function () {});
+}
+function agDlWord(btn) {
+  agPersist(btn).then(function () {
+    return agLib('docx', function () { return !!(window.docx && window.docx.Packer); }).then(function () {
+      var get = function (u) { return fetch(u).then(function (r) { return r.arrayBuffer(); }); };
+      var sig = AG.F.sig && AGI.sig ? AGI.sig : '';
+      return Promise.all([get('pad/header.png'), get('pad/footer.png'), sig ? get(sig) : null, sig ? agImgSize(sig) : null]).then(function (x) {
+        var doc = AGE.docx(window.docx, AG.F, agOrg(), agText(AG.F), { head: x[0], foot: x[1], sig: x[2], sigW: x[3] && x[3][0], sigH: x[3] && x[3][1] });
+        return window.docx.Packer.toBlob(doc);
+      }).then(function (b) { agSave(b, agFileName(AG.F) + '.docx'); });
+    });
+  }).catch(function (e) { if (e && e.message !== 'missing' && e.message !== 'busy') toast(e.message, 5000); });
+}
+function agImgSize(src) { return new Promise(function (r) { var i = new Image(); i.onload = function () { r([i.naturalWidth, i.naturalHeight]); }; i.onerror = function () { r([560, 279]); }; i.src = src; }); }
+
+/* ---------- রেকর্ডের তালিকা (প্রোফাইল, চুক্তির পাতা) ---------- */
+function agOfPartner(pid) { return (S.agrees || []).filter(function (a) { return a.pid === pid; }).sort(function (a, b) { return (b.at || '') < (a.at || '') ? -1 : 1; }); }
+function agRows(list, showName) {
+  return list.map(function (a) {
+    var F = a.data || {}, mdlS = (AG_MODELS.filter(function (x) { return x[0] === F.model; })[0] || ['', ''])[1];
+    var sub = [dShort(a.date), F.kind === 'ad' ? t('Advertisement') : '', mdlS ? t(mdlS) : '', F.model === 'per' && F.rate ? t('{0} each', tkS(F.rate)) : F.total ? tkS(F.total) : ''].filter(Boolean).join(' · ');
+    return '<div class="row"><span class="pl p-web">' + icon('deal') + '</span><div class="g click" data-a="ag-open" data-id="' + esc(a.id) + '"><div class="t">' + esc(showName ? a.name : (F.title ? String(F.title).charAt(0) + String(F.title).slice(1).toLowerCase() : t('Agreement paper'))) + '</div><div class="s">' + sub + '</div></div>' +
+      (a.file ? '<a class="btn xs" href="' + esc(a.file) + '" target="_blank" rel="noopener" title="' + t('Open PDF in Google Drive') + '">' + icon('ext', 's') + 'PDF</a>' : '<span class="pill warn" title="' + t('Not in Drive yet') + '">' + t('No PDF') + '</span>') +
+      '<button class="btn xs ghost" data-a="ag-del" data-id="' + esc(a.id) + '" title="' + t('Remove from this list (the PDF stays in Drive)') + '">' + icon('trash', 's') + '</button></div>';
+  }).join('');
+}
+function agProfileCard(pid) {
+  var L = agOfPartner(pid);
+  return '<div class="card side-card"><h4 style="display:flex;align-items:center;gap:8px">' + t('Agreement papers') + '<span class="grow"></span><button class="btn xs" data-a="ag-new" data-pid="' + esc(pid) + '">' + icon('plus', 's') + t('New') + '</button></h4>' +
+    (L.length ? '<div class="rows ag-rows">' + agRows(L) + '</div>' : '<div class="muted" style="font-size:13px">' + t('None yet.') + '</div>') + '</div>';
+}
+function agListPage() {
+  var L = (S.agrees || []).slice().sort(function (a, b) { return (b.at || '') < (a.at || '') ? -1 : 1; });
+  return '<div class="card">' + (L.length ? '<div class="rows ag-rows">' + agRows(L, true) + '</div>' : empty('deal', t('No agreement papers yet — make one with "New agreement paper".'))) + '</div>';
+}
+function agDelete(id, btn) {
+  if (!confirm(t('Remove this agreement paper from the list? The PDF stays in your Google Drive.'))) return;
+  api('apiDeleteAgreement', [id], btn).then(function () { removeId(S.agrees, id); rerender(); toast(t('Removed')); });
+}
+
+/* ---------- Settings → Agreement paper ---------- */
+function agSettingsCard() {
+  if (!AGI) { setTimeout(function () { agInit().then(function () { if (S.page === 'settings') rerender(); }, function () {}); }, 0); return '<div class="card cpad"><h3>' + t('Agreement paper') + '</h3><div class="sk"></div></div>'; }
+  var o = AGI.org;
+  return '<div class="card cpad"><h3>' + t('Agreement paper') + '</h3>' +
+    '<div class="g2"><div><label class="fl">' + t('Signs for the company') + '</label><input class="in" id="ago_signer" value="' + esc(o.signer) + '"></div><div><label class="fl">' + t('Title') + '</label><input class="in" id="ago_signerTitle" value="' + esc(o.signerTitle) + '"></div></div>' +
+    '<label class="fl">' + t('Organisation address (in the agreement)') + '</label><input class="in" id="ago_addr" value="' + esc(o.addr) + '">' +
+    '<label class="fl">' + t('Organisation phone (in the agreement)') + '</label><input class="in" id="ago_phone" value="' + esc(o.phone) + '">' +
+    '<div style="margin-top:12px;text-align:right"><button class="btn pri" data-a="ag-org-save">' + t('Save') + '</button></div>' +
+    '<label class="fl">' + t('Signature image') + '</label><div class="ag-sigbox">' + (AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '<span class="muted">' + t('No signature image') + '</span>') + '</div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn sm" data-a="ag-sig-up">' + icon('up', 's') + t('Upload new') + '</button>' +
+    (AGI.sig ? '<button class="btn sm ghost" data-a="ag-sig-del">' + t('Remove') + '</button>' : '') + (AGI.sigCustom ? '<button class="btn sm ghost" data-a="ag-sig-reset">' + t('Use the original') + '</button>' : '') + '</div>' +
+    '<div class="muted" style="font-size:12px;margin-top:6px">' + t('A photo of the signature on white paper works — the white background is removed automatically.') + '</div>' +
+    '<label class="fl">' + t('Wording') + '</label><div class="muted" style="font-size:13px">' + (AGI.tplCustom ? t('You have changed the standard wording.') : t('Standard wording (as in the Akib Ahmed agreement).')) + '</div>' +
+    '<button class="btn sm" data-a="ag-tpl" style="margin-top:8px">' + icon('edit', 's') + t('Edit the standard wording') + '</button></div>';
+}
+function agTplForm() {
+  agInit().then(function (I) {
+    openSheet(t('Standard wording of the agreement paper'),
+      '<div class="note" style="margin-top:6px;font-size:12.5px;line-height:1.7">' + t('## = numbered clause · - = (a) (b) · -- = (i) (ii) · **bold** · [ad] / [content] = only for advertisement / content · [per] [install] [upfront] [one] = only for that payment type.') + '<br>' +
+      t('Filled in automatically: {0}', '{creator} {page} {links} {date} {start} {end} {term} {perMonth} {videos} {rate} {total} {count} {schedule} {advance} {adText} {adWhere} {org} {orgAddr} {orgPhone} {ref:Termination}') + '</div>' +
+      '<textarea class="in" id="agTpl" style="min-height:420px;margin-top:12px;font-family:Consolas,monospace;font-size:12.5px">' + esc(I.tpl) + '</textarea>' +
+      foot('<button class="btn ghost" data-a="ag-tpl-reset">' + icon('undo', 's') + t('Back to the original') + '</button>', 'ag-tpl-save'), { cls: 'wide' });
+  });
+}
+function agSigUpload() {
+  var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+  inp.onchange = function () {
+    var f = inp.files && inp.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function () {
+      var im = new Image();
+      im.onload = function () {
+        var W = Math.min(700, im.naturalWidth), H = Math.round(im.naturalHeight * W / im.naturalWidth), c = document.createElement('canvas'); c.width = W; c.height = H;
+        var x = c.getContext('2d'); x.drawImage(im, 0, 0, W, H);
+        var d = x.getImageData(0, 0, W, H), p = d.data;   // সাদা পটভূমি স্বচ্ছ, কালি গাঢ়
+        for (var i = 0; i < p.length; i += 4) { var l = (p[i] + p[i + 1] + p[i + 2]) / 3, a = Math.max(0, Math.min(255, (235 - l) * 255 / 150)); p[i + 3] = Math.min(p[i + 3], a); if (a > 0) { p[i] = Math.round(p[i] * 0.4); p[i + 1] = Math.round(p[i + 1] * 0.4); p[i + 2] = Math.round(p[i + 2] * 0.4) + 30; } }
+        x.putImageData(d, 0, 0);
+        api('apiAgreeSetup', [{ sig: c.toDataURL('image/png') }]).then(function (I) { AGI = I; rerender(); toast(t('Saved')); });
+      };
+      im.src = rd.result;
+    };
+    rd.readAsDataURL(f);
+  };
+  inp.click();
 }
 
 /* ═════════════════════════ PR Desk — events, login, start ═════════════════════════ */
@@ -3034,6 +3784,7 @@ document.addEventListener('click', function (ev) {
     else if (pid0 === 'stSeg') stageSet(el.getAttribute('data-id'), v);
     else if (pid0 === 's_lang') setLang(v);
     else if (pid0 === 's_theme') setTheme(v);
+    else if (/^ag_/.test(pid0) && AG) agSeg(pid0, v);
     return;
   }
   var a = el, A = a.getAttribute('data-a'), id = a.getAttribute('data-id');
@@ -3041,6 +3792,30 @@ document.addEventListener('click', function (ev) {
   if (a.tagName === 'INPUT' && A !== 'yt-sel') return;
   switch (A) {
     case 'close': closeOv(); break;
+    /* চুক্তিপত্র */
+    case 'ag-new': agreeOpen({ did: a.dataset.did || '', pid: a.dataset.pid || '' }); break;
+    case 'ag-open': agreeOpen({ aid: id }); break;
+    case 'ag-del': agDelete(id, a); break;
+    case 'ag-pdf': agDlPdf(a); break;
+    case 'ag-jpg': agDlJpg(a); break;
+    case 'ag-word': agDlWord(a); break;
+    case 'ag-addp': AG.addP = !AG.addP; agRedrawLeft(); break;
+    case 'ag-link': AG.F.links[+a.dataset.i].on = !AG.F.links[+a.dataset.i].on; agRedrawLeft(); break;
+    case 'ag-ladd': AG.F.links.push({ t: '', u: '', on: true }); agRedrawLeft(); break;
+    case 'ag-ldel': AG.F.links.splice(+a.dataset.i, 1); agRedrawLeft(); break;
+    case 'ag-sadd': AG.F.sched.push({ l: '', d: '', a: 0 }); agRedrawLeft(); break;
+    case 'ag-sdel': AG.F.sched.splice(+a.dataset.i, 1); agRedrawLeft(); break;
+    case 'ag-split': agSplit(AG.F.sched.length || 3); agRedrawLeft(); break;
+    case 'ag-sig': AG.F.sig = !AG.F.sig; agRedrawLeft(); break;
+    case 'ag-won': AG.showW = true; AG.F.wording = agText(AG.F); agRedrawLeft(); break;
+    case 'ag-woff': if (confirm(t('Throw away your changes to the wording and use the automatic wording again?'))) { AG.showW = false; AG.F.wording = ''; agRedrawLeft(); } break;
+    case 'ag-org-save': api('apiAgreeSetup', [{ org: { signer: $('ago_signer').value, signerTitle: $('ago_signerTitle').value, addr: $('ago_addr').value, phone: $('ago_phone').value } }], a).then(function (I) { AGI = I; rerender(); toast(t('Saved')); }); break;
+    case 'ag-sig-up': agSigUpload(); break;
+    case 'ag-sig-del': if (confirm(t('Remove the signature image? Agreements will then have an empty space to sign by hand.'))) api('apiAgreeSetup', [{ sig: '' }], a).then(function (I) { AGI = I; rerender(); }); break;
+    case 'ag-sig-reset': api('apiAgreeSetup', [{ sig: 'reset' }], a).then(function (I) { AGI = I; rerender(); }); break;
+    case 'ag-tpl': agTplForm(); break;
+    case 'ag-tpl-save': api('apiAgreeSetup', [{ tpl: $('agTpl').value }], a).then(function (I) { AGI = I; closeOv(); rerender(); toast(t('Saved')); }); break;
+    case 'ag-tpl-reset': if (confirm(t('Put back the original wording? Your changes to the standard wording will be lost.'))) api('apiAgreeSetup', [{ tpl: '' }], a).then(function (I) { AGI = I; closeOv(); rerender(); toast(t('Saved')); }); break;
     case 'reboot': S.bootErr = ''; boot(); break;
     case 'hardreload': try { localStorage.removeItem(BOOT_KEY); } catch (e) {} location.reload(); break;
     case 'lang': setLang(a.dataset.v); break;
