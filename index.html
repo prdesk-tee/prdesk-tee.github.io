@@ -1167,7 +1167,7 @@ var BN = {
   "fixed once given": "একবার দেওয়া হলে স্থায়ী",
   "given automatically when you download": "নামানোর সময় নিজে বসবে",
   "Agreement number starts with": "চুক্তিপত্রের নম্বরের শুরু",
-  "e.g. TEE → TEE/CCA/AKA/2026/001": "যেমন TEE → TEE/CCA/AKA/2026/001",
+  "e.g. TEE → TEE/CCA/AKA/NOV126": "যেমন TEE → TEE/CCA/AKA/NOV126",
   "Name, phone, email, contract or agreement no.": "নাম, ফোন, ইমেইল, চুক্তি বা চুক্তিপত্রের নম্বর",
   "Code in agreement numbers": "চুক্তিপত্রের নম্বরে কোড",
   "e.g. AKA — given automatically with the first agreement paper": "যেমন AKA — প্রথম চুক্তিপত্রের সঙ্গে নিজে বসে",
@@ -3361,10 +3361,10 @@ var AGE = (function () {
       var nx = B[i + 1], gapAfter = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? 160 : (b.t === 'a' || b.t === 'i') ? 0 : 100;
       if (b.t === 'h') body.push(P({ keepNext: true, spacing: { before: 120, after: 100 }, indent: { left: 720, hanging: 360 }, tabStops: [{ type: D.TabStopType.LEFT, position: 720 }],
         children: [new D.TextRun({ text: b.n, bold: true, font: TNR }), new D.TextRun({ text: '\t' + b.text.replace(/\*\*/g, ''), bold: true, font: TNR })] }));
-      else if (b.t === 'p') body.push(P({ alignment: J, spacing: { after: gapAfter }, indent: b.intro ? undefined : { left: 720 }, children: runs(b.text) }));
+      else if (b.t === 'p') body.push(P({ alignment: J, keepLines: true, spacing: { after: gapAfter }, indent: b.intro ? undefined : { left: 720 }, children: runs(b.text) }));
       else {
         var L = b.t === 'a' ? 1440 : 2280, HG = b.t === 'a' ? 360 : 480;
-        body.push(P({ alignment: J, spacing: { after: gapAfter }, indent: { left: L, hanging: HG }, tabStops: [{ type: D.TabStopType.LEFT, position: L }],
+        body.push(P({ alignment: J, keepLines: true, spacing: { after: gapAfter }, indent: { left: L, hanging: HG }, tabStops: [{ type: D.TabStopType.LEFT, position: L }],
           children: [new D.TextRun({ text: b.n + '\t', font: TNR })].concat(runs(b.text)) }));
       }
     });
@@ -3443,7 +3443,7 @@ function agFileName(F) {
   return (ref ? ref.replace(/\//g, '-') + ' - ' : '') + (F._draft ? F._draft.replace(/^DRAFT/, 'Draft') + ' - ' : '') + String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim();
 }
 
-/* ---------- চুক্তিপত্রের নম্বর: TEE/CCA/AKA/2026/001 (চূড়ান্ত নম্বর সার্ভার দেয় নামানোর সময়; এখানে শুধু নমুনায় দেখানোর আন্দাজ — একই নিয়মে) ---------- */
+/* ---------- চুক্তিপত্রের নম্বর: TEE/CCA/AKA/NOV126 (মাস + মাসের ক্রমিক + সালের শেষ দুই অঙ্ক) (চূড়ান্ত নম্বর সার্ভার দেয় নামানোর সময়; এখানে শুধু নমুনায় দেখানোর আন্দাজ — একই নিয়মে) ---------- */
 var AG_CODE_SKIP = { md: 1, mohammad: 1, mohammed: 1, muhammad: 1, mr: 1, mrs: 1, ms: 1, dr: 1, sk: 1, sheikh: 1, the: 1 };
 function agCodeFromName(name) {
   var w = String(name || '').replace(/\(.*?\)/g, ' ').replace(/[^A-Za-z\s]/g, ' ').trim().split(/\s+/).filter(function (x) { return x && !AG_CODE_SKIP[x.toLowerCase()]; });
@@ -3455,14 +3455,14 @@ function agRefGuess(F) {
   if (!code) {
     var used = {};
     S.partners.forEach(function (x) { if (x.code && x !== p) used[String(x.code).toUpperCase()] = 1; });
-    (S.agrees || []).forEach(function (a) { var s = String(a.ref || '').split('/'); if (s.length >= 5 && a.pid !== F.pid) used[s[2]] = 1; });
+    (S.agrees || []).forEach(function (a) { var s = String(a.ref || '').split('/'); if (s.length >= 4 && a.pid !== F.pid) used[s[2]] = 1; });
     var base = agCodeFromName(p ? p.name : F.creator); if (!base) return '';
     code = base; for (var i = 2; used[code] && i < 100; i++) code = base + i;
   }
-  var y = String(F.date || today()).slice(0, 4), max = 0;
-  (S.agrees || []).forEach(function (a) { var m = new RegExp('/' + y + '/(\\d+)(-R\\d+)?$').exec(String(a.ref || '')); if (m) max = Math.max(max, +m[1]); });
-  var n = String(max + 1); while (n.length < 3) n = '0' + n;
-  return [String((AGI && AGI.org && AGI.org.refPrefix) || 'TEE').toUpperCase(), F.kind === 'ad' ? 'ADA' : 'CCA', code, y, n].join('/');
+  var dp = String(F.date || today()).split('-'), mon = MON3.en[+dp[1] - 1].toUpperCase(), yy = dp[0].slice(2), max = 0;
+  var re = new RegExp('/' + mon + '(\\d+)' + yy + '(-[AR]\\d+)?$');
+  (S.agrees || []).forEach(function (a) { var m = re.exec(String(a.ref || '')); if (m) max = Math.max(max, +m[1]); });
+  return [String((AGI && AGI.org && AGI.org.refPrefix) || 'TEE').toUpperCase(), F.kind === 'ad' ? 'ADA' : 'CCA', code, mon + (max + 1) + yy].join('/');
 }
 function agRefShow(F) { return F.ref || agRefGuess(F); }
 
@@ -3869,7 +3869,7 @@ function agSettingsCard() {
     '<div class="g2"><div><label class="fl">' + t('Signs for the company') + '</label><input class="in" id="ago_signer" value="' + esc(o.signer) + '"></div><div><label class="fl">' + t('Title') + '</label><input class="in" id="ago_signerTitle" value="' + esc(o.signerTitle) + '"></div></div>' +
     '<label class="fl">' + t('Organisation address (in the agreement)') + '</label><input class="in" id="ago_addr" value="' + esc(o.addr) + '">' +
     '<label class="fl">' + t('Organisation phone (in the agreement)') + '</label><input class="in" id="ago_phone" value="' + esc(o.phone) + '">' +
-    '<label class="fl">' + t('Agreement number starts with') + ' <em>(' + t('e.g. TEE → TEE/CCA/AKA/2026/001') + ')</em></label><input class="in" id="ago_refPrefix" value="' + esc(o.refPrefix || 'TEE') + '" style="text-transform:uppercase;max-width:160px">' +
+    '<label class="fl">' + t('Agreement number starts with') + ' <em>(' + t('e.g. TEE → TEE/CCA/AKA/NOV126') + ')</em></label><input class="in" id="ago_refPrefix" value="' + esc(o.refPrefix || 'TEE') + '" style="text-transform:uppercase;max-width:160px">' +
     '<div style="margin-top:12px;text-align:right"><button class="btn pri" data-a="ag-org-save">' + t('Save') + '</button></div>' +
     '<label class="fl">' + t('Signature image') + '</label><div class="ag-sigbox">' + (AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '<span class="muted">' + t('No signature image') + '</span>') + '</div>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn sm" data-a="ag-sig-up">' + icon('up', 's') + t('Upload new') + '</button>' +
