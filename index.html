@@ -532,7 +532,7 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .ag-off{position:fixed;left:-20000px;top:0;width:794px;z-index:-1}
 .ag-off .agp{margin-bottom:10px}
 .agp{width:794px;height:1123px;position:relative;background:#fff;color:#000;font:16px/1.15 'Times New Roman',Times,'Liberation Serif',serif;overflow:hidden;text-rendering:geometricPrecision}
-.agp .agw{position:absolute;left:181px;top:345.5px;width:432px;height:432px;pointer-events:none}
+.agp .agw{position:absolute;left:224px;top:388.5px;width:346px;height:346px;pointer-events:none}
 .agp .agh{position:absolute;left:0;top:0;width:794px;height:auto;display:block}
 .agp .agf{position:absolute;left:0;bottom:0;width:794px;height:auto;display:block}
 .agp .agb{position:absolute;left:85px;right:85px;top:128px;max-height:846px}
@@ -3284,8 +3284,8 @@ var AGE = (function () {
     for (var k = body.length - 1; k >= 0 && k >= body.length - 2; k--) body[k] = keepNx(body[k]);
     body.push(P({ keepNext: true, spacing: { before: 360 }, children: [] }));
     body.push(new D.Table({ width: { size: 9346, type: D.WidthType.DXA }, columnWidths: [4673, 4673], borders: borders, rows: rows }));
-    // জলছাপ: পাতার ঠিক মাঝে, লেখার পেছনে, হেডারে থাকায় প্রতি পাতায় (সিল, ৪.৫ ইঞ্চি)
-    var wmP = function () { return P({ spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.wm, transformation: { width: 432, height: Math.round(432 * (img.wmH || 1) / (img.wmW || 1)) },
+    // জলছাপ: পাতার ঠিক মাঝে, লেখার পেছনে, হেডারে থাকায় প্রতি পাতায় (সিল, ৩.৬ ইঞ্চি)
+    var wmP = function () { return P({ spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.wm, transformation: { width: 346, height: Math.round(346 * (img.wmH || 1) / (img.wmW || 1)) },
       floating: { horizontalPosition: { relative: D.HorizontalPositionRelativeFrom.PAGE, align: D.HorizontalPositionAlign.CENTER }, verticalPosition: { relative: D.VerticalPositionRelativeFrom.PAGE, align: D.VerticalPositionAlign.CENTER },
         behindDocument: true, allowOverlap: true, lockAnchor: true, wrap: { type: D.TextWrappingType.NONE } } })] }); };
     var pic = function (data, h) { return P({ indent: { left: -1280, right: -1280 }, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: data, transformation: { width: 794, height: h } })] }); };
@@ -3601,7 +3601,7 @@ function agCanvases(F) {
             ignoreElements: function (el) { return el.classList && el.classList.contains('agw'); } }).then(function (c) {
             var o = document.createElement('canvas'); o.width = c.width; o.height = c.height;
             var x = o.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, o.width, o.height);
-            if (wm && wm.naturalWidth) { var ww = 432 * SC, hh = ww * wm.naturalHeight / wm.naturalWidth; x.drawImage(wm, (o.width - ww) / 2, (o.height - hh) / 2, ww, hh); }
+            if (wm && wm.naturalWidth) { var ww = 346 * SC, hh = ww * wm.naturalHeight / wm.naturalWidth; x.drawImage(wm, (o.width - ww) / 2, (o.height - hh) / 2, ww, hh); }
             x.drawImage(c, 0, 0); out.push(o);
           });
         });
