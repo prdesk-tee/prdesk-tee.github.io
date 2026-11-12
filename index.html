@@ -531,14 +531,17 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .ag-wrap .agp{position:absolute;left:0;top:0;transform-origin:0 0}
 .ag-off{position:fixed;left:-20000px;top:0;width:794px;z-index:-1}
 .ag-off .agp{margin-bottom:10px}
-.agp{width:794px;height:1123px;position:relative;background:#fff;color:#000;font:16px/1.15 'Times New Roman',Times,'Liberation Serif',serif;overflow:hidden;text-rendering:geometricPrecision}
+.agp{width:794px;height:1123px;position:relative;background:#fff;color:#000;font:16px/1.13 'Times New Roman',Times,'Liberation Serif',serif;overflow:hidden;text-rendering:geometricPrecision}
 .agp .agw{position:absolute;left:224px;top:388.5px;width:346px;height:346px;pointer-events:none}
 .agp .agh{position:absolute;left:0;top:0;width:794px;height:auto;display:block}
 .agp .agf{position:absolute;left:0;bottom:0;width:794px;height:auto;display:block}
 .agp .agb{position:absolute;left:85px;right:85px;top:128px;max-height:846px}
 .agp b{font-weight:700}
+.ag-ref{display:flex;justify-content:space-between;gap:12px;margin:0 0 10px}
+.agp .agpn{position:absolute;right:85px;top:972px;font-size:10.7px;color:#555;letter-spacing:.2px}
+.ag-refc{font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
 .ag-t{text-align:center;font-weight:700;font-size:24px;line-height:1.2;margin-top:2px}
-.ag-s{text-align:center;font-style:italic;font-size:17.3px;margin:2px 0 19px;min-height:4px}
+.ag-s{text-align:center;font-style:italic;font-size:17.3px;margin:2px 0 15px;min-height:4px}
 .ag-p{text-align:justify;margin:0 0 6.7px 48px}
 .ag-p.intro{margin-left:0}
 .ag-p.gap,.ag-a.gap,.ag-i.gap{margin-bottom:10.7px}
@@ -547,7 +550,7 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .ag-a,.ag-i{text-align:justify;position:relative;padding-left:96px}
 .ag-a>span{position:absolute;left:72px}
 .ag-i{padding-left:152px}.ag-i>span{position:absolute;left:118px}
-.ag-sigs{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;line-height:1.15}
+.ag-sigs{display:grid;grid-template-columns:1fr 1fr;margin-top:20px;line-height:1.13}
 .ag-sg{height:73px;display:flex;align-items:flex-end}
 .ag-sg img{width:140px;height:auto;display:block;margin-bottom:-6px}
 .ag-ln{width:266px;border-bottom:1px solid #000;margin:4px 0 2px}
@@ -1138,7 +1141,16 @@ var BN = {
   "total amount": "মোট টাকা",
   "advertisement details": "বিজ্ঞাপনের বিবরণ",
   "installments": "কিস্তি",
-  "installments do not add up to the total": "কিস্তির যোগফল মোট টাকার সমান নয়"
+  "installments do not add up to the total": "কিস্তির যোগফল মোট টাকার সমান নয়",
+  /* চুক্তিপত্রের নম্বর */
+  "Agreement number": "চুক্তিপত্রের নম্বর",
+  "fixed once given": "একবার দেওয়া হলে স্থায়ী",
+  "given automatically when you download": "নামানোর সময় নিজে বসবে",
+  "Agreement number starts with": "চুক্তিপত্রের নম্বরের শুরু",
+  "e.g. TEE → TEE/CCA/AKA/2026/001": "যেমন TEE → TEE/CCA/AKA/2026/001",
+  "Name, phone, email, contract or agreement no.": "নাম, ফোন, ইমেইল, চুক্তি বা চুক্তিপত্রের নম্বর",
+  "Code in agreement numbers": "চুক্তিপত্রের নম্বরে কোড",
+  "e.g. AKA — given automatically with the first agreement paper": "যেমন AKA — প্রথম চুক্তিপত্রের সঙ্গে নিজে বসে"
 };
 
 /* কিস্তির নাম — পুরনো শিটে বাংলায় লেখা ("১ম কিস্তি", "পুরো টাকা (অগ্রিম)"), নতুনগুলো ইংরেজিতে; যে ভাষা চালু সেই ভাষায় দেখানো */
@@ -1727,7 +1739,7 @@ function profilePage(id) {
   var first = deals.map(function (d) { return d.start; }).filter(Boolean).sort()[0];
   var wa = waHref(p);
   var hero = '<div class="card"><div class="hero"><button class="avbtn" data-a="photo" data-id="' + esc(p.id) + '" title="' + t('Profile photo') + '">' + av(p, true) + '<span class="cam">' + icon('edit', 's') + '</span></button>' + '<div class="g"><h2>' + esc(p.name) + '</h2>' +
-    '<div class="meta">' + stagePill(p) + (p.cat ? '<span>' + esc(p.cat) + '</span>' : '') + (fo ? '<span>·</span><span>' + t('{0} followers', N(fFmt(fo))) + '</span>' : '') +
+    '<div class="meta">' + stagePill(p) + (p.code ? '<span class="pill" title="' + t('Code in agreement numbers') + '">' + esc(p.code) + '</span>' : '') + (p.cat ? '<span>' + esc(p.cat) + '</span>' : '') + (fo ? '<span>·</span><span>' + t('{0} followers', N(fFmt(fo))) + '</span>' : '') +
     (first ? '<span>·</span><span>' + t('Working together since {0}', N(first.slice(0, 4))) + '</span>' : '') + (p.kind !== 'creator' ? '<span>·</span><span>' + t(KINDS[p.kind] || '') + '</span>' : '') + '</div>' +
     '<div class="acts"><button class="btn grad" data-a="propose" data-id="' + esc(p.id) + '">' + icon('send', 's') + t('Send proposal') + '</button>' +
     (p.phone ? '<a class="btn" href="tel:' + esc(telOf(p)) + '">' + icon('phone', 's') + t('Call') + '</a>' : '') +
@@ -1951,14 +1963,17 @@ function pickDeal(title, cb) {
 
 /* ---------- খোঁজা (Ctrl+K) ---------- */
 function searchSheet() {
-  openSheet(t('Search'), '<div class="srch" style="margin-top:12px">' + icon('search', 's') + '<input class="in" id="gsQ" placeholder="' + t('Name, phone, email or contract') + '"></div><div class="rows" id="gsList" style="margin:8px -22px 0;max-height:60vh;overflow:auto"></div>');
+  openSheet(t('Search'), '<div class="srch" style="margin-top:12px">' + icon('search', 's') + '<input class="in" id="gsQ" placeholder="' + t('Name, phone, email, contract or agreement no.') + '"></div><div class="rows" id="gsList" style="margin:8px -22px 0;max-height:60vh;overflow:auto"></div>');
   var draw = function () {
     var raw = $('gsQ').value.trim(), q = nameKey(raw), ql = raw.toLowerCase(), dg = raw.replace(/\D/g, '');
     if (!q && !dg) { $('gsList').innerHTML = '<div class="empty" style="padding:20px">' + t('Start typing…') + '</div>'; return; }
     var ps = S.partners.filter(function (p) { return (q && nameKey(p.name).indexOf(q) !== -1) || (ql.length > 2 && String(p.email || '').indexOf(ql) !== -1) || (dg.length > 3 && String(p.phone || '').replace(/\D/g, '').indexOf(dg) !== -1); }).slice(0, 25);
     var ds = q ? S.deals.filter(function (d) { return nameKey(d.title).indexOf(q) !== -1; }).slice(0, 10) : [];
+    var rk = raw.toUpperCase().replace(/[^A-Z0-9]/g, ''), as = rk.length > 2 ? (S.agrees || []).filter(function (a) { return String(a.ref || '').replace(/[^A-Z0-9]/g, '').indexOf(rk) !== -1; }).slice(0, 10) : [];
+    if (rk.length > 1) S.partners.forEach(function (p) { if (p.code && String(p.code).toUpperCase() === rk && ps.indexOf(p) === -1) ps.unshift(p); });
     $('gsList').innerHTML = ps.map(function (p) { return '<div class="row click" data-go="#p/' + esc(p.id) + '">' + av(p) + '<div class="g"><div class="t">' + esc(p.name) + '</div><div class="s">' + t(STAGE_UI[stageOf(p)][0]) + (p.phone ? ' · ' + esc(p.phone) : '') + '</div></div></div>'; }).join('') +
       ds.map(function (d) { var p = S.P[d.pid] || {}; return '<div class="row click" data-go="#p/' + esc(d.pid) + '/' + esc(d.id) + '"><span class="pl p-web">' + icon('deal') + '</span><div class="g"><div class="t">' + esc(d.title) + '</div><div class="s">' + esc(p.name || '') + ' · ' + t(DST[d.status] || '') + '</div></div>' + mdl(d.model) + '</div>'; }).join('') ||
+      as.map(function (a) { return '<div class="row click" data-a="ag-open" data-id="' + esc(a.id) + '"><span class="pl p-web">' + icon('pen') + '</span><div class="g"><div class="t">' + esc(a.ref) + '</div><div class="s">' + esc(a.name) + ' · ' + dShort(a.date) + '</div></div></div>'; }).join('') ||
       empty('search', t('Nothing found.'));
   };
   draw();
@@ -2026,6 +2041,7 @@ function creatorForm(id, pre) {
     '<div class="sh-sec">' + t('Contact') + '</div>' +
     '<div class="g2"><div><label class="fl">' + t('Phone / WhatsApp') + '</label><input class="in" id="f_phone" value="' + esc(p.phone || '') + '"></div><div><label class="fl">' + t('Email') + '</label><input class="in" id="f_email" type="email" value="' + esc(p.email || '') + '"></div></div>' +
     '<label class="fl">' + t('Manager / contact person') + ' <em>(' + t('optional') + ')</em></label><input class="in" id="f_person" value="' + esc(p.person || '') + '">' +
+    '<label class="fl">' + t('Code in agreement numbers') + ' <em>(' + t('e.g. AKA — given automatically with the first agreement paper') + ')</em></label><input class="in" id="f_code" value="' + esc(p.code || '') + '" maxlength="8" style="text-transform:uppercase;max-width:160px">' +
     '<div class="g2"><div><label class="fl">' + t('Rate / budget') + '</label><input class="in" id="f_budget" value="' + esc(p.budget || '') + '" placeholder="80K"></div><div><label class="fl">' + t('Source') + '</label><input class="in" id="f_src" value="' + esc(p.src || '') + '" placeholder="' + t('Where you found them') + '"></div></div>' +
     '<label class="fl">' + t('Notes') + '</label><textarea class="in" id="f_note">' + esc(p.note || '') + '</textarea>' +
     foot(id ? '<button class="btn red" data-a="creator-del" data-id="' + esc(id) + '">' + icon('trash', 's') + t('Delete') + '</button>' : '', 'creator-save'), { cls: 'mid' });
@@ -2051,7 +2067,7 @@ function readCreatorForm() {
   readMore();
   var id = PF.id, o = id ? JSON.parse(JSON.stringify(S.P[id])) : {};
   o.id = id || '';
-  ['name', 'kind', 'stage', 'cat', 'email', 'phone', 'person', 'budget', 'src', 'note'].forEach(function (k) { o[k] = $('f_' + k).value; });
+  ['name', 'kind', 'stage', 'cat', 'email', 'phone', 'person', 'budget', 'src', 'note', 'code'].forEach(function (k) { o[k] = $('f_' + k).value; });
   PLAT.forEach(function (x) { o[x[0]] = $('f_' + x[0]).value; if (x[0] !== 'web') o[x[0] + 'F'] = $('f_' + x[0] + 'F').value; });
   o.more = PF.more.filter(function (m) { return String(m.u || '').trim(); }).map(function (m) { return { t: String(m.t || '').trim() || nameFromUrl(m.u) || t('Link'), u: m.u.trim() }; });
   return o;
@@ -3249,10 +3265,11 @@ var AGE = (function () {
     var P = function (o) { var p = new D.Paragraph(o); p._o = o; return p; };
     var keepNx = function (p) { return p._o ? P(Object.assign({}, p._o, { keepNext: true })) : p; };
     var J = D.AlignmentType.JUSTIFIED;
-    var body = [
+    var body = (F.ref ? [P({ spacing: { after: 220 }, tabStops: [{ type: D.TabStopType.RIGHT, position: 9346 }], children: [
+        new D.TextRun({ text: 'Ref. No.: ', font: TNR }), new D.TextRun({ text: String(F.ref), bold: true, font: TNR }), new D.TextRun({ text: '	Date: ' + dLong(F.date), font: TNR })] })] : []).concat([
       P({ alignment: D.AlignmentType.CENTER, spacing: { after: 20 }, children: [new D.TextRun({ text: String(F.title || 'WORK AGREEMENT'), bold: true, size: 36, font: TNR })] }),
       P({ alignment: D.AlignmentType.CENTER, spacing: { after: 280 }, children: F.sub ? [new D.TextRun({ text: String(F.sub), italics: true, size: 26, font: TNR })] : [] })
-    ];
+    ]);
     B.forEach(function (b, i) {
       var nx = B[i + 1], gapAfter = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? 160 : (b.t === 'a' || b.t === 'i') ? 0 : 100;
       if (b.t === 'h') body.push(P({ keepNext: true, spacing: { before: 120, after: 100 }, indent: { left: 720, hanging: 360 }, tabStops: [{ type: D.TabStopType.LEFT, position: 720 }],
@@ -3295,7 +3312,8 @@ var AGE = (function () {
       sections: [{
         properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1920, bottom: 2240, left: 1280, right: 1280, header: 0, footer: 0 } } },
         headers: { default: new D.Header({ children: [pic(img.head, 101)].concat(img.wm ? [wmP()] : []) }) },
-        footers: { default: new D.Footer({ children: [pic(img.foot, 131)] }) },
+        // প্রতি পাতার নিচে: নম্বর · Page 1 of 2 (Word নিজে পাতা গোনে)
+        footers: { default: new D.Footer({ children: (F.ref ? [P({ alignment: D.AlignmentType.RIGHT, spacing: { before: 0, after: 40 }, children: [new D.TextRun({ children: [String(F.ref) + '  ·  Page ', D.PageNumber.CURRENT, ' of ', D.PageNumber.TOTAL_PAGES], size: 16, color: '555555', font: TNR })] })] : []).concat([pic(img.foot, 131)]) }) },
         children: body
       }]
     });
@@ -3333,7 +3351,33 @@ function agLib(k, ready) {
 function agInit(force) { return AGI && !force ? Promise.resolve(AGI) : api('apiAgreeInit', []).then(function (d) { AGI = d; return d; }); }
 function agOrg() { var o = (AGI && AGI.org) || {}; return { name: S.set.org || ORG, addr: o.addr || '', phone: o.phone || '' }; }
 function agText(F) { return F.wording ? F.wording : AGE.fillText((AGI && AGI.tpl) || '', F, agOrg()); }
-function agFileName(F) { return String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim() + ' - ' + AGE.dLong(F.date); }
+function agFileName(F) {
+  var ref = F.ref || agRefGuess(F);
+  return (ref ? ref.replace(/\//g, '-') + ' - ' : '') + String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim();
+}
+
+/* ---------- চুক্তিপত্রের নম্বর: TEE/CCA/AKA/2026/001 (চূড়ান্ত নম্বর সার্ভার দেয় নামানোর সময়; এখানে শুধু নমুনায় দেখানোর আন্দাজ — একই নিয়মে) ---------- */
+var AG_CODE_SKIP = { md: 1, mohammad: 1, mohammed: 1, muhammad: 1, mr: 1, mrs: 1, ms: 1, dr: 1, sk: 1, sheikh: 1, the: 1 };
+function agCodeFromName(name) {
+  var w = String(name || '').replace(/\(.*?\)/g, ' ').replace(/[^A-Za-z\s]/g, ' ').trim().split(/\s+/).filter(function (x) { return x && !AG_CODE_SKIP[x.toLowerCase()]; });
+  if (!w.length) return '';
+  return ((w.length > 1 ? w[0].slice(0, 2) + w[w.length - 1].charAt(0) : w[0].slice(0, 3)).toUpperCase() + 'XX').slice(0, 3);
+}
+function agRefGuess(F) {
+  var p = F.pid ? S.P[F.pid] : null, code = p && p.code ? String(p.code).toUpperCase() : '';
+  if (!code) {
+    var used = {};
+    S.partners.forEach(function (x) { if (x.code && x !== p) used[String(x.code).toUpperCase()] = 1; });
+    (S.agrees || []).forEach(function (a) { var s = String(a.ref || '').split('/'); if (s.length >= 5 && a.pid !== F.pid) used[s[2]] = 1; });
+    var base = agCodeFromName(p ? p.name : F.creator); if (!base) return '';
+    code = base; for (var i = 2; used[code] && i < 100; i++) code = base + i;
+  }
+  var y = String(F.date || today()).slice(0, 4), max = 0;
+  (S.agrees || []).forEach(function (a) { var m = new RegExp('/' + y + '/(\\d+)(-R\\d+)?$').exec(String(a.ref || '')); if (m) max = Math.max(max, +m[1]); });
+  var n = String(max + 1); while (n.length < 3) n = '0' + n;
+  return [String((AGI && AGI.org && AGI.org.refPrefix) || 'TEE').toUpperCase(), F.kind === 'ad' ? 'ADA' : 'CCA', code, y, n].join('/');
+}
+function agRefShow(F) { return F.ref || agRefGuess(F); }
 
 /* ---------- শুরুর মান: চুক্তি → ক্রিয়েটর → খালি ---------- */
 function agLinks(p) {
@@ -3419,7 +3463,10 @@ function agFormHtml() {
     }).join('') + '</div><button type="button" class="btn xs" data-a="ag-ladd" style="margin-top:6px">' + icon('plus', 's') + t('Add a link') + '</button>' +
     '<div class="g2"><div>' + lab('Phone', 'optional') + inp('phone', F.phone) + '</div><div>' + lab('Address', 'optional') + inp('addr', F.addr) + '</div></div>';
   /* চুক্তি */
+  var refLocked = !!(AG.rec && AG.rec.ref) || !!(AG.aid && F.ref);
   h += '<div class="sh-sec">' + t('Agreement') + '</div>' +
+    lab('Agreement number', refLocked ? 'fixed once given' : 'given automatically when you download') +
+    (refLocked ? '<input class="in" value="' + esc(F.ref) + '" disabled>' : inp('ref', F.ref, 'placeholder="' + esc(agRefGuess(F) || 'TEE/CCA/…') + '" style="text-transform:uppercase"')) +
     lab('The creator will') + segH('ag_kind', AG_KINDS.map(function (x) { return [x[0], t(x[0] === 'ad' ? 'Run an advertisement' : 'Make content')]; }), F.kind, 'full') +
     lab('Payment') + segH('ag_model', AG_MODELS.map(function (x) { return [x[0], t(x[1])]; }), F.model, 'full') +
     '<div class="g2"><div>' + lab('Agreement date') + inp('date', F.date, 'type="date"', bad('date')) + '</div><div>' + lab('Starts') + inp('start', F.start, 'type="date"', bad('term')) + '</div></div>' +
@@ -3529,7 +3576,8 @@ function agSplit(n) {
 function agInl(s) { return AGE.inline(s).map(function (x) { return x.b ? '<b>' + esc(x.s) + '</b>' : esc(x.s); }).join(''); }
 function agBlocksHtml(F) {
   var B = AGE.blocks(agText(F)), org = agOrg(), out = [];
-  out.push({ h: '<div class="ag-t">' + esc(F.title || '') + '</div>' + (F.sub ? '<div class="ag-s">' + esc(F.sub) + '</div>' : '<div class="ag-s"></div>') });
+  var ref = agRefShow(F);
+  out.push({ h: (ref ? '<div class="ag-ref"><span>Ref. No.: <b>' + esc(ref) + '</b></span><span>Date: ' + esc(AGE.dLong(F.date)) + '</span></div>' : '') + '<div class="ag-t">' + esc(F.title || '') + '</div>' + (F.sub ? '<div class="ag-s">' + esc(F.sub) + '</div>' : '<div class="ag-s"></div>') });
   B.forEach(function (b, i) {
     var nx = B[i + 1], gap = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? ' gap' : '';
     if (b.t === 'h') out.push({ h: '<div class="ag-h"><span>' + esc(b.n) + '</span>' + agInl(b.text.replace(/\*\*/g, '')) + '</div>', keep: true });
@@ -3544,7 +3592,7 @@ function agBlocksHtml(F) {
 }
 function agPageEl() {
   var pg = document.createElement('div'); pg.className = 'agp';
-  pg.innerHTML = '<img class="agw" src="pad/watermark.png" alt=""><img class="agh" src="pad/header.png" alt=""><div class="agb"></div><img class="agf" src="pad/footer.png" alt="">';
+  pg.innerHTML = '<img class="agw" src="pad/watermark.png" alt=""><img class="agh" src="pad/header.png" alt=""><div class="agb"></div><div class="agpn"></div><img class="agf" src="pad/footer.png" alt="">';
   return pg;
 }
 /* host-এ পাতাগুলো বানায় (মাপ নিয়ে ভাগ করে): শিরোনাম পাতার শেষে একা থাকে না, শেষ ধারা সইয়ের সাথে থাকে */
@@ -3569,6 +3617,9 @@ function agBuild(host, F) {
       move.forEach(function (n) { body.appendChild(n); });
     }
   });
+  // প্রতি পাতার নিচে: নম্বর · Page 1 of 2 (পাতা আলাদা হলেও কোন চুক্তির কোন পাতা বোঝা যায়)
+  var ref = agRefShow(F);
+  pages.forEach(function (p, i) { p.querySelector('.agpn').textContent = (ref ? ref + '  ·  ' : '') + 'Page ' + (i + 1) + ' of ' + pages.length; });
   return pages;
 }
 function agPreview() {
@@ -3639,14 +3690,21 @@ function agPersist(btn) {
   if (miss.length) { toast(t('Fill in: {0}', miss.map(function (k) { return t(AG_MISS[k]); }).join(', ')), 4500); return Promise.reject(new Error('missing')); }
   var lbl = btn.innerHTML; document.querySelectorAll('.ag-dl .btn').forEach(function (b) { b.disabled = true; }); btn.innerHTML = t('Please wait…');
   var res = {}, done = function () { document.querySelectorAll('.ag-dl .btn').forEach(function (b) { b.disabled = false; }); btn.innerHTML = lbl; };
-  return agEnsurePartner().then(function () { return agCanvases(F); }).then(function (cs) { res.canvases = cs; return agPdf(cs); }).then(function (doc) {
+  return agEnsurePartner().then(function () {
+    // চূড়ান্ত নম্বর সার্ভার থেকে (আগে দেওয়া থাকলে সেটাই) — তারপর সেই নম্বর দিয়েই পাতা আঁকা
+    if (AG.aid && F.ref) return;
+    return api('apiAgreeRef', [{ id: AG.aid, pid: F.pid, name: F.creator.trim(), kind: F.kind, date: F.date, ref: F.ref || '' }]).then(function (r) {
+      F.ref = r.ref; if (r.partner) { upsert(S.partners, r.partner); index(); }
+    });
+  }).then(function () { return agCanvases(F); }).then(function (cs) { res.canvases = cs; return agPdf(cs); }).then(function (doc) {
     res.doc = doc;
     var key = agKey(F);
     if (AG.aid && AG.savedKey === key) { var r0 = (S.agrees || []).filter(function (a) { return a.id === AG.aid; })[0]; if (r0 && r0.file) return; }
     btn.innerHTML = t('Saving to Drive…');
     var b64 = doc.output('datauristring').split(',')[1];
-    return api('apiSaveAgreement', [{ id: AG.aid, pid: F.pid, did: F.did, name: F.creator.trim(), date: F.date, data: F, pdf: b64, fileName: agFileName(F) }]).then(function (r) {
-      S.agrees = S.agrees || []; upsert(S.agrees, r); AG.aid = r.id; AG.savedKey = key;
+    return api('apiSaveAgreement', [{ id: AG.aid, pid: F.pid, did: F.did, name: F.creator.trim(), date: F.date, data: F, pdf: b64, fileName: agFileName(F), ref: F.ref }]).then(function (r) {
+      S.agrees = S.agrees || []; upsert(S.agrees, r); AG.aid = r.id; AG.savedKey = key; AG.rec = r;
+      agRedrawLeft();   // নম্বর এখন স্থায়ী — ঘরটা বন্ধ দেখায়
       rerender();   // পেছনের পাতা (প্রোফাইল / চুক্তিপত্রের তালিকা) সাথে সাথে হালনাগাদ — ফর্ম আলাদা জায়গায়, তাতে হাত পড়ে না
       if (r.driveErr) toast(t('Saved here, but Google Drive said: {0}', r.driveErr), 7000);
     });
@@ -3678,7 +3736,7 @@ function agOfPartner(pid) { return (S.agrees || []).filter(function (a) { return
 function agRows(list, showName) {
   return list.map(function (a) {
     var F = a.data || {}, mdlS = (AG_MODELS.filter(function (x) { return x[0] === F.model; })[0] || ['', ''])[1];
-    var sub = [dShort(a.date), F.kind === 'ad' ? t('Advertisement') : '', mdlS ? t(mdlS) : '', F.model === 'per' && F.rate ? t('{0} each', tkS(F.rate)) : F.total ? tkS(F.total) : ''].filter(Boolean).join(' · ');
+    var sub = [a.ref ? '<b class="ag-refc">' + esc(a.ref) + '</b>' : '', dShort(a.date), F.kind === 'ad' ? t('Advertisement') : '', mdlS ? t(mdlS) : '', F.model === 'per' && F.rate ? t('{0} each', tkS(F.rate)) : F.total ? tkS(F.total) : ''].filter(Boolean).join(' · ');
     return '<div class="row"><span class="pl p-web">' + icon('deal') + '</span><div class="g click" data-a="ag-open" data-id="' + esc(a.id) + '"><div class="t">' + esc(showName ? a.name : (F.title ? String(F.title).charAt(0) + String(F.title).slice(1).toLowerCase() : t('Agreement paper'))) + '</div><div class="s">' + sub + '</div></div>' +
       (a.file ? '<a class="btn xs" href="' + esc(a.file) + '" target="_blank" rel="noopener" title="' + t('Open PDF in Google Drive') + '">' + icon('ext', 's') + 'PDF</a>' : '<span class="pill warn" title="' + t('Not in Drive yet') + '">' + t('No PDF') + '</span>') +
       '<button class="btn xs ghost" data-a="ag-del" data-id="' + esc(a.id) + '" title="' + t('Remove from this list (the PDF stays in Drive)') + '">' + icon('trash', 's') + '</button></div>';
@@ -3706,6 +3764,7 @@ function agSettingsCard() {
     '<div class="g2"><div><label class="fl">' + t('Signs for the company') + '</label><input class="in" id="ago_signer" value="' + esc(o.signer) + '"></div><div><label class="fl">' + t('Title') + '</label><input class="in" id="ago_signerTitle" value="' + esc(o.signerTitle) + '"></div></div>' +
     '<label class="fl">' + t('Organisation address (in the agreement)') + '</label><input class="in" id="ago_addr" value="' + esc(o.addr) + '">' +
     '<label class="fl">' + t('Organisation phone (in the agreement)') + '</label><input class="in" id="ago_phone" value="' + esc(o.phone) + '">' +
+    '<label class="fl">' + t('Agreement number starts with') + ' <em>(' + t('e.g. TEE → TEE/CCA/AKA/2026/001') + ')</em></label><input class="in" id="ago_refPrefix" value="' + esc(o.refPrefix || 'TEE') + '" style="text-transform:uppercase;max-width:160px">' +
     '<div style="margin-top:12px;text-align:right"><button class="btn pri" data-a="ag-org-save">' + t('Save') + '</button></div>' +
     '<label class="fl">' + t('Signature image') + '</label><div class="ag-sigbox">' + (AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '<span class="muted">' + t('No signature image') + '</span>') + '</div>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn sm" data-a="ag-sig-up">' + icon('up', 's') + t('Upload new') + '</button>' +
@@ -3827,7 +3886,7 @@ document.addEventListener('click', function (ev) {
     case 'ag-sig': AG.F.sig = !AG.F.sig; agRedrawLeft(); break;
     case 'ag-won': AG.showW = true; AG.F.wording = agText(AG.F); agRedrawLeft(); break;
     case 'ag-woff': if (confirm(t('Throw away your changes to the wording and use the automatic wording again?'))) { AG.showW = false; AG.F.wording = ''; agRedrawLeft(); } break;
-    case 'ag-org-save': api('apiAgreeSetup', [{ org: { signer: $('ago_signer').value, signerTitle: $('ago_signerTitle').value, addr: $('ago_addr').value, phone: $('ago_phone').value } }], a).then(function (I) { AGI = I; rerender(); toast(t('Saved')); }); break;
+    case 'ag-org-save': api('apiAgreeSetup', [{ org: { signer: $('ago_signer').value, signerTitle: $('ago_signerTitle').value, addr: $('ago_addr').value, phone: $('ago_phone').value, refPrefix: $('ago_refPrefix').value } }], a).then(function (I) { AGI = I; rerender(); toast(t('Saved')); }); break;
     case 'ag-sig-up': agSigUpload(); break;
     case 'ag-sig-del': if (confirm(t('Remove the signature image? Agreements will then have an empty space to sign by hand.'))) api('apiAgreeSetup', [{ sig: '' }], a).then(function (I) { AGI = I; rerender(); }); break;
     case 'ag-sig-reset': api('apiAgreeSetup', [{ sig: 'reset' }], a).then(function (I) { AGI = I; rerender(); }); break;
