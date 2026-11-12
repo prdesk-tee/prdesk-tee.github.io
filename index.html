@@ -567,6 +567,26 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .side-card .ag-rows .row{padding:9px 0}
 .side-card .ag-rows .row:first-child{border-top:0}
 @media(max-width:999px){.split.ag-split{grid-template-columns:1fr}}
+
+/* চুক্তিপত্রের ধাপ */
+.ag-steps{display:flex;gap:4px;margin:0 0 6px}
+.ag-steps span{flex:1;text-align:center;font-size:11.5px;font-weight:600;padding:6px 2px;border-radius:8px;background:var(--card2);color:var(--ink3);border:1px solid var(--line)}
+.ag-steps span.done{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 35%,var(--line))}
+.ag-steps span.on{background:var(--acc-s);color:var(--ink);border-color:color-mix(in srgb,var(--acc) 55%,transparent)}
+.ag-vers{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.ag-vers>div{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card2);font-size:12.5px}
+.ag-vers b{margin-right:8px}
+.ag-vnote{margin-top:3px;color:var(--ink2)}
+.ag-dl2{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.ag-fs{border:0;margin:0;padding:0;min-width:0}
+.ag-fs[disabled] .in,.ag-fs[disabled] .seg,.ag-fs[disabled] .chk,.ag-fs[disabled] .btn{opacity:.72}
+.agp .ag-draft{color:#c0392b;letter-spacing:.4px}
+.ag-diff{white-space:pre-wrap;font:13px/1.6 Consolas,monospace;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px;max-height:60vh;overflow:auto}
+.ag-diff ins,.muted ins{background:color-mix(in srgb,var(--pos) 22%,transparent);text-decoration:none;border-radius:3px}
+.ag-diff del,.muted del{background:color-mix(in srgb,var(--neg) 18%,transparent);color:var(--neg);border-radius:3px}
+.note.ok{border-color:color-mix(in srgb,var(--pos) 40%,var(--line));background:var(--pos-s)}
+.ag-stbox{margin-bottom:18px}
+.ag-stbox:empty{display:none}
 </style>
 </head>
 <body>
@@ -1150,7 +1170,68 @@ var BN = {
   "e.g. TEE → TEE/CCA/AKA/2026/001": "যেমন TEE → TEE/CCA/AKA/2026/001",
   "Name, phone, email, contract or agreement no.": "নাম, ফোন, ইমেইল, চুক্তি বা চুক্তিপত্রের নম্বর",
   "Code in agreement numbers": "চুক্তিপত্রের নম্বরে কোড",
-  "e.g. AKA — given automatically with the first agreement paper": "যেমন AKA — প্রথম চুক্তিপত্রের সঙ্গে নিজে বসে"
+  "e.g. AKA — given automatically with the first agreement paper": "যেমন AKA — প্রথম চুক্তিপত্রের সঙ্গে নিজে বসে",
+  /* চুক্তিপত্রের ধাপ */
+  "Open the signed copy": "সই করা কপি খুলুন",
+  "Signed": "সই সম্পন্ন",
+  "Draft": "খসড়া",
+  "In talks": "আলোচনায়",
+  "Final": "চূড়ান্ত",
+  "Final — waiting for signature": "চূড়ান্ত — সইয়ের অপেক্ষা",
+  "New agreement paper — it is saved as a draft when you first download or send it.": "নতুন চুক্তিপত্র — প্রথমবার নামালে বা পাঠালে খসড়া হিসেবে জমা হবে।",
+  "Amendment to {0}": "{0}-এর সংশোধনী",
+  "Amendments: {0}": "সংশোধনী: {0}",
+  "Signed by both sides on {0}.": "{0} তারিখে দুই পক্ষের সই সম্পন্ন।",
+  "Final since {0} — the wording is locked. Waiting for the creator's signed copy.": "{0} থেকে চূড়ান্ত — লেখা তালাবদ্ধ। ক্রিয়েটরের সই করা কপির অপেক্ষা।",
+  "Versions sent": "পাঠানো সংস্করণ",
+  "Compare": "মেলান",
+  "sent outside the app": "অ্যাপের বাইরে পাঠানো",
+  "Signed copy": "সই করা কপি",
+  "Replace the signed copy": "সই করা কপি বদলান",
+  "Amendment": "সংশোধনী",
+  "Send for signature": "সইয়ের জন্য পাঠান",
+  "Add signed copy": "সই করা কপি যোগ করুন",
+  "Send draft": "খসড়া পাঠান",
+  "Finalise": "চূড়ান্ত করুন",
+  "Drafts carry \"DRAFT v{0}\" at the bottom of each page and no company signature.": "খসড়ার প্রতি পাতার নিচে \"DRAFT v{0}\" লেখা থাকে, প্রতিষ্ঠানের সই থাকে না।",
+  "Send draft v{0}": "খসড়া v{0} পাঠান",
+  "Email (PDF attached)": "ইমেইল (PDF সংযুক্ত)",
+  "Already sent": "আগেই পাঠিয়েছি",
+  "What changed, or what they asked for": "কী বদলাল, বা ক্রিয়েটর কী চাইলেন",
+  "e.g. Creator asked for 4 installments instead of 3": "যেমন: ক্রিয়েটর ৩টার বদলে ৪ কিস্তি চাইলেন",
+  "Sent from your Gmail with the PDF attached — replies come there too.": "আপনার Gmail থেকে PDF সংযুক্ত করে যাবে — উত্তরও সেখানে আসবে।",
+  "WhatsApp number": "WhatsApp নম্বর",
+  "On a phone the PDF goes straight into WhatsApp. On a computer the PDF is downloaded and WhatsApp opens — attach the file there.": "ফোনে PDF সরাসরি WhatsApp-এ যায়। কম্পিউটারে PDF নেমে আসে আর WhatsApp খোলে — সেখানে ফাইলটা জুড়ে দিন।",
+  "Only notes in the history that the final copy was sent.": "শুধু ইতিহাসে লিখে রাখে যে চূড়ান্ত কপি পাঠানো হয়েছে।",
+  "Only saves this version in the history — use it when you sent the draft some other way.": "শুধু এই সংস্করণ ইতিহাসে রাখে — অন্য কোনোভাবে খসড়া পাঠালে এটা ব্যবহার করুন।",
+  "Save in history": "ইতিহাসে রাখুন",
+  "Send": "পাঠান",
+  "Sent by email with the PDF attached": "PDF সংযুক্ত করে ইমেইলে পাঠানো হয়েছে",
+  "Saved in the history": "ইতিহাসে রাখা হয়েছে",
+  "Finalise this agreement paper?\n\nThe wording will be locked and the company signature added. To change anything later you will need an amendment.": "চুক্তিপত্রটা চূড়ান্ত করবেন?\n\nলেখা তালাবদ্ধ হবে আর প্রতিষ্ঠানের সই বসবে। পরে কিছু বদলাতে হলে সংশোধনী লাগবে।",
+  "Final — now send it for signature": "চূড়ান্ত হয়েছে — এখন সইয়ের জন্য পাঠান",
+  "Make an amendment to {0}?\n\nThe signed agreement stays as it is. The amendment is a separate paper ({0}-A…) that goes through draft, final and signature again.": "{0}-এর সংশোধনী বানাবেন?\n\nআসল চুক্তিপত্র যেমন আছে তেমনই থাকবে। সংশোধনী আলাদা কাগজ ({0}-A…) — এটাও খসড়া, চূড়ান্ত আর সইয়ের ধাপ পেরোবে।",
+  "Date signed": "সইয়ের তারিখ",
+  "one PDF, or photos of each page in order": "একটা PDF, বা প্রতিটা পাতার ছবি ক্রমানুসারে",
+  "Saved to Google Drive next to the agreement as \"… - SIGNED.pdf\".": "চুক্তিপত্রের পাশেই Google Drive-এ \"… - SIGNED.pdf\" নামে জমা হবে।",
+  "Save signed copy": "সই করা কপি রাখুন",
+  "Choose the signed PDF or photos first": "আগে সই করা PDF বা ছবি বাছুন",
+  "Choose one PDF, or only photos": "একটা PDF, অথবা শুধু ছবি বাছুন",
+  "The files are too large (over 30 MB)": "ফাইল অনেক বড় (৩০ MB-এর বেশি)",
+  "Signed copy saved to Google Drive": "সই করা কপি Google Drive-এ জমা হয়েছে",
+  "Too long to compare here.": "এখানে মেলানোর জন্য অনেক লম্বা।",
+  "Now (not sent yet)": "এখনকার (এখনো পাঠানো হয়নি)",
+  "Compare versions": "সংস্করণ মেলান",
+  "added": "যোগ হয়েছে",
+  "removed": "বাদ গেছে",
+  "No change in the wording.": "লেখায় কোনো বদল নেই।",
+  "Signed agreement not received": "সই করা চুক্তিপত্র আসেনি",
+  "Final since {0} — no signed copy yet": "{0} থেকে চূড়ান্ত — সই করা কপি এখনো আসেনি",
+  "Days to wait for a signed agreement": "সই করা চুক্তিপত্রের জন্য কত দিন অপেক্ষা",
+  "Amendment date": "সংশোধনীর তারিখ",
+  "What changes": "কী বদলাচ্ছে",
+  "1 page · A4": "১ পাতা · A4",
+  "Write each change as a line starting with \"- \" under \"## Amendments\". Everything else in the original agreement stays the same.": "\"## Amendments\"-এর নিচে প্রতিটা বদল \"- \" দিয়ে শুরু করে আলাদা লাইনে লিখুন। আসল চুক্তির বাকি সব যেমন আছে তেমনই থাকবে।"
 };
 
 /* কিস্তির নাম — পুরনো শিটে বাংলায় লেখা ("১ম কিস্তি", "পুরো টাকা (অগ্রিম)"), নতুনগুলো ইংরেজিতে; যে ভাষা চালু সেই ভাষায় দেখানো */
@@ -1626,6 +1707,7 @@ function homeTasks() {
     .sort(function (a, b) { return a.due < b.due ? -1 : 1; }).forEach(function (k) { out.push({ g: 'pay', k: k }); });
   S.partners.filter(function (p) { return p.next && p.next <= td && stageOf(p) !== 'dropped'; })
     .sort(function (a, b) { return a.next < b.next ? -1 : 1; }).forEach(function (p) { out.push({ g: 'fu', p: p }); });
+  (S.agrees || []).forEach(function (a) { if (a.status === 'final' && a.finalAt && dd(a.finalAt, td) >= (num(S.set.signDays) || 7)) out.push({ g: 'sg', a: a }); });
   activeDeals().forEach(function (d) {
     if (isAdDeal(d)) { var ca = calc(d); ca.pm.filter(function (r) { return r.st === 'miss'; }).slice(-2).forEach(function (r) { out.push({ g: 'pf', d: d, m: r.m }); }); return; }
     if (d.plan !== 'month') return;
@@ -1637,7 +1719,7 @@ function homeTasks() {
 function homePage() {
   var td = today(), tasks = homeTasks(), h = new Date().getHours();
   var hi = h < 12 ? t('Good morning') : h < 17 ? t('Good afternoon') : t('Good evening');
-  var pays = tasks.filter(function (x) { return x.g === 'pay'; }), fus = tasks.filter(function (x) { return x.g === 'fu'; }), cts = tasks.filter(function (x) { return x.g === 'ct'; }), pfs = tasks.filter(function (x) { return x.g === 'pf'; });
+  var pays = tasks.filter(function (x) { return x.g === 'pay'; }), fus = tasks.filter(function (x) { return x.g === 'fu'; }), cts = tasks.filter(function (x) { return x.g === 'ct'; }), pfs = tasks.filter(function (x) { return x.g === 'pf'; }), sgs = tasks.filter(function (x) { return x.g === 'sg'; });
   var cm = curM(), monthDue = S.pays.filter(function (k) { return payLive(k) && payOpen(k) && k.due && k.due.slice(0, 7) <= cm; });
   var mdAmt = monthDue.reduce(function (s, k) { return s + num(k.amount); }, 0), overN = monthDue.filter(payOver).length;
   var gotM = S.works.filter(function (w) { return w.month === cm && isWork(w); }).length;
@@ -1661,6 +1743,11 @@ function homePage() {
       var p = x.p, over = p.next < td;
       return '<div class="row">' + av(p) + '<div class="g click" data-go="#p/' + esc(p.id) + '"><div class="t">' + esc(p.name) + '</div><div class="s">' + (p.nextNote ? esc(p.nextNote) + ' · ' : '') + (over ? '<span class="neg">' + t('since {0}', rel(p.next)) + '</span>' : t('today')) + '</div></div>' +
         '<div class="acts">' + (p.phone ? '<a class="btn sm" href="tel:' + esc(telOf(p)) + '">' + t('Call') + '</a>' : '') + '<button class="btn sm" data-a="log" data-id="' + esc(p.id) + '">' + t('Log') + '</button><button class="btn sm ghost" data-a="snooze" data-id="' + esc(p.id) + '">' + t('Tomorrow') + '</button></div></div>';
+    }) +
+    sec(t('Signed agreement not received'), 'var(--warn)', sgs, function (x) {
+      var a = x.a, p = S.P[a.pid] || { name: a.name };
+      return '<div class="row">' + av(p) + '<div class="g click" data-a="ag-open" data-id="' + esc(a.id) + '"><div class="t">' + esc(p.name || a.name) + ' <span>· ' + esc(a.ref) + '</span></div><div class="s">' + t('Final since {0} — no signed copy yet', dShort(a.finalAt)) + '</div></div>' +
+        '<div class="acts"><button class="btn sm pri" data-a="ag-open" data-id="' + esc(a.id) + '" data-view="signed">' + t('Add signed copy') + '</button></div></div>';
     }) +
     sec(t('Ad proof missing'), 'var(--acc)', pfs, function (x) {
       var d = x.d, p = S.P[d.pid] || {};
@@ -3102,7 +3189,7 @@ function settingsPage() {
     '<div><label class="fl">' + t('Theme (this device)') + '</label>' + segH('s_theme', [['dark', t('Dark')], ['light', t('Light')], ['auto', t('Auto')]], THEME, 'full') + '</div></div>' +
     '<div style="margin-top:14px;text-align:right"><button class="btn pri" data-a="set-gen">' + t('Save') + '</button></div></div>' +
     '<div class="card cpad"><h3>' + t('Reminders') + '</h3><div class="g2">' + nf('remindDays', 'Days before a payment', 0, 30) + nf('fuDays', 'Follow up after (days)', 1, 60) +
-    nf('contentDay', 'Day of month to flag missing content', 1, 28) + nf('endWarn', 'Days before a contract ends', 0, 120) + nf('weekGoal', 'New creators to find per week', 0, 200) + '</div>' +
+    nf('contentDay', 'Day of month to flag missing content', 1, 28) + nf('endWarn', 'Days before a contract ends', 0, 120) + nf('weekGoal', 'New creators to find per week', 0, 200) + nf('signDays', 'Days to wait for a signed agreement', 1, 60) + '</div>' +
     '<label class="fl">' + t('Who usually pays') + '</label>' + segH('s_payMode', objOpts(PMODE), s.payMode) +
     '<div style="margin-top:14px">' + sw('todo', 'Send tasks to To-Do', 'Follow-ups, payments (before and on the day), missing content, contract end') + sw('digest', 'Morning email', "Today's list at 7 am (skipped when empty)") + '</div>' +
     '<div style="margin-top:14px;text-align:right"><button class="btn pri" data-a="set-rem">' + t('Save') + '</button></div></div>' +
@@ -3287,7 +3374,7 @@ var AGE = (function () {
     var cell = function (paras, o) { o = o || {}; return new D.TableCell({ width: { size: 4673, type: D.WidthType.DXA }, borders: { top: NB, bottom: NB, left: NB, right: NB }, verticalAlign: o.va, children: paras }); };
     var line = function () { return P({ keepNext: true, children: [new D.TextRun({ text: '____________________________', font: TNR })] }); };
     var tx = function (s, b, last) { return P({ keepNext: !last, keepLines: true, children: s ? [new D.TextRun({ text: s, bold: b, font: TNR })] : [] }); };
-    var sigP = img.sig && F.sig ? P({ keepNext: true, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.sig, transformation: { width: 140, height: Math.round(140 * (img.sigH || 279) / (img.sigW || 560)) } })] }) : tx('');
+    var sigP = img.sig && F.sig && !F._draft ? P({ keepNext: true, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.sig, transformation: { width: 140, height: Math.round(140 * (img.sigH || 279) / (img.sigW || 560)) } })] }) : tx('');
     var cDate = F.cDateBlank ? '______________________' : dNum(F.cDate || F.date);
     var rows = [
       new D.TableRow({ cantSplit: true, children: [cell([tx('For ' + (org.name || 'the Company') + ':', true)]), cell([tx('For the Creator:', true)])] }),
@@ -3313,7 +3400,7 @@ var AGE = (function () {
         properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1920, bottom: 2240, left: 1280, right: 1280, header: 0, footer: 0 } } },
         headers: { default: new D.Header({ children: [pic(img.head, 101)].concat(img.wm ? [wmP()] : []) }) },
         // প্রতি পাতার নিচে: নম্বর · Page 1 of 2 (Word নিজে পাতা গোনে)
-        footers: { default: new D.Footer({ children: (F.ref ? [P({ alignment: D.AlignmentType.RIGHT, spacing: { before: 0, after: 40 }, children: [new D.TextRun({ children: [String(F.ref) + '  ·  Page ', D.PageNumber.CURRENT, ' of ', D.PageNumber.TOTAL_PAGES], size: 16, color: '555555', font: TNR })] })] : []).concat([pic(img.foot, 131)]) }) },
+        footers: { default: new D.Footer({ children: (F.ref ? [P({ alignment: D.AlignmentType.RIGHT, spacing: { before: 0, after: 40 }, children: (F._draft ? [new D.TextRun({ text: F._draft + '  ·  ', bold: true, size: 16, color: 'C0392B', font: TNR })] : []).concat([new D.TextRun({ children: [String(F.ref) + '  ·  Page ', D.PageNumber.CURRENT, ' of ', D.PageNumber.TOTAL_PAGES], size: 16, color: '555555', font: TNR })]) })] : []).concat([pic(img.foot, 131)]) }) },
         children: body
       }]
     });
@@ -3353,7 +3440,7 @@ function agOrg() { var o = (AGI && AGI.org) || {}; return { name: S.set.org || O
 function agText(F) { return F.wording ? F.wording : AGE.fillText((AGI && AGI.tpl) || '', F, agOrg()); }
 function agFileName(F) {
   var ref = F.ref || agRefGuess(F);
-  return (ref ? ref.replace(/\//g, '-') + ' - ' : '') + String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim();
+  return (ref ? ref.replace(/\//g, '-') + ' - ' : '') + (F._draft ? F._draft.replace(/^DRAFT/, 'Draft') + ' - ' : '') + String(F.title || 'Work Agreement').replace(/\b\w+/g, function (w) { return w.charAt(0) + w.slice(1).toLowerCase(); }) + ' - ' + String(F.creator || '').trim();
 }
 
 /* ---------- চুক্তিপত্রের নম্বর: TEE/CCA/AKA/2026/001 (চূড়ান্ত নম্বর সার্ভার দেয় নামানোর সময়; এখানে শুধু নমুনায় দেখানোর আন্দাজ — একই নিয়মে) ---------- */
@@ -3431,9 +3518,16 @@ function agreeOpen(o) {
       var ad = (S.DB[o.pid] || []).filter(function (d) { return d.status === 'active'; })[0];
       if (ad) agFromDeal(F, ad);
     }
-    AG = { F: F, aid: rec ? rec.id : '', savedKey: rec ? agKey(F) : '', rec: rec, addP: true, showW: !!F.wording };
+    // সংশোধনী: প্রথমবার খুললে সংশোধনীর নমুনা লেখা বসে (কী বদলাল সেটা হাতে লিখবেন)
+    if (F.amendOf && !F.wording) F.wording = agAmendText(F);
+    AG = { F: F, aid: rec ? rec.id : '', savedKey: rec ? agKey(F) : '', rec: rec, addP: true, showW: !!F.wording, view: o.view || '', vers: [] };
     agDraw();
+    if (rec) agLoadVers();
   }, function (e) { if ($('ov')) closeOv(); });
+}
+function agLoadVers() {
+  var aid = AG && AG.aid; if (!aid) return;
+  callServer('apiAgreeVersions', [aid]).then(function (v) { if (AG && AG.aid === aid) { AG.vers = v || []; agRedrawLeft(); } }, function () {});
 }
 function agKey(F) { return JSON.stringify(F); }
 
@@ -3441,16 +3535,17 @@ function agDraw() {
   if (!AG || !$('ov')) return;
   var F = AG.F, sh = document.querySelector('#ov .sheet');
   sh.innerHTML = '<div class="sh-h"><h3>' + t('Agreement paper') + (F.creator ? ' — ' + esc(F.creator) : '') + '</h3><button class="btn sm ghost" data-a="close" aria-label="' + t('Close') + '">' + icon('x') + '</button></div>' +
-    '<div class="split ag-split"><div class="l" id="agL">' + agFormHtml() + '</div><div class="r"><div class="ag-pv" id="agPrev"></div></div></div>';
+    '<div class="split ag-split"><div class="l" id="agL">' + agLeftHtml() + '</div><div class="r"><div class="ag-pv" id="agPrev"></div></div></div>';
   agBind(); agPreview();
 }
+function agLeftHtml() { return AG.view === 'send' ? agSendHtml() : AG.view === 'signed' ? agSignedHtml() : AG.view === 'cmp' ? agCmpHtml() : agFormHtml(); }
 
 function agFormHtml() {
   var F = AG.F, m = AGE.missing(F), bad = function (k) { return m.indexOf(k) !== -1 ? ' bad' : ''; };
   var inp = function (f, v, attrs, cls) { return '<input class="in' + (cls || '') + '" data-f="' + f + '" value="' + esc(v == null ? '' : v) + '" ' + (attrs || '') + '>'; };
   var lab = function (s, em) { return '<label class="fl">' + t(s) + (em ? ' <em>(' + t(em) + ')</em>' : '') + '</label>'; };
   var isNew = F.creator.trim() && !F.pid && !S.partners.some(function (p) { return nameKey(p.name) === nameKey(F.creator); });
-  var h = '';
+  var h = '<div class="ag-stbox">' + agStatusHtml() + '</div>' + (agLocked() ? '<fieldset class="ag-fs" disabled>' : '');
   /* ক্রিয়েটর */
   h += '<div class="sh-sec" style="margin-top:0">' + t('Creator') + '</div>' +
     lab('Name') + '<input class="in' + bad('creator') + '" data-f="creator" list="agPL" value="' + esc(F.creator) + '" placeholder="' + t('Pick from Creators or type a new name') + '">' +
@@ -3467,11 +3562,15 @@ function agFormHtml() {
   h += '<div class="sh-sec">' + t('Agreement') + '</div>' +
     lab('Agreement number', refLocked ? 'fixed once given' : 'given automatically when you download') +
     (refLocked ? '<input class="in" value="' + esc(F.ref) + '" disabled>' : inp('ref', F.ref, 'placeholder="' + esc(agRefGuess(F) || 'TEE/CCA/…') + '" style="text-transform:uppercase"')) +
-    lab('The creator will') + segH('ag_kind', AG_KINDS.map(function (x) { return [x[0], t(x[0] === 'ad' ? 'Run an advertisement' : 'Make content')]; }), F.kind, 'full') +
+    (F.amendOf ? '<div class="g2"><div>' + lab('Amendment date') + inp('date', F.date, 'type="date"', bad('date')) + '</div></div>' +
+      '<div class="sh-sec">' + t('What changes') + '</div><div class="muted" style="font-size:12.5px">' + t('Write each change as a line starting with "- " under "## Amendments". Everything else in the original agreement stays the same.') + '</div>' +
+      '<textarea class="in" data-f="wording" id="agW" style="min-height:300px;margin-top:8px;font-family:Consolas,monospace;font-size:12.5px">' + esc(F.wording || agText(F)) + '</textarea>' : '') +
+    (F.amendOf ? '' : lab('The creator will') + segH('ag_kind', AG_KINDS.map(function (x) { return [x[0], t(x[0] === 'ad' ? 'Run an advertisement' : 'Make content')]; }), F.kind, 'full') +
     lab('Payment') + segH('ag_model', AG_MODELS.map(function (x) { return [x[0], t(x[1])]; }), F.model, 'full') +
     '<div class="g2"><div>' + lab('Agreement date') + inp('date', F.date, 'type="date"', bad('date')) + '</div><div>' + lab('Starts') + inp('start', F.start, 'type="date"', bad('term')) + '</div></div>' +
-    '<div class="g2"><div>' + lab('Ends') + inp('end', F.end, 'type="date"', bad('term')) + '</div><div>' + lab('Term in words', 'automatic') + inp('term', F.term, 'placeholder="' + esc(AGE.termWords(F.start, F.end) || '—') + '"') + '</div></div>';
+    '<div class="g2"><div>' + lab('Ends') + inp('end', F.end, 'type="date"', bad('term')) + '</div><div>' + lab('Term in words', 'automatic') + inp('term', F.term, 'placeholder="' + esc(AGE.termWords(F.start, F.end) || '—') + '"') + '</div></div>');
   /* কাজ */
+  if (!F.amendOf) {
   h += '<div class="sh-sec">' + t('Work') + '</div>' + (F.kind === 'ad'
     ? lab('Advertisement', 'how long, how often') + inp('adText', F.adText, 'placeholder="' + t('e.g. for 1 minute every hour') + '"', bad('adText')) +
       lab('Where it runs') + inp('adWhere', F.adWhere, 'placeholder="' + t('e.g. the Facebook page and YouTube channel') + '"')
@@ -3493,6 +3592,7 @@ function agFormHtml() {
         (F.sched.length ? '<div class="muted' + (m.indexOf('schedSum') !== -1 ? ' neg' : '') + '" style="font-size:12.5px;margin-top:6px" id="agSum">' + t('Installments add up to {0} of {1}', tk(sum), tk(F.total)) + '</div>' : '');
     }
   }
+  }
   /* সই */
   h += '<div class="sh-sec">' + t('Signatures') + '</div>' +
     '<div class="g2"><div>' + lab('Signs for the company') + inp('signer', F.signer) + '</div><div>' + lab('Title') + inp('signerTitle', F.signerTitle) + '</div></div>' +
@@ -3500,16 +3600,15 @@ function agFormHtml() {
       : '<div class="muted" style="font-size:12.5px;margin-top:8px">' + t('No signature image — add one in Settings → Agreement paper.') + '</div>') +
     lab("Date under the creator's signature") + segH('ag_cdate', [['same', t('Same as agreement date')], ['blank', t('Leave blank to write by hand')]], F.cDateBlank ? 'blank' : 'same', 'full');
   /* শিরোনাম ও লেখা */
-  h += '<div class="sh-sec">' + t('Heading and wording') + '</div>' +
+  if (!F.amendOf) h += '<div class="sh-sec">' + t('Heading and wording') + '</div>' +
     '<div class="g2"><div>' + lab('Title') + inp('title', F.title) + '</div><div>' + lab('Line under the title') + inp('sub', F.sub) + '</div></div>' +
     (AG.showW ? lab('Wording of this agreement only', 'lines starting with ## = clause, - = (a), -- = (i), **bold**') +
       '<textarea class="in" data-f="wording" id="agW" style="min-height:260px;font-family:Consolas,monospace;font-size:12.5px">' + esc(F.wording || agText(F)) + '</textarea>' +
       '<div class="note warn" style="margin-top:8px">' + t('While you edit the wording here, changes to the boxes above do not change the text.') + ' <a href="#" class="lnk-a" data-a="ag-woff">' + t('Go back to automatic wording') + '</a></div>'
       : '<button type="button" class="btn sm" data-a="ag-won" style="margin-top:10px">' + icon('edit', 's') + t('Edit the wording for this agreement') + '</button>');
-  /* নামানো */
-  h += '<div id="agMiss">' + agMissHtml(m) + '</div>' +
-    '<div class="ag-dl"><button class="btn" data-a="ag-word">' + icon('dl', 's') + 'Word</button><button class="btn" data-a="ag-jpg">' + icon('dl', 's') + 'JPG</button>' +
-    '<button class="btn grad" data-a="ag-pdf" style="flex:1">' + icon('dl', 's') + 'PDF</button></div>' +
+  if (agLocked()) h += '</fieldset>';
+  /* নামানো + পরের ধাপ */
+  h += '<div id="agMiss">' + (agLocked() ? '' : agMissHtml(m)) + '</div>' + agActionsHtml() +
     '<div class="muted" style="font-size:12px;margin-top:8px" id="agSaved">' + agSavedHtml() + '</div>';
   return h;
 }
@@ -3541,7 +3640,10 @@ function agBind() {
     else if (el.dataset.si) { F.sched[+el.dataset.si][el.dataset.sf] = el.dataset.sf === 'a' ? num(el.value) : el.value; agSumNote(); }
     agSoon();
   });
-  L.addEventListener('change', function (e) { if (e.target.dataset.f === 'creator' || e.target.dataset.f === 'start' || e.target.dataset.f === 'end') agRedrawLeft(); });
+  L.addEventListener('change', function (e) {
+    if (e.target.id === 'agc_a' || e.target.id === 'agc_b') { AG.cmp[e.target.id === 'agc_a' ? 0 : 1] = e.target.value; agRedrawLeft(); return; }
+    if (e.target.id === 'agsg_files') { var fs2 = Array.prototype.slice.call(e.target.files || []); $('agsg_list').innerHTML = fs2.map(function (f) { return esc(f.name) + ' · ' + N(Math.round(f.size / 1024)) + ' KB'; }).join('<br>'); return; }
+    if (e.target.dataset.f === 'creator' || e.target.dataset.f === 'start' || e.target.dataset.f === 'end') agRedrawLeft(); });
 }
 function agSumNote() {
   var s = $('agSum'), F = AG.F; if (!s) return;
@@ -3551,7 +3653,7 @@ function agSumNote() {
 function agRedrawLeft() {
   var L = $('agL'); if (!L) return;
   var y = L.scrollTop, sh = document.querySelector('#ov .sheet'), sy = sh ? sh.scrollTop : 0, ae = document.activeElement, af = ae && ae.dataset ? ae.dataset.f : '';
-  L.innerHTML = agFormHtml(); L.scrollTop = y; if (sh) sh.scrollTop = sy;
+  L.innerHTML = agLeftHtml(); L.scrollTop = y; if (sh) sh.scrollTop = sy;
   if (af) { var n = L.querySelector('[data-f="' + af + '"]'); if (n && n.type !== 'date') { n.focus(); try { n.setSelectionRange(n.value.length, n.value.length); } catch (e) {} } }
   var hh = document.querySelector('#ov .sh-h h3'); if (hh) hh.innerHTML = t('Agreement paper') + (AG.F.creator ? ' — ' + esc(AG.F.creator) : '');
   agPreview();
@@ -3560,6 +3662,7 @@ var agT = 0;
 function agSoon() { clearTimeout(agT); agT = setTimeout(function () { agPreview(); var m = $('agMiss'); if (m) m.innerHTML = agMissHtml(AGE.missing(AG.F)); var sv = $('agSaved'); if (sv) sv.innerHTML = agSavedHtml(); }, 250); }
 function agSeg(id, v) {
   var F = AG.F;
+  if (id === 'ag_via') { if ($('ags_note')) AG.sendNote = $('ags_note').value; AG.sendVia = v; agRedrawLeft(); return; }
   if (id === 'ag_kind') { if (F.sub === AG_SUB[F.kind]) F.sub = AG_SUB[v]; F.kind = v; }
   else if (id === 'ag_model') { F.model = v; if (v === 'install' && !F.sched.length && F.total) agSplit(3); if (v === 'upfront' && !F.advDate) F.advDate = F.start; }
   else if (id === 'ag_cdate') F.cDateBlank = v === 'blank';
@@ -3584,7 +3687,7 @@ function agBlocksHtml(F) {
     else if (b.t === 'p') out.push({ h: '<div class="ag-p' + (b.intro ? ' intro' : '') + gap + '">' + agInl(b.text) + '</div>', last: !nx });
     else out.push({ h: '<div class="ag-' + b.t + gap + '"><span>' + esc(b.n) + '</span>' + agInl(b.text) + '</div>', last: !nx });
   });
-  var sig = F.sig && AGI && AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '';
+  var sig = F.sig && !F._draft && AGI && AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '';   // খসড়ায় সইয়ের ছবি নয়
   var cDate = F.cDateBlank ? '<span class="ag-blank"></span>' : esc(AGE.dNum(F.cDate || F.date));
   out.push({ sig: true, h: '<div class="ag-sigs"><div><b>For ' + esc(org.name) + ':</b><div class="ag-sg">' + sig + '</div><div class="ag-ln"></div>' + esc(F.signer || '') + '<br>' + esc(F.signerTitle || '') + '<br>' + esc(org.name) + '<br>Date: ' + esc(AGE.dNum(F.date)) + '</div>' +
     '<div><b>For the Creator:</b><div class="ag-sg"></div><div class="ag-ln"></div>' + esc(String(F.creator || '').trim()) + '<br>&nbsp;<br>&nbsp;<br>Date: ' + cDate + '</div></div>' });
@@ -3619,7 +3722,7 @@ function agBuild(host, F) {
   });
   // প্রতি পাতার নিচে: নম্বর · Page 1 of 2 (পাতা আলাদা হলেও কোন চুক্তির কোন পাতা বোঝা যায়)
   var ref = agRefShow(F);
-  pages.forEach(function (p, i) { p.querySelector('.agpn').textContent = (ref ? ref + '  ·  ' : '') + 'Page ' + (i + 1) + ' of ' + pages.length; });
+  pages.forEach(function (p, i) { p.querySelector('.agpn').innerHTML = (F._draft ? '<b class="ag-draft">' + esc(F._draft) + '</b>  ·  ' : '') + esc((ref ? ref + '  ·  ' : '') + 'Page ' + (i + 1) + ' of ' + pages.length); });
   return pages;
 }
 function agPreview() {
@@ -3627,9 +3730,9 @@ function agPreview() {
   var w = box.clientWidth || 600, s = Math.min(1, (w - 4) / AG_PAGE.w);
   var host = document.createElement('div'); host.className = 'ag-host';
   box.innerHTML = ''; box.appendChild(host);
-  var pages = agBuild(host, AG.F);
+  var pages = agBuild(host, agRF());
   pages.forEach(function (p) { var wr = document.createElement('div'); wr.className = 'ag-wrap'; wr.style.width = (AG_PAGE.w * s) + 'px'; wr.style.height = (AG_PAGE.h * s) + 'px'; p.style.transform = 'scale(' + s + ')'; host.insertBefore(wr, p); wr.appendChild(p); });
-  box.insertAdjacentHTML('afterbegin', '<div class="muted" style="font-size:12px;text-align:center">' + t('{0} pages · A4', N(pages.length)) + '</div>');
+  box.insertAdjacentHTML('afterbegin', '<div class="muted" style="font-size:12px;text-align:center">' + (pages.length === 1 ? t('1 page · A4') : t('{0} pages · A4', N(pages.length))) + '</div>');
 }
 
 /* ---------- ফাইল ---------- */
@@ -3665,7 +3768,7 @@ function agPdf(canvases) {
   return agLib('jspdf', function () { return !!(window.jspdf && window.jspdf.jsPDF); }).then(function () {
     var doc = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4', compress: true });
     canvases.forEach(function (c, i) { if (i) doc.addPage(); doc.addImage(c.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, 595.28, 841.89); });
-    doc.setProperties({ title: agFileName(AG.F), creator: S.set.org || ORG });
+    doc.setProperties({ title: agFileName(agRF()), creator: S.set.org || ORG });
     return doc;
   });
 }
@@ -3696,13 +3799,13 @@ function agPersist(btn) {
     return api('apiAgreeRef', [{ id: AG.aid, pid: F.pid, name: F.creator.trim(), kind: F.kind, date: F.date, ref: F.ref || '' }]).then(function (r) {
       F.ref = r.ref; if (r.partner) { upsert(S.partners, r.partner); index(); }
     });
-  }).then(function () { return agCanvases(F); }).then(function (cs) { res.canvases = cs; return agPdf(cs); }).then(function (doc) {
+  }).then(function () { return agCanvases(agRF()); }).then(function (cs) { res.canvases = cs; return agPdf(cs); }).then(function (doc) {
     res.doc = doc;
     var key = agKey(F);
     if (AG.aid && AG.savedKey === key) { var r0 = (S.agrees || []).filter(function (a) { return a.id === AG.aid; })[0]; if (r0 && r0.file) return; }
     btn.innerHTML = t('Saving to Drive…');
     var b64 = doc.output('datauristring').split(',')[1];
-    return api('apiSaveAgreement', [{ id: AG.aid, pid: F.pid, did: F.did, name: F.creator.trim(), date: F.date, data: F, pdf: b64, fileName: agFileName(F), ref: F.ref }]).then(function (r) {
+    return api('apiSaveAgreement', [{ id: AG.aid, pid: F.pid, did: F.did, name: F.creator.trim(), date: F.date, data: F, pdf: b64, fileName: agFileName(agRF()), ref: F.ref }]).then(function (r) {
       S.agrees = S.agrees || []; upsert(S.agrees, r); AG.aid = r.id; AG.savedKey = key; AG.rec = r;
       agRedrawLeft();   // নম্বর এখন স্থায়ী — ঘরটা বন্ধ দেখায়
       rerender();   // পেছনের পাতা (প্রোফাইল / চুক্তিপত্রের তালিকা) সাথে সাথে হালনাগাদ — ফর্ম আলাদা জায়গায়, তাতে হাত পড়ে না
@@ -3710,10 +3813,10 @@ function agPersist(btn) {
     });
   }).then(function () { done(); var sv = $('agSaved'); if (sv) sv.innerHTML = agSavedHtml(); return res; }, function (e) { done(); if (e && e.message !== 'missing' && e.message !== 'busy') toast(srvMsg(e.message), 5000); throw e; });
 }
-function agDlPdf(btn) { agPersist(btn).then(function (r) { agSave(r.doc.output('blob'), agFileName(AG.F) + '.pdf'); }, function () {}); }
+function agDlPdf(btn) { agPersist(btn).then(function (r) { agSave(r.doc.output('blob'), agFileName(agRF()) + '.pdf'); }, function () {}); }
 function agDlJpg(btn) {
   agPersist(btn).then(function (r) {
-    var nm = agFileName(AG.F);
+    var nm = agFileName(agRF());
     r.canvases.forEach(function (c, i) { setTimeout(function () { c.toBlob(function (b) { agSave(b, nm + (r.canvases.length > 1 ? ' - page ' + (i + 1) : '') + '.jpg'); }, 'image/jpeg', 0.92); }, i * 400); });
   }, function () {});
 }
@@ -3723,9 +3826,9 @@ function agDlWord(btn) {
       var get = function (u) { return fetch(u).then(function (r) { return r.arrayBuffer(); }); };
       var sig = AG.F.sig && AGI.sig ? AGI.sig : '';
       return Promise.all([get('pad/header.png'), get('pad/footer.png'), sig ? get(sig) : null, sig ? agImgSize(sig) : null, get('pad/watermark.png')]).then(function (x) {
-        var doc = AGE.docx(window.docx, AG.F, agOrg(), agText(AG.F), { head: x[0], foot: x[1], sig: x[2], sigW: x[3] && x[3][0], sigH: x[3] && x[3][1], wm: x[4] });
+        var doc = AGE.docx(window.docx, agRF(), agOrg(), agText(AG.F), { head: x[0], foot: x[1], sig: x[2], sigW: x[3] && x[3][0], sigH: x[3] && x[3][1], wm: x[4] });
         return window.docx.Packer.toBlob(doc);
-      }).then(function (b) { agSave(b, agFileName(AG.F) + '.docx'); });
+      }).then(function (b) { agSave(b, agFileName(agRF()) + '.docx'); });
     });
   }).catch(function (e) { if (e && e.message !== 'missing' && e.message !== 'busy') toast(e.message, 5000); });
 }
@@ -3737,7 +3840,9 @@ function agRows(list, showName) {
   return list.map(function (a) {
     var F = a.data || {}, mdlS = (AG_MODELS.filter(function (x) { return x[0] === F.model; })[0] || ['', ''])[1];
     var sub = [a.ref ? '<b class="ag-refc">' + esc(a.ref) + '</b>' : '', dShort(a.date), F.kind === 'ad' ? t('Advertisement') : '', mdlS ? t(mdlS) : '', F.model === 'per' && F.rate ? t('{0} each', tkS(F.rate)) : F.total ? tkS(F.total) : ''].filter(Boolean).join(' · ');
-    return '<div class="row"><span class="pl p-web">' + icon('deal') + '</span><div class="g click" data-a="ag-open" data-id="' + esc(a.id) + '"><div class="t">' + esc(showName ? a.name : (F.title ? String(F.title).charAt(0) + String(F.title).slice(1).toLowerCase() : t('Agreement paper'))) + '</div><div class="s">' + sub + '</div></div>' +
+    var stp = agStPill(a.status || 'draft');
+    return '<div class="row"><span class="pl p-web">' + icon('deal') + '</span><div class="g click" data-a="ag-open" data-id="' + esc(a.id) + '"><div class="t">' + esc(showName ? a.name : (F.title ? String(F.title).charAt(0) + String(F.title).slice(1).toLowerCase() : t('Agreement paper'))) + '</div><div class="s">' + sub + '</div><div style="margin-top:4px">' + stp + '</div></div>' +
+      (a.signedFile ? '<a class="btn xs" href="' + esc(a.signedFile) + '" target="_blank" rel="noopener" title="' + t('Open the signed copy') + '">' + icon('check', 's') + t('Signed') + '</a>' : '') +
       (a.file ? '<a class="btn xs" href="' + esc(a.file) + '" target="_blank" rel="noopener" title="' + t('Open PDF in Google Drive') + '">' + icon('ext', 's') + 'PDF</a>' : '<span class="pill warn" title="' + t('Not in Drive yet') + '">' + t('No PDF') + '</span>') +
       '<button class="btn xs ghost" data-a="ag-del" data-id="' + esc(a.id) + '" title="' + t('Remove from this list (the PDF stays in Drive)') + '">' + icon('trash', 's') + '</button></div>';
   }).join('');
@@ -3802,6 +3907,224 @@ function agSigUpload() {
     rd.readAsDataURL(f);
   };
   inp.click();
+}
+
+/* ═════════ চুক্তিপত্রের ধাপ: খসড়া → আলোচনায় → চূড়ান্ত → সই সম্পন্ন ═════════
+ * খসড়া পাঠালে সংস্করণ (v1, v2…) জমা থাকে; খসড়ার পাতায় "DRAFT vN", সইয়ের ছবি নয়। চূড়ান্তে লেখা তালাবদ্ধ, সই বসে।
+ * চূড়ান্তের পরে বদল = সংশোধনী (নতুন চুক্তিপত্র, নম্বরের শেষে -A1)। ক্রিয়েটরের সই করা কপি Drive-এ, ধাপ = সই সম্পন্ন। */
+var AG_ST = { draft: ['Draft', ''], talks: ['In talks', 'info'], final: ['Final — waiting for signature', 'warn'], signed: ['Signed', 'ok'] };
+function agStatus() { return (AG && AG.rec && AG.rec.status) || 'draft'; }
+function agLocked() { var s = agStatus(); return s === 'final' || s === 'signed'; }
+function agSentVers() { return (AG.vers || []).filter(function (v) { return v.via !== 'final'; }); }
+/* এখন যে খসড়া দেখাচ্ছে তার সংস্করণ: শেষ পাঠানোর পরে বদল না থাকলে সেটাই, নাহলে পরেরটা */
+function agDraftN() {
+  var sv = agSentVers(), last = sv[sv.length - 1];
+  return !last ? 1 : (JSON.stringify(last.data) === JSON.stringify(AG.F) ? last.v : last.v + 1);
+}
+/* আঁকার জন্য ঘর: খসড়ায় "DRAFT vN" আর সই নেই; final=true দিলে চূড়ান্তের মতো */
+function agRF(final) {
+  var F = Object.assign({}, AG.F), fin = final || agLocked();
+  F._draft = fin ? '' : 'DRAFT v' + agDraftN();
+  return F;
+}
+function agStPill(st) { var x = AG_ST[st] || AG_ST.draft; return '<span class="pill ' + x[1] + '">' + (st === 'signed' ? '✓ ' : '') + t(x[0]) + '</span>'; }
+
+var AG_AMEND_TPL = [
+  'This Amendment No. {amendNo} (the **“Amendment”**) is made on {date} between **{org}** (the **“Company”**) and **{creator}** (the **“Creator”**), and amends the Work Agreement No. **{amendOf}** dated {amendDate} (the **“Agreement”**).',
+  '',
+  '## Amendments',
+  'With effect from {date}, the Agreement is amended as follows:',
+  '- [Write the change here — for example: Clause 3(a) is replaced by: “The Company shall pay the Creator BDT 60,000 (Sixty Thousand Taka only) for each completed video.”];',
+  '',
+  '## Other Terms',
+  'All other terms and conditions of the Agreement remain unchanged and in full force and effect. In case of any conflict between this Amendment and the Agreement, this Amendment shall prevail.',
+  '',
+  '## Acceptance',
+  'By signing below, the Parties confirm that they have read, understood, and agreed to this Amendment.'
+].join('\n');
+function agAmendText(F) {
+  return AGE.fillText(AG_AMEND_TPL.replace(/\{amendNo\}/g, F.amendNo || 1).replace(/\{amendOf\}/g, F.amendOf || '').replace(/\{amendDate\}/g, AGE.dLong(F.amendDate)), F, agOrg());
+}
+
+/* ধাপের সারি + পাঠানো সংস্করণের তালিকা (ফর্মের মাথায়) */
+function agStatusHtml() {
+  if (!AG.rec) return '<div class="note" style="margin-bottom:6px;font-size:12.5px">' + t('New agreement paper — it is saved as a draft when you first download or send it.') + '</div>';
+  var st = agStatus(), steps = ['draft', 'talks', 'final', 'signed'], at = steps.indexOf(st);
+  var h = '<div class="ag-steps">' + steps.map(function (s, i) { return '<span class="' + (i < at ? 'done' : i === at ? 'on' : '') + '">' + t(['Draft', 'In talks', 'Final', 'Signed'][i]) + '</span>'; }).join('') + '</div>';
+  if (AG.rec.parent) { var par = (S.agrees || []).filter(function (a) { return a.id === AG.rec.parent; })[0]; if (par) h += '<div class="muted" style="font-size:12.5px;margin:6px 0">' + t('Amendment to {0}', '<a href="#" class="lnk-a" data-a="ag-open" data-id="' + esc(par.id) + '">' + esc(par.ref) + '</a>') + '</div>'; }
+  var am = (S.agrees || []).filter(function (a) { return a.parent === AG.aid; });
+  if (am.length) h += '<div class="muted" style="font-size:12.5px;margin:6px 0">' + t('Amendments: {0}', am.map(function (a) { return '<a href="#" class="lnk-a" data-a="ag-open" data-id="' + esc(a.id) + '">' + esc(a.ref) + '</a>'; }).join(', ')) + '</div>';
+  if (st === 'signed') h += '<div class="note ok" style="margin:8px 0">' + icon('check', 's') + ' ' + t('Signed by both sides on {0}.', dLong(AG.rec.signedAt)) + (AG.rec.signedFile ? ' <a class="lnk-a" href="' + esc(AG.rec.signedFile) + '" target="_blank" rel="noopener">' + t('Open the signed copy') + '</a>' : '') + '</div>';
+  else if (st === 'final') h += '<div class="note warn" style="margin:8px 0">' + t('Final since {0} — the wording is locked. Waiting for the creator\'s signed copy.', dLong(AG.rec.finalAt)) + '</div>';
+  var sv = agSentVers();
+  if (sv.length) {
+    h += '<div class="sh-sec" style="margin-top:12px">' + t('Versions sent') + (sv.length > 0 ? '<button class="btn xs" data-a="ag-cmp">' + t('Compare') + '</button>' : '') + '</div><div class="ag-vers">' + sv.slice().reverse().map(function (v) {
+      var how = { mail: t('Email') + (v.to ? ' · ' + esc(v.to) : ''), wa: 'WhatsApp', mark: t('sent outside the app') }[v.via] || '';
+      return '<div><b>v' + v.v + '</b><span class="muted">' + esc(v.at.slice(0, 10) ? dShort(v.at.slice(0, 10)) : '') + (how ? ' · ' + how : '') + '</span>' + (v.note ? '<div class="ag-vnote">' + esc(v.note) + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
+  }
+  return h;
+}
+/* নিচের বোতাম — ধাপ অনুযায়ী */
+function agActionsHtml() {
+  var st = agStatus(), dl = '<button class="btn" data-a="ag-word">' + icon('dl', 's') + 'Word</button><button class="btn" data-a="ag-jpg">' + icon('dl', 's') + 'JPG</button><button class="btn" data-a="ag-pdf">' + icon('dl', 's') + 'PDF</button>';
+  if (st === 'signed') return '<div class="ag-dl">' + (AG.rec.signedFile ? '<a class="btn pri" style="flex:1" href="' + esc(AG.rec.signedFile) + '" target="_blank" rel="noopener">' + icon('ext', 's') + t('Signed copy') + '</a>' : '') + dl + '</div>' +
+    '<div class="ag-dl2"><button class="btn sm" data-a="ag-signed">' + t('Replace the signed copy') + '</button><button class="btn sm" data-a="ag-amend">' + icon('plus', 's') + t('Amendment') + '</button></div>';
+  if (st === 'final') return '<div class="ag-dl">' + dl + '</div><div class="ag-dl2"><button class="btn" data-a="ag-send">' + icon('send', 's') + t('Send for signature') + '</button><button class="btn grad" data-a="ag-signed" style="flex:1">' + icon('up', 's') + t('Add signed copy') + '</button></div>' +
+    '<div class="ag-dl2"><button class="btn sm ghost" data-a="ag-amend">' + icon('plus', 's') + t('Amendment') + '</button></div>';
+  return '<div class="ag-dl">' + dl + '</div><div class="ag-dl2"><button class="btn" data-a="ag-send">' + icon('send', 's') + t('Send draft') + '</button><button class="btn grad" data-a="ag-final" style="flex:1">' + icon('check', 's') + t('Finalise') + '</button></div>' +
+    '<div class="muted" style="font-size:12px;margin-top:6px">' + t('Drafts carry "DRAFT v{0}" at the bottom of each page and no company signature.', agDraftN()) + '</div>';
+}
+
+/* ---------- পাঠানো (ইমেইলে PDF সংযুক্ত / WhatsApp / আগেই পাঠিয়েছি) ---------- */
+function agSendText(via) {
+  var F = AG.F, fin = agLocked(), n = agDraftN(), ref = agRefShow(F), nm = String(F.creator || '').trim(), org = S.set.org || ORG;
+  if (via === 'subject') return fin ? 'Agreement for signature — ' + ref : 'Draft agreement for review — ' + ref + ' (v' + n + ')';
+  if (via === 'wa') return fin ? 'Assalamu alaikum ' + nm + ', this is ' + (S.set.me || '') + ' from ' + org + '. Here is the final agreement (' + ref + '). Please sign it and send us a scan or a clear photo of the signed pages. Thank you.'
+    : 'Assalamu alaikum ' + nm + ', this is ' + (S.set.me || '') + ' from ' + org + '. Here is the draft agreement (' + ref + ', version ' + n + ') for your review. Let us know if you would like any changes.';
+  return fin ? 'Dear ' + nm + ',\n\nPlease find attached the final Work Agreement (' + ref + ').\n\nKindly sign it and send us a scanned copy or a clear photo of the signed pages.\n\nThank you.'
+    : 'Dear ' + nm + ',\n\nPlease find attached the draft Work Agreement (' + ref + ', version ' + n + ') for your review.\n\nLet us know if you would like any changes. Once everything is agreed, we will send you the final copy to sign.';
+}
+function agSendHtml() {
+  var F = AG.F, p = F.pid ? S.P[F.pid] : null, fin = agLocked(), via = AG.sendVia || (p && p.email ? 'mail' : 'wa');
+  AG.sendVia = via;
+  var h = '<div class="top" style="margin:0 0 6px"><button class="btn sm ghost" data-a="ag-back">' + icon('left', 's') + t('Back') + '</button></div>' +
+    '<h3 style="margin:4px 0 2px">' + (fin ? t('Send for signature') : t('Send draft v{0}', agDraftN())) + '</h3><div class="muted" style="font-size:12.5px">' + esc(agRefShow(F)) + ' · ' + esc(F.creator) + '</div>' +
+    '<label class="fl">' + t('How') + '</label>' + segH('ag_via', [['mail', t('Email (PDF attached)')], ['wa', 'WhatsApp'], ['mark', t('Already sent')]], via, 'full');
+  if (!fin) h += '<label class="fl">' + t('What changed, or what they asked for') + ' <em>(' + t('optional') + ')</em></label><textarea class="in" id="ags_note" style="min-height:70px" placeholder="' + t('e.g. Creator asked for 4 installments instead of 3') + '">' + esc(AG.sendNote || '') + '</textarea>';
+  if (via === 'mail') h += '<label class="fl">' + t('To') + '</label><input class="in" id="ags_to" type="email" value="' + esc((p && p.email) || '') + '" placeholder="' + t('Creator\'s email') + '">' +
+    '<label class="fl">' + t('Subject') + '</label><input class="in" id="ags_subj" value="' + esc(agSendText('subject')) + '">' +
+    '<label class="fl">' + t('Message') + '</label><textarea class="in" id="ags_body" style="min-height:150px">' + esc(agSendText('mail')) + '</textarea>' +
+    '<div class="muted" style="font-size:12px;margin-top:6px">' + t('Sent from your Gmail with the PDF attached — replies come there too.') + '</div>';
+  else if (via === 'wa') h += '<label class="fl">' + t('WhatsApp number') + '</label><input class="in" id="ags_wa" value="' + esc((p && p.phone) || F.phone || '') + '" placeholder="01XXXXXXXXX">' +
+    '<label class="fl">' + t('Message') + '</label><textarea class="in" id="ags_body" style="min-height:110px">' + esc(agSendText('wa')) + '</textarea>' +
+    '<div class="muted" style="font-size:12px;margin-top:6px">' + t('On a phone the PDF goes straight into WhatsApp. On a computer the PDF is downloaded and WhatsApp opens — attach the file there.') + '</div>';
+  else h += '<div class="muted" style="font-size:12.5px;margin-top:10px">' + (fin ? t('Only notes in the history that the final copy was sent.') : t('Only saves this version in the history — use it when you sent the draft some other way.')) + '</div>';
+  h += '<div class="ag-dl"><button class="btn grad" data-a="ag-send-go" style="flex:1">' + icon('send', 's') + (via === 'mark' ? t('Save in history') : t('Send')) + '</button></div>';
+  return h;
+}
+function agWaNum(s) { var d = String(s || '').replace(/\D/g, ''); if (/^01\d{9}$/.test(d)) d = '88' + d; return d; }
+function agSendGo(btn) {
+  var via = AG.sendVia, note = $('ags_note') ? $('ags_note').value.trim() : '';
+  AG.sendNote = note;
+  var x = { aid: '', via: via, note: note, text: agText(AG.F) };
+  if (via === 'mail') { x.to = $('ags_to').value.trim(); x.subject = $('ags_subj').value.trim(); x.body = $('ags_body').value.trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.to)) { toast(t('Enter a valid email address.')); return; } }
+  var waN = via === 'wa' ? agWaNum($('ags_wa').value) : '', waMsg = via === 'wa' ? $('ags_body').value.trim() : '';
+  agPersist(btn).then(function (r) {
+    var nm = agFileName(agRF());
+    x.aid = AG.aid; x.fileName = nm;
+    if (via === 'mail') x.pdf = r.doc.output('datauristring').split(',')[1];
+    if (via === 'wa') {
+      x.to = waN;
+      var blob = r.doc.output('blob'), file = null;
+      try { file = new File([blob], nm + '.pdf', { type: 'application/pdf' }); } catch (e) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], text: waMsg }).catch(function () {});
+      else { agSave(blob, nm + '.pdf'); window.open('https://wa.me/' + waN + '?text=' + encodeURIComponent(waMsg), '_blank', 'noopener'); }
+    }
+    btn.disabled = true; btn.innerHTML = t('Please wait…');
+    return api('apiAgreeSend', [x]).then(function (res) {
+      upsert(S.agrees, res.agree); AG.rec = res.agree; if (res.log) { S.logs.push(res.log); index(); }
+      if (res.version) AG.vers.push(res.version);
+      AG.view = ''; AG.sendNote = ''; agRedrawLeft(); rerender();
+      toast(via === 'mail' ? t('Sent by email with the PDF attached') : via === 'wa' ? t('Saved in the history') : t('Saved in the history'));
+    });
+  }).catch(function () { if (btn) { btn.disabled = false; } });
+}
+
+/* ---------- চূড়ান্ত ---------- */
+function agFinalize(btn) {
+  if (!confirm(t('Finalise this agreement paper?\n\nThe wording will be locked and the company signature added. To change anything later you will need an amendment.'))) return;
+  agPersist(btn).then(function () {
+    var lbl = btn.innerHTML; btn.disabled = true; btn.innerHTML = t('Please wait…');
+    var FF = agRF(true);
+    return agCanvases(FF).then(agPdf).then(function (doc) {
+      return api('apiAgreeFinalize', [{ aid: AG.aid, pdf: doc.output('datauristring').split(',')[1], text: agText(AG.F), fileName: agFileName(FF) }]);
+    }).then(function (r) {
+      upsert(S.agrees, r.agree); AG.rec = r.agree; AG.savedKey = agKey(AG.F); agLoadVers(); agRedrawLeft(); rerender();
+      toast(t('Final — now send it for signature'), 5000);
+      if (r.agree.driveErr) toast(t('Saved here, but Google Drive said: {0}', r.agree.driveErr), 7000);
+    }, function (e) { btn.disabled = false; btn.innerHTML = lbl; throw e; });
+  }).catch(function () {});
+}
+
+/* ---------- সংশোধনী ---------- */
+function agAmend(btn) {
+  if (!confirm(t('Make an amendment to {0}?\n\nThe signed agreement stays as it is. The amendment is a separate paper ({0}-A…) that goes through draft, final and signature again.', AG.rec.ref))) return;
+  api('apiAgreeAmend', [{ aid: AG.aid }], btn).then(function (r) { upsert(S.agrees, r.agree); rerender(); agreeOpen({ aid: r.agree.id }); });
+}
+
+/* ---------- ক্রিয়েটরের সই করা কপি: একটা PDF, বা কয়েকটা ছবি (অ্যাপ PDF বানায়) ---------- */
+function agSignedHtml() {
+  return '<div class="top" style="margin:0 0 6px"><button class="btn sm ghost" data-a="ag-back">' + icon('left', 's') + t('Back') + '</button></div>' +
+    '<h3 style="margin:4px 0 2px">' + t('Add signed copy') + '</h3><div class="muted" style="font-size:12.5px">' + esc(AG.rec.ref) + ' · ' + esc(AG.F.creator) + '</div>' +
+    '<label class="fl">' + t('Date signed') + '</label><input class="in" type="date" id="agsg_date" value="' + esc((AG.rec && AG.rec.signedAt) || today()) + '">' +
+    '<label class="fl">' + t('Signed copy') + ' <em>(' + t('one PDF, or photos of each page in order') + ')</em></label>' +
+    '<input class="in" type="file" id="agsg_files" accept="application/pdf,image/*" multiple>' +
+    '<div id="agsg_list" class="muted" style="font-size:12.5px;margin-top:6px"></div>' +
+    '<div class="muted" style="font-size:12px;margin-top:8px">' + t('Saved to Google Drive next to the agreement as "… - SIGNED.pdf".') + '</div>' +
+    '<div class="ag-dl"><button class="btn grad" data-a="ag-signed-go" style="flex:1">' + icon('up', 's') + t('Save signed copy') + '</button></div>';
+}
+function agReadFile(f) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(f); }); }
+function agSignedGo(btn) {
+  var files = Array.prototype.slice.call(($('agsg_files') || {}).files || []), date = $('agsg_date').value;
+  if (!files.length) { toast(t('Choose the signed PDF or photos first')); return; }
+  var pdfs = files.filter(function (f) { return /pdf$/i.test(f.type) || /\.pdf$/i.test(f.name); }), imgs = files.filter(function (f) { return /^image\//.test(f.type); });
+  if (pdfs.length > 1 || (pdfs.length && imgs.length)) { toast(t('Choose one PDF, or only photos'), 4500); return; }
+  if (files.reduce(function (s, f) { return s + f.size; }, 0) > 30 * 1024 * 1024) { toast(t('The files are too large (over 30 MB)'), 4500); return; }
+  var lbl = btn.innerHTML; btn.disabled = true; btn.innerHTML = t('Please wait…');
+  var make = pdfs.length ? agReadFile(pdfs[0]).then(function (u) { return String(u).split(',')[1]; })
+    : agLib('jspdf', function () { return !!(window.jspdf && window.jspdf.jsPDF); }).then(function () {
+      var doc = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4', compress: true });
+      return imgs.reduce(function (pr, f, i) {
+        return pr.then(function () { return agReadFile(f); }).then(function (u) {
+          return new Promise(function (res) {
+            var im = new Image(); im.onload = function () {
+              var W = Math.min(1700, im.naturalWidth), H = Math.round(im.naturalHeight * W / im.naturalWidth), c = document.createElement('canvas'); c.width = W; c.height = H;
+              c.getContext('2d').drawImage(im, 0, 0, W, H);
+              var pw = 595.28, ph = 841.89, s = Math.min(pw / W, ph / H), w = W * s, h = H * s;
+              if (i) doc.addPage(); doc.addImage(c.toDataURL('image/jpeg', 0.85), 'JPEG', (pw - w) / 2, (ph - h) / 2, w, h); res();
+            }; im.onerror = function () { res(); }; im.src = u;
+          });
+        });
+      }, Promise.resolve()).then(function () { return doc.output('datauristring').split(',')[1]; });
+    });
+  make.then(function (b64) { return api('apiAgreeSigned', [{ aid: AG.aid, pdf: b64, signedAt: date }]); }).then(function (r) {
+    upsert(S.agrees, r.agree); AG.rec = r.agree; AG.view = ''; agRedrawLeft(); rerender(); toast(t('Signed copy saved to Google Drive'));
+  }, function () { btn.disabled = false; btn.innerHTML = lbl; });
+}
+
+/* ---------- দুই সংস্করণ মেলানো (শব্দ ধরে: যোগ সবুজ, বাদ লাল কাটা) ---------- */
+function agDiff(a, b) {
+  var A = String(a).split(/(\s+)/), Bt = String(b).split(/(\s+)/), n = A.length, m = Bt.length;
+  if (n * m > 6e6) return '<div class="note warn">' + t('Too long to compare here.') + '</div>';
+  var L = []; for (var i = 0; i <= n; i++) L.push(new Uint16Array(m + 1));
+  for (i = n - 1; i >= 0; i--) for (var j = m - 1; j >= 0; j--) L[i][j] = A[i] === Bt[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  var out = '', i2 = 0, j2 = 0;
+  while (i2 < n && j2 < m) {
+    if (A[i2] === Bt[j2]) { out += esc(A[i2]); i2++; j2++; }
+    else if (L[i2 + 1][j2] >= L[i2][j2 + 1]) { out += /^\s+$/.test(A[i2]) ? '' : '<del>' + esc(A[i2]) + '</del>'; i2++; }
+    else { out += /^\s+$/.test(Bt[j2]) ? esc(Bt[j2]) : '<ins>' + esc(Bt[j2]) + '</ins>'; j2++; }
+  }
+  while (i2 < n) { if (!/^\s+$/.test(A[i2])) out += '<del>' + esc(A[i2]) + '</del>'; i2++; }
+  while (j2 < m) { out += /^\s+$/.test(Bt[j2]) ? esc(Bt[j2]) : '<ins>' + esc(Bt[j2]) + '</ins>'; j2++; }
+  return out;
+}
+function agPlain(txt) {
+  return AGE.blocks(txt).map(function (b) { var s = String(b.text).replace(/\*\*/g, ''); return (b.t === 'h' ? '\n' + b.n + ' ' + s : b.t === 'a' ? '   ' + b.n + ' ' + s : b.t === 'i' ? '        ' + b.n + ' ' + s : s); }).join('\n').trim();
+}
+function agCmpHtml() {
+  var all = (AG.vers || []).map(function (v) { return { k: 'v' + v.v, l: v.via === 'final' ? t('Final') + ' (v' + v.v + ')' : 'v' + v.v + ' · ' + dShort(v.at.slice(0, 10)), text: agPlain(v.text) }; });
+  var nowTxt = agPlain(agText(AG.F));
+  if (!agLocked() && (!all.length || all[all.length - 1].text !== nowTxt)) all.push({ k: 'now', l: t('Now (not sent yet)'), text: nowTxt });   // শেষ পাঠানোর পরে বদল থাকলে তবেই
+  if (!all.length) return '<div class="top" style="margin:0 0 6px"><button class="btn sm ghost" data-a="ag-back">' + icon('left', 's') + t('Back') + '</button></div><div class="muted">' + t('No change in the wording.') + '</div>';
+  if (!AG.cmp || !all.some(function (x) { return x.k === AG.cmp[0]; }) || !all.some(function (x) { return x.k === AG.cmp[1]; })) AG.cmp = [all[Math.max(0, all.length - 2)].k, all[all.length - 1].k];
+  var get = function (k) { return all.filter(function (x) { return x.k === k; })[0]; }, A = get(AG.cmp[0]), Bv = get(AG.cmp[1]);
+  var opts = all.map(function (x) { return [x.k, x.l]; });
+  return '<div class="top" style="margin:0 0 6px"><button class="btn sm ghost" data-a="ag-back">' + icon('left', 's') + t('Back') + '</button></div>' +
+    '<h3 style="margin:4px 0 8px">' + t('Compare versions') + '</h3>' +
+    '<div class="g2"><div><label class="fl">' + t('From') + '</label>' + sel(opts, AG.cmp[0], 'id="agc_a"') + '</div><div><label class="fl">' + t('To') + '</label>' + sel(opts, AG.cmp[1], 'id="agc_b"') + '</div></div>' +
+    '<div class="muted" style="font-size:12px;margin:8px 0"><ins>' + t('added') + '</ins> · <del>' + t('removed') + '</del></div>' +
+    '<div class="ag-diff">' + (A && Bv ? (A.text === Bv.text ? '<div class="muted">' + t('No change in the wording.') + '</div>' : agDiff(A.text, Bv.text)) : '') + '</div>';
 }
 
 /* ═════════════════════════ PR Desk — events, login, start ═════════════════════════ */
@@ -3871,7 +4194,15 @@ document.addEventListener('click', function (ev) {
     case 'close': closeOv(); break;
     /* চুক্তিপত্র */
     case 'ag-new': agreeOpen({ did: a.dataset.did || '', pid: a.dataset.pid || '' }); break;
-    case 'ag-open': agreeOpen({ aid: id }); break;
+    case 'ag-open': agreeOpen({ aid: id, view: a.dataset.view || '' }); break;
+    case 'ag-send': AG.view = 'send'; agRedrawLeft(); break;
+    case 'ag-back': AG.view = ''; agRedrawLeft(); break;
+    case 'ag-send-go': agSendGo(a); break;
+    case 'ag-final': agFinalize(a); break;
+    case 'ag-signed': AG.view = 'signed'; agRedrawLeft(); break;
+    case 'ag-signed-go': agSignedGo(a); break;
+    case 'ag-amend': agAmend(a); break;
+    case 'ag-cmp': AG.view = 'cmp'; agRedrawLeft(); break;
     case 'ag-del': agDelete(id, a); break;
     case 'ag-pdf': agDlPdf(a); break;
     case 'ag-jpg': agDlJpg(a); break;
@@ -4125,7 +4456,7 @@ document.addEventListener('click', function (ev) {
     case 'set-sw': a.classList.toggle('on'); break;
     case 'set-gen': saveSettings({ org: $('s_org').value, me: $('s_me').value }, a); break;
     case 'set-rem':
-      saveSettings({ remindDays: $('s_remindDays').value, fuDays: $('s_fuDays').value, endWarn: $('s_endWarn').value, weekGoal: $('s_weekGoal').value, contentDay: $('s_contentDay').value,
+      saveSettings({ remindDays: $('s_remindDays').value, fuDays: $('s_fuDays').value, endWarn: $('s_endWarn').value, weekGoal: $('s_weekGoal').value, contentDay: $('s_contentDay').value, signDays: $('s_signDays').value,
         payMode: segVal('s_payMode'), todo: document.querySelector('[data-k="todo"]').classList.contains('on'), digest: document.querySelector('[data-k="digest"]').classList.contains('on') }, a);
       break;
     case 'set-wa': saveSettings({ waBody: $('s_waBody').value }, a); break;
