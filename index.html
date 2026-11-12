@@ -549,6 +549,7 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .ag-h>span{position:absolute;left:24px}
 .ag-a,.ag-i{text-align:justify;position:relative;padding-left:96px}
 .ag-a>span{position:absolute;left:72px}
+.ag-p.cut,.ag-a.cut,.ag-i.cut{text-align-last:justify;margin-bottom:0}
 .ag-i{padding-left:152px}.ag-i>span{position:absolute;left:118px}
 .ag-sigs{display:grid;grid-template-columns:1fr 1fr;margin-top:20px;line-height:1.13}
 .ag-sg{height:73px;display:flex;align-items:flex-end}
@@ -3361,10 +3362,10 @@ var AGE = (function () {
       var nx = B[i + 1], gapAfter = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? 160 : (b.t === 'a' || b.t === 'i') ? 0 : 100;
       if (b.t === 'h') body.push(P({ keepNext: true, spacing: { before: 120, after: 100 }, indent: { left: 720, hanging: 360 }, tabStops: [{ type: D.TabStopType.LEFT, position: 720 }],
         children: [new D.TextRun({ text: b.n, bold: true, font: TNR }), new D.TextRun({ text: '\t' + b.text.replace(/\*\*/g, ''), bold: true, font: TNR })] }));
-      else if (b.t === 'p') body.push(P({ alignment: J, keepLines: true, spacing: { after: gapAfter }, indent: b.intro ? undefined : { left: 720 }, children: runs(b.text) }));
+      else if (b.t === 'p') body.push(P({ alignment: J, widowControl: true, spacing: { after: gapAfter }, indent: b.intro ? undefined : { left: 720 }, children: runs(b.text) }));
       else {
         var L = b.t === 'a' ? 1440 : 2280, HG = b.t === 'a' ? 360 : 480;
-        body.push(P({ alignment: J, keepLines: true, spacing: { after: gapAfter }, indent: { left: L, hanging: HG }, tabStops: [{ type: D.TabStopType.LEFT, position: L }],
+        body.push(P({ alignment: J, widowControl: true, spacing: { after: gapAfter }, indent: { left: L, hanging: HG }, tabStops: [{ type: D.TabStopType.LEFT, position: L }],
           children: [new D.TextRun({ text: b.n + '\t', font: TNR })].concat(runs(b.text)) }));
       }
     });
@@ -3684,14 +3685,24 @@ function agBlocksHtml(F) {
   B.forEach(function (b, i) {
     var nx = B[i + 1], gap = !nx || nx.t === 'h' || (nx.t === 'p' && b.t !== 'p') ? ' gap' : '';
     if (b.t === 'h') out.push({ h: '<div class="ag-h"><span>' + esc(b.n) + '</span>' + agInl(b.text.replace(/\*\*/g, '')) + '</div>', keep: true });
-    else if (b.t === 'p') out.push({ h: '<div class="ag-p' + (b.intro ? ' intro' : '') + gap + '">' + agInl(b.text) + '</div>', last: !nx });
-    else out.push({ h: '<div class="ag-' + b.t + gap + '"><span>' + esc(b.n) + '</span>' + agInl(b.text) + '</div>', last: !nx });
+    else out.push({ h: agItemHtml(b, gap, b.text, false), b: b, gap: gap, last: !nx });
   });
   var sig = F.sig && !F._draft && AGI && AGI.sig ? '<img src="' + AGI.sig + '" alt="">' : '';   // খসড়ায় সইয়ের ছবি নয়
   var cDate = F.cDateBlank ? '<span class="ag-blank"></span>' : esc(AGE.dNum(F.cDate || F.date));
   out.push({ sig: true, h: '<div class="ag-sigs"><div><b>For ' + esc(org.name) + ':</b><div class="ag-sg">' + sig + '</div><div class="ag-ln"></div>' + esc(F.signer || '') + '<br>' + esc(F.signerTitle || '') + '<br>' + esc(org.name) + '<br>Date: ' + esc(AGE.dNum(F.date)) + '</div>' +
     '<div><b>For the Creator:</b><div class="ag-sg"></div><div class="ag-ln"></div>' + esc(String(F.creator || '').trim()) + '<br>&nbsp;<br>&nbsp;<br>Date: ' + cDate + '</div></div>' });
   return out;
+}
+/* অনুচ্ছেদ / (a) / (i) — cont = আগের পাতা থেকে চলে আসা অংশ (নম্বর ছাড়া), cut = এখানে ভাগ হয়েছে (শেষ লাইনও দুই পাশে সমান) */
+function agItemHtml(b, gap, text, cont, cut) {
+  var cls = b.t === 'p' ? 'ag-p' + (b.intro ? ' intro' : '') : 'ag-' + b.t;
+  return '<div class="' + cls + (cut ? ' cut' : gap) + (cont ? ' cont' : '') + '">' + (b.t === 'p' || cont ? '' : '<span>' + esc(b.n) + '</span>') + agInl(text) + '</div>';
+}
+/* শব্দ ধরে দুই ভাগ; ** মাঝখানে কাটা পড়লে দুই ভাগেই বন্ধ/খোলা */
+function agSplitText(words, k) {
+  var a = words.slice(0, k).join(' '), r = words.slice(k).join(' ');
+  if ((a.split('**').length - 1) % 2) { a += '**'; r = '**' + r; }
+  return [a, r];
 }
 function agPageEl() {
   var pg = document.createElement('div'); pg.className = 'agp';
@@ -3704,10 +3715,35 @@ function agBuild(host, F) {
   var maxH = AG_PAGE.h - AG_PAGE.top - AG_PAGE.bottom, items = agBlocksHtml(F), pages = [];
   var pg = agPageEl(); host.appendChild(pg); pages.push(pg);
   var body = pg.querySelector('.agb');
+  var newPage = function () { pg = agPageEl(); host.appendChild(pg); pages.push(pg); body = pg.querySelector('.agb'); };
+  var lines = function (n) { var lh = parseFloat(getComputedStyle(n).lineHeight) || 18.4; return Math.round(n.offsetHeight / lh); };
   items.forEach(function (it, i) {
     var tmp = document.createElement('div'); tmp.innerHTML = it.h;
     var nodes = Array.prototype.slice.call(tmp.childNodes);
     nodes.forEach(function (n) { body.appendChild(n); });
+    // লেখার অংশ পাতা ছাড়ালে: যতটা ধরে এই পাতায় (অন্তত ২ লাইন), বাকিটা পরের পাতায় (অন্তত ২ লাইন)
+    if (body.scrollHeight > maxH && it.b && body.childNodes.length > 1) {
+      var node = nodes[0], words = String(it.b.text).split(/\s+/), best = 0, lo = 1, hi = words.length - 1;
+      while (lo <= hi) {
+        var mid = (lo + hi) >> 1, pr = agSplitText(words, mid);
+        var t2 = document.createElement('div'); t2.innerHTML = agItemHtml(it.b, it.gap, pr[0], it.cont, true);
+        var nn = t2.firstChild; body.replaceChild(nn, node); node = nn;
+        if (body.scrollHeight <= maxH) { best = mid; lo = mid + 1; } else hi = mid - 1;
+      }
+      var ok = false;
+      for (var k = best; k >= 1; k--) {
+        var pp = agSplitText(words, k), t3 = document.createElement('div'); t3.innerHTML = agItemHtml(it.b, it.gap, pp[0], it.cont, true);
+        var first = t3.firstChild; body.replaceChild(first, node); node = first;
+        if (lines(first) < 2) break;
+        var t4 = document.createElement('div'); t4.innerHTML = agItemHtml(it.b, it.gap, pp[1], true, false);
+        var rest = t4.firstChild; var probe = agPageEl(); probe.style.visibility = 'hidden'; host.appendChild(probe); probe.querySelector('.agb').appendChild(rest);
+        var rl = lines(rest); host.removeChild(probe);
+        if (rl >= 2) { newPage(); body.appendChild(rest); ok = true; break; }
+      }
+      if (ok) return;
+      // ভাগ করা গেল না — পুরো অংশ পরের পাতায় (নিচের নিয়মে)
+      var t5 = document.createElement('div'); t5.innerHTML = it.h; var whole = t5.firstChild; body.replaceChild(whole, node); nodes = [whole];
+    }
     if (body.scrollHeight > maxH && body.childNodes.length > nodes.length) {
       var move = nodes.slice(), prev = nodes[0].previousSibling;
       if (it.sig) {
@@ -3716,7 +3752,7 @@ function agBuild(host, F) {
         if (prev) move.unshift(prev);
       } else if (prev && prev.classList.contains('ag-h')) move.unshift(prev);   // শিরোনাম পাতার শেষে একা নয়
       if (move.length >= body.childNodes.length) move = nodes.slice();
-      pg = agPageEl(); host.appendChild(pg); pages.push(pg); body = pg.querySelector('.agb');
+      newPage();
       move.forEach(function (n) { body.appendChild(n); });
     }
   });
