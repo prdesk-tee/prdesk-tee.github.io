@@ -532,6 +532,7 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .ag-off{position:fixed;left:-20000px;top:0;width:794px;z-index:-1}
 .ag-off .agp{margin-bottom:10px}
 .agp{width:794px;height:1123px;position:relative;background:#fff;color:#000;font:16px/1.15 'Times New Roman',Times,'Liberation Serif',serif;overflow:hidden;text-rendering:geometricPrecision}
+.agp .agw{position:absolute;left:195.5px;top:366px;width:403px;height:391px;pointer-events:none}
 .agp .agh{position:absolute;left:0;top:0;width:794px;height:auto;display:block}
 .agp .agf{position:absolute;left:0;bottom:0;width:794px;height:auto;display:block}
 .agp .agb{position:absolute;left:85px;right:85px;top:128px;max-height:846px}
@@ -3283,13 +3284,17 @@ var AGE = (function () {
     for (var k = body.length - 1; k >= 0 && k >= body.length - 2; k--) body[k] = keepNx(body[k]);
     body.push(P({ keepNext: true, spacing: { before: 360 }, children: [] }));
     body.push(new D.Table({ width: { size: 9346, type: D.WidthType.DXA }, columnWidths: [4673, 4673], borders: borders, rows: rows }));
+    // জলছাপ: পাতার ঠিক মাঝে, লেখার পেছনে, হেডারে থাকায় প্রতি পাতায় (৪.২ ইঞ্চি চওড়া)
+    var wmP = function () { return P({ spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: img.wm, transformation: { width: 403, height: Math.round(403 * (img.wmH || 1164) / (img.wmW || 1200)) },
+      floating: { horizontalPosition: { relative: D.HorizontalPositionRelativeFrom.PAGE, align: D.HorizontalPositionAlign.CENTER }, verticalPosition: { relative: D.VerticalPositionRelativeFrom.PAGE, align: D.VerticalPositionAlign.CENTER },
+        behindDocument: true, allowOverlap: true, lockAnchor: true, wrap: { type: D.TextWrappingType.NONE } } })] }); };
     var pic = function (data, h) { return P({ indent: { left: -1280, right: -1280 }, spacing: { before: 0, after: 0 }, children: [new D.ImageRun({ data: data, transformation: { width: 794, height: h } })] }); };
     return new D.Document({
       creator: org.name || 'PR Desk', title: (F.title || 'Work Agreement') + ' - ' + (F.creator || ''),
       styles: { default: { document: { run: { font: TNR, size: 24 } } } },
       sections: [{
         properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1920, bottom: 2240, left: 1280, right: 1280, header: 0, footer: 0 } } },
-        headers: { default: new D.Header({ children: [pic(img.head, 101)] }) },
+        headers: { default: new D.Header({ children: [pic(img.head, 101)].concat(img.wm ? [wmP()] : []) }) },
         footers: { default: new D.Footer({ children: [pic(img.foot, 131)] }) },
         children: body
       }]
@@ -3539,7 +3544,7 @@ function agBlocksHtml(F) {
 }
 function agPageEl() {
   var pg = document.createElement('div'); pg.className = 'agp';
-  pg.innerHTML = '<img class="agh" src="pad/header.png" alt=""><div class="agb"></div><img class="agf" src="pad/footer.png" alt="">';
+  pg.innerHTML = '<img class="agw" src="pad/watermark.png" alt=""><img class="agh" src="pad/header.png" alt=""><div class="agb"></div><img class="agf" src="pad/footer.png" alt="">';
   return pg;
 }
 /* host-এ পাতাগুলো বানায় (মাপ নিয়ে ভাগ করে): শিরোনাম পাতার শেষে একা থাকে না, শেষ ধারা সইয়ের সাথে থাকে */
@@ -3587,7 +3592,20 @@ function agCanvases(F) {
     var pages = agBuild(off, F);
     return agImgsReady(off).then(function () {
       var out = [];
-      return pages.reduce(function (pr, p) { return pr.then(function () { return html2canvas(p, { scale: 2.5, backgroundColor: '#ffffff', useCORS: true, logging: false, width: AG_PAGE.w, height: AG_PAGE.h }).then(function (c) { out.push(c); }); }); }, Promise.resolve())
+      // জলছাপ html2canvas ঠিকমতো আঁকে না — তাই পাতা স্বচ্ছ পটে তুলে নিজে সাজাই: সাদা → জলছাপ (মাঝখানে) → লেখা
+      var wm = off.querySelector('.agw'), SC = 2.5;
+      return pages.reduce(function (pr, p) {
+        return pr.then(function () {
+          p.style.background = 'transparent';
+          return html2canvas(p, { scale: SC, backgroundColor: null, useCORS: true, logging: false, width: AG_PAGE.w, height: AG_PAGE.h,
+            ignoreElements: function (el) { return el.classList && el.classList.contains('agw'); } }).then(function (c) {
+            var o = document.createElement('canvas'); o.width = c.width; o.height = c.height;
+            var x = o.getContext('2d'); x.fillStyle = '#ffffff'; x.fillRect(0, 0, o.width, o.height);
+            if (wm && wm.naturalWidth) { var ww = 403 * SC, hh = ww * wm.naturalHeight / wm.naturalWidth; x.drawImage(wm, (o.width - ww) / 2, (o.height - hh) / 2, ww, hh); }
+            x.drawImage(c, 0, 0); out.push(o);
+          });
+        });
+      }, Promise.resolve())
         .then(function () { off.remove(); return out; }, function (e) { off.remove(); throw e; });
     });
   });
@@ -3646,8 +3664,8 @@ function agDlWord(btn) {
     return agLib('docx', function () { return !!(window.docx && window.docx.Packer); }).then(function () {
       var get = function (u) { return fetch(u).then(function (r) { return r.arrayBuffer(); }); };
       var sig = AG.F.sig && AGI.sig ? AGI.sig : '';
-      return Promise.all([get('pad/header.png'), get('pad/footer.png'), sig ? get(sig) : null, sig ? agImgSize(sig) : null]).then(function (x) {
-        var doc = AGE.docx(window.docx, AG.F, agOrg(), agText(AG.F), { head: x[0], foot: x[1], sig: x[2], sigW: x[3] && x[3][0], sigH: x[3] && x[3][1] });
+      return Promise.all([get('pad/header.png'), get('pad/footer.png'), sig ? get(sig) : null, sig ? agImgSize(sig) : null, get('pad/watermark.png')]).then(function (x) {
+        var doc = AGE.docx(window.docx, AG.F, agOrg(), agText(AG.F), { head: x[0], foot: x[1], sig: x[2], sigW: x[3] && x[3][0], sigH: x[3] && x[3][1], wm: x[4] });
         return window.docx.Packer.toBlob(doc);
       }).then(function (b) { agSave(b, agFileName(AG.F) + '.docx'); });
     });
