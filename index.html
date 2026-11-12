@@ -535,7 +535,7 @@ button.slot:hover{opacity:1;border-color:var(--acc);color:var(--acc)}
 .agp .agw{position:absolute;left:224px;top:388.5px;width:346px;height:346px;pointer-events:none}
 .agp .agh{position:absolute;left:0;top:0;width:794px;height:auto;display:block}
 .agp .agf{position:absolute;left:0;bottom:0;width:794px;height:auto;display:block}
-.agp .agb{position:absolute;left:85px;right:85px;top:158px;max-height:845px}
+.agp .agb{position:absolute;left:85px;right:85px;top:146px;max-height:857px}
 .agp b{font-weight:700}
 .ag-ref{display:flex;justify-content:space-between;gap:12px;margin:0 0 10px}
 .agp .agpn{position:absolute;right:85px;top:1006px;font-size:10.7px;color:#555;letter-spacing:.2px}
@@ -3397,7 +3397,7 @@ var AGE = (function () {
       creator: org.name || 'PR Desk', title: (F.title || 'Work Agreement') + ' - ' + (F.creator || ''),
       styles: { default: { document: { run: { font: TNR, size: 24 } } } },
       sections: [{
-        properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 2370, bottom: 1800, left: 1280, right: 1280, header: 0, footer: 0 } } },
+        properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 2190, bottom: 1800, left: 1280, right: 1280, header: 0, footer: 0 } } },
         headers: { default: new D.Header({ children: [pic(img.head, 134)].concat(img.wm ? [wmP()] : []) }) },
         // প্রতি পাতার নিচে: নম্বর · Page 1 of 2 (Word নিজে পাতা গোনে)
         footers: { default: new D.Footer({ children: (F.ref ? [P({ alignment: D.AlignmentType.RIGHT, spacing: { before: 0, after: 40 }, children: (F._draft ? [new D.TextRun({ text: F._draft + '  ·  ', bold: true, size: 16, color: 'C0392B', font: TNR })] : []).concat([new D.TextRun({ children: [String(F.ref) + '  ·  Page ', D.PageNumber.CURRENT, ' of ', D.PageNumber.TOTAL_PAGES], size: 16, color: '555555', font: TNR })]) })] : []).concat([pic(img.foot, 96)]) }) },
@@ -3420,7 +3420,7 @@ var AG_CDN = {
   jspdf: 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js',
   h2c: 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'
 };
-var AG_PAGE = { w: 794, h: 1123, top: 158, bottom: 120, side: 85 };   // A4, পর্দার পিক্সেলে (৯৬ dpi) — Word-এর মার্জিনের সমান
+var AG_PAGE = { w: 794, h: 1123, top: 146, bottom: 120, side: 85 };   // A4, পর্দার পিক্সেলে (৯৬ dpi) — Word-এর মার্জিনের সমান
 var AG_KINDS = [['content', 'Content'], ['ad', 'Advertisement']];
 var AG_MODELS = [['per', 'Per content'], ['install', 'Installments'], ['upfront', 'Upfront'], ['one', 'One-off']];
 var AG_SUB = { content: '(Content Creator Agreement)', ad: '(Advertisement Agreement)' };
